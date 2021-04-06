@@ -16,13 +16,9 @@ namespace UML_Diagram_Designer
         private Bitmap _bitmap;
         private Graphics _graphics;
         private Pen _pen;
+        private Arrow arrow;
         private Point _start;
         private Point _finish;
-        GraphicsPath pathForCustomLineEndCap;
-        CustomLineCap _notFilledArrow;
-        CustomLineCap _notFilledDiamond;
-        CustomLineCap _filledArrow;
-        CustomLineCap _filledDiamond;
         bool _isClickedArrowButton = false;
 
         public Form1()
@@ -33,82 +29,21 @@ namespace UML_Diagram_Designer
         private void Form1_Load(object sender, EventArgs e)
         {
             _bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+
             _pen = new Pen(Color.Black, 6);
+
             _graphics = Graphics.FromImage(_bitmap);
             pictureBox1.BackColor = Color.White;
             pictureBox1.Image = _bitmap;
 
-            CreateNotFilledArrowCap();
-            CreateFilledArrowCap();
-            CreateNotFilledDiamondCap();
-            CreateFilledDiamondCap();
-        }
-
-        private void CreateNotFilledArrowCap()
-        {
-            pathForCustomLineEndCap = new GraphicsPath();
-
-            pathForCustomLineEndCap.AddLine(new Point(0, 0), new Point(-3, -3));
-            pathForCustomLineEndCap.AddLine(new Point(-3, -3), new Point(0, 0));
-            pathForCustomLineEndCap.AddLine(new Point(0, 0), new Point(3, -3));
-
-            CustomLineCap NotFilledArrowCap = new CustomLineCap(null, pathForCustomLineEndCap);
-            NotFilledArrowCap.SetStrokeCaps(LineCap.Round, LineCap.Round);
-
-            _notFilledArrow = NotFilledArrowCap;
-        }
-
-        private void CreateFilledArrowCap()
-        {
-            pathForCustomLineEndCap = new GraphicsPath();
-
-            pathForCustomLineEndCap.AddLine(new Point(0, 0), new Point(0, 2));
-            pathForCustomLineEndCap.AddLine(new Point(0, 2), new Point(-3, -2));
-            pathForCustomLineEndCap.AddLine(new Point(-3, -2), new Point(3, -2));
-            pathForCustomLineEndCap.AddLine(new Point(3, -2), new Point(0, 2));
-
-            CustomLineCap FilledArrowCap = new CustomLineCap(pathForCustomLineEndCap, null);
-            FilledArrowCap.SetStrokeCaps(LineCap.Round, LineCap.Round);
-
-            _filledArrow = FilledArrowCap;
-        }
-
-        private void CreateNotFilledDiamondCap()
-        {
-            pathForCustomLineEndCap = new GraphicsPath();
-
-            pathForCustomLineEndCap.AddLine(new Point(0, 0), new Point(2, 3));
-            pathForCustomLineEndCap.AddLine(new Point(2, 3), new Point(0, 6));
-            pathForCustomLineEndCap.AddLine(new Point(0, 6), new Point(-2, 3));
-            pathForCustomLineEndCap.AddLine(new Point(-2, 3), new Point(0, 0));
-
-
-            CustomLineCap NotFilledDiamondCap = new CustomLineCap(null, pathForCustomLineEndCap);
-            NotFilledDiamondCap.SetStrokeCaps(LineCap.Round, LineCap.Round);
-
-            _notFilledDiamond = NotFilledDiamondCap;
-        }
-
-        private void CreateFilledDiamondCap()
-        {
-            pathForCustomLineEndCap = new GraphicsPath();
-
-            pathForCustomLineEndCap.AddLine(new Point(0, 0), new Point(-2, -3));
-            pathForCustomLineEndCap.AddLine(new Point(-2, -3), new Point(0, -6));
-            pathForCustomLineEndCap.AddLine(new Point(0, -6), new Point(2, -3));
-            pathForCustomLineEndCap.AddLine(new Point(2, -3), new Point(0, 0));
-
-            CustomLineCap FilledDiamondCap = new CustomLineCap(pathForCustomLineEndCap, null);
-            FilledDiamondCap.SetStrokeCaps(LineCap.Round, LineCap.Round);
-
-            _filledDiamond = FilledDiamondCap;
         }
 
         private void associationButton_Click(object sender, EventArgs e)
         {
             _isClickedArrowButton = true;
+
             _pen.StartCap = LineCap.Flat;
-            _pen.CustomEndCap = _notFilledArrow;
+            _pen.CustomEndCap = arrowCreator.NotFilledArrow;
             _pen.DashStyle = DashStyle.Solid;
         }
 
@@ -116,7 +51,7 @@ namespace UML_Diagram_Designer
         {
             _isClickedArrowButton = true;
             _pen.StartCap = LineCap.Flat;
-            _pen.CustomEndCap = _filledArrow;
+            _pen.CustomEndCap = arrowCreator.FilledArrow;
             _pen.DashStyle = DashStyle.Solid;
         }
 
@@ -124,7 +59,7 @@ namespace UML_Diagram_Designer
         {
             _isClickedArrowButton = true;
             _pen.StartCap = LineCap.Flat;
-            _pen.CustomEndCap = _filledArrow;
+            _pen.CustomEndCap = arrowCreator.FilledArrow;
             _pen.DashStyle = DashStyle.Dash;
         }
 
@@ -132,7 +67,7 @@ namespace UML_Diagram_Designer
         {
             _isClickedArrowButton = true;
             _pen.StartCap = LineCap.Flat;
-            _pen.CustomEndCap = _notFilledArrow;
+            _pen.CustomEndCap = arrowCreator.NotFilledArrow;
             _pen.DashStyle = DashStyle.Dash;
         }
 
@@ -140,7 +75,7 @@ namespace UML_Diagram_Designer
         {
             _isClickedArrowButton = true;
             _pen.StartCap = LineCap.Flat;
-            _pen.CustomEndCap = _notFilledDiamond;
+            _pen.CustomEndCap = arrowCreator.NotFilledDiamond;
             _pen.DashStyle = DashStyle.Solid;
         }
 
@@ -148,7 +83,7 @@ namespace UML_Diagram_Designer
         {
             _isClickedArrowButton = true;
             _pen.StartCap = LineCap.Flat;
-            _pen.CustomEndCap = _filledDiamond;
+            _pen.CustomEndCap = arrowCreator.FilledDiamond;
             _pen.DashStyle = DashStyle.Solid;
         }
 
