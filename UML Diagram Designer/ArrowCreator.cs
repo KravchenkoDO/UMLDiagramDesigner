@@ -8,21 +8,18 @@ using System.Threading.Tasks;
 
 namespace UML_Diagram_Designer
 {
-    public abstract class Arrow
+    public class Arrow
     {
         private GraphicsPath _pathForCustomLineEndCap;
-        private Pen _pen;
-        protected CustomLineCap NotFilledArrow { get; private set; }
-        protected CustomLineCap NotFilledDiamond { get; private set; }
-        protected CustomLineCap FilledArrow { get; private set; }
-        protected CustomLineCap FilledDiamond { get; private set; }
+        public CustomLineCap NotFilledArrow { get; private set; }
+        public CustomLineCap NotFilledDiamond { get; private set; }
+        public CustomLineCap FilledArrow { get; private set; }
+        public CustomLineCap FilledDiamond { get; private set; }
 
-        
-
-        public Arrow()
+        public Arrow(Graphics graphics)
         {
             NotFilledArrow = CreateNotFilledArrowCap();
-            NotFilledDiamond = CreateNotFilledDiamondCap();
+            NotFilledDiamond = CreateNotFilledDiamondCap(graphics);
             FilledArrow = CreateFilledArrowCap();
             FilledDiamond = CreateFilledDiamondCap();
         }
@@ -42,22 +39,41 @@ namespace UML_Diagram_Designer
         {
             _pathForCustomLineEndCap = new GraphicsPath();
 
-            _pathForCustomLineEndCap.AddLine(new Point(0, 0), new Point(0, 2));
-            _pathForCustomLineEndCap.AddLine(new Point(0, 2), new Point(-3, -2));
-            _pathForCustomLineEndCap.AddLine(new Point(-3, -2), new Point(3, -2));
-            _pathForCustomLineEndCap.AddLine(new Point(3, -2), new Point(0, 2));
+            _pathForCustomLineEndCap.AddLine(new Point(0, 0), new Point(-3, -3));
+            _pathForCustomLineEndCap.AddLine(new Point(-3, -3), new Point(0, -3));
+            _pathForCustomLineEndCap.AddLine(new Point(0, -3), new Point(3, -3));
+            _pathForCustomLineEndCap.AddLine(new Point(3, -3), new Point(0, 0));
 
             return new CustomLineCap(_pathForCustomLineEndCap, null);
         }
 
-        private CustomLineCap CreateNotFilledDiamondCap()
+        private CustomLineCap CreateNotFilledDiamondCap(Graphics graphics)
         {
             _pathForCustomLineEndCap = new GraphicsPath();
 
-            _pathForCustomLineEndCap.AddLine(new Point(0, 0), new Point(2, 3));
-            _pathForCustomLineEndCap.AddLine(new Point(2, 3), new Point(0, 6));
-            _pathForCustomLineEndCap.AddLine(new Point(0, 6), new Point(-2, 3));
-            _pathForCustomLineEndCap.AddLine(new Point(-2, 3), new Point(0, 0));
+            Point point1 = new Point(0, 0);
+            Point point2 = new Point(-2, -3);
+            Point point3 = new Point(0, -6);
+            Point point4 = new Point(2, -3);
+
+            Point[] points = new Point[]
+            {
+                point1,
+                point2,
+                point3,
+                point4
+            };
+
+            //_pathForCustomLineEndCap.AddLine(new Point(0, 0), new Point(-2, -3));
+            //_pathForCustomLineEndCap.AddLine(new Point(-2, -3), new Point(0, -6));
+            //_pathForCustomLineEndCap.AddLine(new Point(0, -6), new Point(2, -3));
+            //_pathForCustomLineEndCap.AddLine(new Point(2, -3), new Point(0, 0));
+
+            _pathForCustomLineEndCap.AddPolygon(points);
+
+            using (Brush b = new SolidBrush(Color.White))
+                graphics.FillPath(b, _pathForCustomLineEndCap);
+
 
             return new CustomLineCap(null, _pathForCustomLineEndCap);
         }
@@ -66,12 +82,14 @@ namespace UML_Diagram_Designer
         {
             _pathForCustomLineEndCap = new GraphicsPath();
 
-            _pathForCustomLineEndCap.AddLine(new Point(0, 0), new Point(-2, -3));
-            _pathForCustomLineEndCap.AddLine(new Point(-2, -3), new Point(0, -6));
-            _pathForCustomLineEndCap.AddLine(new Point(0, -6), new Point(2, -3));
-            _pathForCustomLineEndCap.AddLine(new Point(2, -3), new Point(0, 0));
+            _pathForCustomLineEndCap.AddLine(new PointF(0.0f, 0.0f), new PointF(-2, -3));
+            _pathForCustomLineEndCap.AddLine(new PointF(-2, -3), new PointF(0, -6));
+            _pathForCustomLineEndCap.AddLine(new PointF(0, -6), new PointF(2, -3));
+            _pathForCustomLineEndCap.AddLine(new PointF(2, -3), new PointF(0.0f, 0.0f));
 
             return new CustomLineCap(_pathForCustomLineEndCap, null);
         }
+
+
     }
 }

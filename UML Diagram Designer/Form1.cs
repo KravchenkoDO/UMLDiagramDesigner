@@ -13,7 +13,8 @@ namespace UML_Diagram_Designer
 {
     public partial class Form1 : Form
     {
-        private Bitmap _bitmap;
+        private Bitmap _mainBitmap;
+        private Bitmap _tmpBitmap;
         private Graphics _graphics;
         private Pen _pen;
         private Arrow arrow;
@@ -28,62 +29,62 @@ namespace UML_Diagram_Designer
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            _bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            _mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
 
             _pen = new Pen(Color.Black, 6);
 
-            _graphics = Graphics.FromImage(_bitmap);
+            _graphics = Graphics.FromImage(_mainBitmap);
             pictureBox1.BackColor = Color.White;
-            pictureBox1.Image = _bitmap;
+            pictureBox1.Image = _mainBitmap;
 
+            arrow = new Arrow(_graphics);
         }
 
         private void associationButton_Click(object sender, EventArgs e)
         {
             _isClickedArrowButton = true;
 
-            _pen.StartCap = LineCap.Flat;
-            _pen.CustomEndCap = arrowCreator.NotFilledArrow;
+            _pen.CustomEndCap = arrow.NotFilledArrow;
             _pen.DashStyle = DashStyle.Solid;
         }
 
         private void inheritanceButton_Click(object sender, EventArgs e)
         {
             _isClickedArrowButton = true;
-            _pen.StartCap = LineCap.Flat;
-            _pen.CustomEndCap = arrowCreator.FilledArrow;
+
+            _pen.CustomEndCap = arrow.FilledArrow;
             _pen.DashStyle = DashStyle.Solid;
         }
 
         private void realizationButton_Click(object sender, EventArgs e)
         {
             _isClickedArrowButton = true;
-            _pen.StartCap = LineCap.Flat;
-            _pen.CustomEndCap = arrowCreator.FilledArrow;
+
+            _pen.CustomEndCap = arrow.FilledArrow;
             _pen.DashStyle = DashStyle.Dash;
         }
 
         private void dependencyButton_Click(object sender, EventArgs e)
         {
             _isClickedArrowButton = true;
-            _pen.StartCap = LineCap.Flat;
-            _pen.CustomEndCap = arrowCreator.NotFilledArrow;
+
+            _pen.CustomEndCap = arrow.NotFilledArrow;
             _pen.DashStyle = DashStyle.Dash;
         }
 
         private void aggregationButton_Click(object sender, EventArgs e)
         {
             _isClickedArrowButton = true;
-            _pen.StartCap = LineCap.Flat;
-            _pen.CustomEndCap = arrowCreator.NotFilledDiamond;
+
+            _pen.CustomEndCap = arrow.NotFilledDiamond;
             _pen.DashStyle = DashStyle.Solid;
         }
 
         private void compositionButton_Click(object sender, EventArgs e)
         {
             _isClickedArrowButton = true;
-            _pen.StartCap = LineCap.Flat;
-            _pen.CustomEndCap = arrowCreator.FilledDiamond;
+
+            _pen.CustomEndCap = arrow.FilledDiamond;
             _pen.DashStyle = DashStyle.Solid;
         }
 
@@ -112,9 +113,12 @@ namespace UML_Diagram_Designer
             }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
+            if(_isClickedArrowButton == true)
+            {
 
+            }
         }
     }
 }
