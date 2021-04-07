@@ -112,6 +112,9 @@ namespace UML_Diagram_Designer
             }
         }
 
-        
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
