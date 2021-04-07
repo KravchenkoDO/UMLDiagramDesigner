@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UML_Diagram_Designer.Arrows;
+using UML_Diagram_Designer.Rectangles;
 
 namespace UML_Diagram_Designer
 {
@@ -18,7 +19,9 @@ namespace UML_Diagram_Designer
         private Bitmap _tmpBitmap;
         private Graphics _graphics;
         private AbstractArrow _currentArrow;
+        private AbstractRectangle _currentRectangle;
         bool _isClickedLeftMouseButton = false;
+        bool _isClickedClassBoxButton = false;
 
         public Form1()
         {
@@ -75,7 +78,8 @@ namespace UML_Diagram_Designer
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             _isClickedLeftMouseButton = true;
-            _currentArrow.StartPoint = e.Location;
+            //_currentArrow.StartPoint = e.Location;
+            _currentRectangle.StartPoint = e.Location;
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
@@ -83,7 +87,14 @@ namespace UML_Diagram_Designer
             if (_isClickedLeftMouseButton == true)
             {
                 _isClickedLeftMouseButton = false;
-                _currentArrow.Draw(_graphics);
+                if (_isClickedClassBoxButton == true)
+                {
+                    _currentRectangle.Draw(_graphics);
+                }
+                else
+                {
+                    _currentArrow.Draw(_graphics);
+                }
                 _mainBitmap = _tmpBitmap;
             }
         }
@@ -95,9 +106,17 @@ namespace UML_Diagram_Designer
                 _tmpBitmap = (Bitmap)_mainBitmap.Clone();
                 _graphics = Graphics.FromImage(_tmpBitmap);
 
-                _currentArrow.EndPoint = e.Location;
+                if (_isClickedClassBoxButton == true)
+                {
+                    _currentRectangle.EndPoint = e.Location;
+                    _currentRectangle.Draw(_graphics);
+                }
+                else
+                {
+                    _currentArrow.EndPoint = e.Location;
+                    _currentArrow.Draw(_graphics);
+                }
 
-                _currentArrow.Draw(_graphics);
 
                 pictureBox1.Image = _tmpBitmap;
                 GC.Collect();
@@ -106,7 +125,8 @@ namespace UML_Diagram_Designer
 
         private void classButton_Click(object sender, EventArgs e)
         {
-
+            _isClickedClassBoxButton = true;
+            _currentRectangle = new ClassBox();
         }
     }
 }
