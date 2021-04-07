@@ -46,7 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArrowCreator.cs" />
     <Compile Include="Arrows\AbstractArrow.cs" />
     <Compile Include="Arrows\AggregationArrow.cs" />
     <Compile Include="Arrows\CompositionArrow.cs" />

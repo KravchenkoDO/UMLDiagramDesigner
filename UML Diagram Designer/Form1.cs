@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UML_Diagram_Designer.Arrows;
 
 namespace UML_Diagram_Designer
 {
@@ -16,11 +17,8 @@ namespace UML_Diagram_Designer
         private Bitmap _mainBitmap;
         private Bitmap _tmpBitmap;
         private Graphics _graphics;
-        private Pen _pen;
-        private Arrow arrow;
-        private Point _start;
-        private Point _finish;
-        bool _isClickedArrowButton = false;
+        private AbstractArrow _currentArrow;
+        bool _isClickedLeftMouseButton = false;
 
         public Form1()
         {
@@ -30,67 +28,44 @@ namespace UML_Diagram_Designer
         private void Form1_Load(object sender, EventArgs e)
         {
             _mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-
-            _pen = new Pen(Color.Black, 6);
-
             _graphics = Graphics.FromImage(_mainBitmap);
             pictureBox1.BackColor = Color.White;
             pictureBox1.Image = _mainBitmap;
-
-            arrow = new Arrow(_graphics);
         }
 
         private void associationButton_Click(object sender, EventArgs e)
         {
-            _isClickedArrowButton = true;
-
-            _pen.CustomEndCap = arrow.NotFilledArrow;
-            _pen.DashStyle = DashStyle.Solid;
+            _currentArrow = new AssociationArrow();
         }
 
         private void inheritanceButton_Click(object sender, EventArgs e)
         {
-            _isClickedArrowButton = true;
-
-            _pen.CustomEndCap = arrow.FilledArrow;
-            _pen.DashStyle = DashStyle.Solid;
+            _currentArrow = new InheritanceArrow();
         }
 
         private void realizationButton_Click(object sender, EventArgs e)
         {
-            _isClickedArrowButton = true;
-
-            _pen.CustomEndCap = arrow.FilledArrow;
-            _pen.DashStyle = DashStyle.Dash;
+            _currentArrow = new RealizationArrow();
         }
 
         private void dependencyButton_Click(object sender, EventArgs e)
         {
-            _isClickedArrowButton = true;
-
-            _pen.CustomEndCap = arrow.NotFilledArrow;
-            _pen.DashStyle = DashStyle.Dash;
+            _currentArrow = new DependencyArrow();
         }
 
         private void aggregationButton_Click(object sender, EventArgs e)
         {
-            _isClickedArrowButton = true;
-
-            _pen.CustomEndCap = arrow.NotFilledDiamond;
-            _pen.DashStyle = DashStyle.Solid;
+            _currentArrow = new AggregationArrow();
         }
 
         private void compositionButton_Click(object sender, EventArgs e)
         {
-            _isClickedArrowButton = true;
-
-            _pen.CustomEndCap = arrow.FilledDiamond;
-            _pen.DashStyle = DashStyle.Solid;
+            _currentArrow = new CompositionArrow();
         }
 
         private void clearButton_Click(object sender, EventArgs e)
         {
-            _isClickedArrowButton = false;
+            _isClickedLeftMouseButton = false;
 
             _graphics.Clear(Color.White);
 
@@ -99,26 +74,39 @@ namespace UML_Diagram_Designer
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            _start = e.Location;
+            _isClickedLeftMouseButton = true;
+            _currentArrow.StartPoint = e.Location;
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            _finish = e.Location;
-
-            if (_isClickedArrowButton == true)
+            if (_isClickedLeftMouseButton == true)
             {
-                _graphics.DrawLine(_pen, _start, _finish);
-                pictureBox1.Invalidate();
+                _isClickedLeftMouseButton = false;
+                _currentArrow.Draw(_graphics);
+                _mainBitmap = _tmpBitmap;
             }
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if(_isClickedArrowButton == true)
+            if(_isClickedLeftMouseButton == true)
             {
+                _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+                _graphics = Graphics.FromImage(_tmpBitmap);
 
+                _currentArrow.EndPoint = e.Location;
+
+                _currentArrow.Draw(_graphics);
+
+                pictureBox1.Image = _tmpBitmap;
+                GC.Collect();
             }
+        }
+
+        private void classButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
