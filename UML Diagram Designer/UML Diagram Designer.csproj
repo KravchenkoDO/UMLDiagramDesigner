@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DrawingType.cs" />
+    <Compile Include="ActionType.cs" />
     <Compile Include="Relationships\AbstractRelationship.cs" />
     <Compile Include="Relationships\AggregationRelationship.cs" />
     <Compile Include="Relationships\CompositionRelationship.cs" />
