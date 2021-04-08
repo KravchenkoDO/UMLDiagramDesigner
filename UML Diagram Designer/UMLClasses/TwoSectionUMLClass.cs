@@ -18,7 +18,21 @@ namespace UML_Diagram_Tool.UMLClasses
             Width = endPoint.X - StartPoint.X;
             Height = endPoint.Y - StartPoint.Y;
 
-            graphics.DrawRectangle(_pen, StartPoint.X, StartPoint.Y, Width, Height);
+            graphics.DrawPolygon(_pen, GetPoints().ToArray());
+        }
+
+        public override List<Point> GetPoints()
+        {
+            List<Point> points = new List<Point>();
+
+            points.Add(StartPoint);
+            points.Add(new Point(StartPoint.X + Width, StartPoint.Y));
+            points.Add(new Point(StartPoint.X + Width, (StartPoint.Y + Height) / 3));
+            points.Add(new Point(StartPoint.X, (StartPoint.Y + Height) / 3));
+            points.Add(new Point(StartPoint.X + Width, (StartPoint.Y + Height) / 3));
+            points.Add(new Point(StartPoint.X + Width, StartPoint.Y + Height));
+            points.Add(new Point(StartPoint.X, StartPoint.Y + Height));
+            return points;
         }
     }
 }
