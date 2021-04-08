@@ -165,13 +165,13 @@ namespace UML_Diagram_Designer
                 }
 
                 pictureBox1.Image = _tmpBitmap;
-                //GC.Collect();
+                GC.Collect();
             }
         }
 
         private void classButton_Click(object sender, EventArgs e)
         {
-            umlClassType = UMLClassType.OneSection;
+            umlClassType = UMLClassType.FourSection;
             drawingType = DrawingType.UmlClass;
         }
     }
