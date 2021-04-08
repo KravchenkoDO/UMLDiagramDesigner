@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace UML_Diagram_Designer
 {
-    public enum DrawingType
+    public enum ActionType
     {
-        Relationship = 0,
-        UmlClass,
-        Text
+        DrawRelationship = 0,
+        DrawUmlClass,
+        DrawText,
+        MoveElement
+
     }
 }
