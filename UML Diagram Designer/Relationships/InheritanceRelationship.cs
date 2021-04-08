@@ -6,26 +6,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UML_Diagram_Designer.Arrows
+namespace UML_Diagram_Designer.Relationships
 {
-    public class AssociationArrow : AbstractArrow
+    public class InheritanceRelationship : AbstractRelationship
     {
-        public AssociationArrow()
+        public InheritanceRelationship()
         {
             _pen = new Pen(Color.Black, 6);
-            _pen.CustomEndCap = CreateNotFilledArrowCap();
+            _pen.CustomEndCap = CreateFilledArrowCap();
             _pen.DashStyle = DashStyle.Solid;
         }
 
-        private CustomLineCap CreateNotFilledArrowCap()
+        private CustomLineCap CreateFilledArrowCap()
         {
             _pathForCustomLineEndCap = new GraphicsPath();
 
             _pathForCustomLineEndCap.AddLine(new Point(0, 0), new Point(-3, -3));
-            _pathForCustomLineEndCap.AddLine(new Point(-3, -3), new Point(0, 0));
-            _pathForCustomLineEndCap.AddLine(new Point(0, 0), new Point(3, -3));
+            _pathForCustomLineEndCap.AddLine(new Point(-3, -3), new Point(0, -3));
+            _pathForCustomLineEndCap.AddLine(new Point(0, -3), new Point(3, -3));
+            _pathForCustomLineEndCap.AddLine(new Point(3, -3), new Point(0, 0));
 
-            return new CustomLineCap(null, _pathForCustomLineEndCap);
+            return new CustomLineCap(_pathForCustomLineEndCap, null);
         }
 
         public override void Draw(Graphics graphics)

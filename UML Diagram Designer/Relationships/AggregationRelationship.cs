@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UML_Diagram_Designer.Arrows
+namespace UML_Diagram_Designer.Relationships
 {
-    public class AggregationArrow : AbstractArrow
+    public class AggregationRelationship : AbstractRelationship
     {
-        public AggregationArrow()
+        public AggregationRelationship()
         {
             _pen = new Pen(Color.Black, 6);
             _pen.CustomEndCap = CreateNotFilledDiamondCap();

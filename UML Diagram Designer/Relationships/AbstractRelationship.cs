@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UML_Diagram_Designer.Arrows
+namespace UML_Diagram_Designer.Relationships
 {
-     public abstract class AbstractArrow
+     public abstract class AbstractRelationship
     {
         protected Pen _pen;
         protected GraphicsPath _pathForCustomLineEndCap;

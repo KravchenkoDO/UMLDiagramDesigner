@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UML_Diagram_Designer.Arrows
+namespace UML_Diagram_Designer.Relationships
 {
-    public class CompositionArrow : AbstractArrow
+    public class CompositionRelationship : AbstractRelationship
     {
-        public CompositionArrow()
+        public CompositionRelationship()
         {
             _pen = new Pen(Color.Black, 6);
             _pen.CustomEndCap = CreateFilledDiamondCap();
