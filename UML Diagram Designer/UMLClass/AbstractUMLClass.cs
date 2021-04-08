@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UML_Diagram_Tool.UMLClasses
+namespace UML_Diagram_Designer.UMLClass
 {
     public abstract class AbstractUMLClass
     {

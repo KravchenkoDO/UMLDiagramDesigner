@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UML_Diagram_Designer.Arrows;
-using UML_Diagram_Designer.Rectangles;
+using UML_Diagram_Designer.UMLClass;
 
 namespace UML_Diagram_Designer
 {
@@ -19,9 +19,10 @@ namespace UML_Diagram_Designer
         private Bitmap _tmpBitmap;
         private Graphics _graphics;
         private AbstractArrow _currentArrow;
-        private AbstractRectangle _currentRectangle;
+        private AbstractUMLClass _currentClass;
         bool _isClickedLeftMouseButton = false;
         bool _isClickedClassBoxButton = false;
+        bool _isClickedArrowClassButton = false;
 
         public Form1()
         {
@@ -38,6 +39,8 @@ namespace UML_Diagram_Designer
 
         private void associationButton_Click(object sender, EventArgs e)
         {
+            _isClickedArrowClassButton = true;
+            _isClickedClassBoxButton = false;
             _currentArrow = new AssociationArrow();
         }
 
@@ -78,24 +81,31 @@ namespace UML_Diagram_Designer
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             _isClickedLeftMouseButton = true;
-            //_currentArrow.StartPoint = e.Location;
-            _currentRectangle.StartPoint = e.Location;
+
+            if (_isClickedClassBoxButton == true)
+            {
+                _currentClass.StartPoint = e.Location;
+            }
+            else if (_isClickedArrowClassButton == true)
+            {
+                _currentArrow.StartPoint = e.Location;
+            }
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             if (_isClickedLeftMouseButton == true)
             {
-                _isClickedLeftMouseButton = false;
                 if (_isClickedClassBoxButton == true)
                 {
-                    _currentRectangle.Draw(_graphics);
+                    _currentClass.DrawUMLClass(_graphics, e.Location);
                 }
-                else
+                else if (_isClickedArrowClassButton == true)
                 {
                     _currentArrow.Draw(_graphics);
                 }
                 _mainBitmap = _tmpBitmap;
+                _isClickedLeftMouseButton = false;
             }
         }
 
@@ -108,10 +118,10 @@ namespace UML_Diagram_Designer
 
                 if (_isClickedClassBoxButton == true)
                 {
-                    _currentRectangle.EndPoint = e.Location;
-                    _currentRectangle.Draw(_graphics);
+                    //_currentClass.EndPoint = e.Location;
+                    _currentClass.DrawUMLClass(_graphics, e.Location);
                 }
-                else
+                else if (_isClickedArrowClassButton == true)
                 {
                     _currentArrow.EndPoint = e.Location;
                     _currentArrow.Draw(_graphics);
@@ -126,7 +136,7 @@ namespace UML_Diagram_Designer
         private void classButton_Click(object sender, EventArgs e)
         {
             _isClickedClassBoxButton = true;
-            _currentRectangle = new ClassBox();
+            _currentClass = new TwoSectionUMLClass();
         }
     }
 }

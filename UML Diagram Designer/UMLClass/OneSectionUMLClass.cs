@@ -6,7 +6,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UML_Diagram_Tool.UMLClasses
+namespace UML_Diagram_Designer.UMLClass
 {
     public class OneSectionUMLClass : AbstractUMLClass
     {
