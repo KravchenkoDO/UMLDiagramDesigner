@@ -8,7 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using UML_Diagram_Designer.Arrows;
+using UML_Diagram_Designer.Relationships;
+using UML_Diagram_Designer.UMLClass;
+using UML_Diagram_Designer.UMLClasses;
 
 namespace UML_Diagram_Designer
 {
@@ -17,8 +19,12 @@ namespace UML_Diagram_Designer
         private Bitmap _mainBitmap;
         private Bitmap _tmpBitmap;
         private Graphics _graphics;
-        private AbstractArrow _currentArrow;
+        private AbstractRelationship _currentRelationship;
+        private AbstractUMLClass _currentClass;
         bool _isClickedLeftMouseButton = false;
+        RelationshipType relationshipsType;
+        UMLClassType umlClassType;
+        DrawingType drawingType;
 
         public Form1()
         {
@@ -35,32 +41,32 @@ namespace UML_Diagram_Designer
 
         private void associationButton_Click(object sender, EventArgs e)
         {
-            _currentArrow = new AssociationArrow();
+            relationshipsType = RelationshipType.Association;
+            drawingType = DrawingType.Relationship;
         }
 
         private void inheritanceButton_Click(object sender, EventArgs e)
         {
-            _currentArrow = new InheritanceArrow();
+            relationshipsType = RelationshipType.Inharitance;
+            drawingType = DrawingType.Relationship;
         }
 
         private void realizationButton_Click(object sender, EventArgs e)
         {
-            _currentArrow = new RealizationArrow();
-        }
-
-        private void dependencyButton_Click(object sender, EventArgs e)
-        {
-            _currentArrow = new DependencyArrow();
+            relationshipsType = RelationshipType.Realization;
+            drawingType = DrawingType.Relationship;
         }
 
         private void aggregationButton_Click(object sender, EventArgs e)
         {
-            _currentArrow = new AggregationArrow();
+            relationshipsType = RelationshipType.Aggregation;
+            drawingType = DrawingType.Relationship;
         }
 
         private void compositionButton_Click(object sender, EventArgs e)
         {
-            _currentArrow = new CompositionArrow();
+            relationshipsType = RelationshipType.Composition;
+            drawingType = DrawingType.Relationship;
         }
 
         private void clearButton_Click(object sender, EventArgs e)
@@ -74,39 +80,99 @@ namespace UML_Diagram_Designer
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
+            switch (relationshipsType)
+            {
+                case RelationshipType.Aggregation:
+                    _currentRelationship = new AggregationRelationship();
+                    break;
+                case RelationshipType.Association:
+                    _currentRelationship = new AssociationRelationship();
+                    break;
+                case RelationshipType.Composition:
+                    _currentRelationship = new CompositionRelationship();
+                    break;
+                case RelationshipType.Inharitance:
+                    _currentRelationship = new InheritanceRelationship();
+                    break;
+                case RelationshipType.Realization:
+                    _currentRelationship = new RealizationRelationship();
+                    break;
+            }
+            switch (umlClassType)
+            {
+                case UMLClassType.OneSection:
+                    _currentClass = new OneSectionUMLClass();
+                    break;
+                case UMLClassType.TwoSection:
+                    _currentClass = new TwoSectionUMLClass();
+                    break;
+                case UMLClassType.ThreeSection:
+                    _currentClass = new ThreeSectionUMLClass();
+                    break;
+                case UMLClassType.FourSection:
+                    _currentClass = new FourSectionUMLClass();
+                    break;
+            }
+
             _isClickedLeftMouseButton = true;
-            _currentArrow.StartPoint = e.Location;
+
+            if (drawingType == DrawingType.Relationship)
+            {
+                _currentRelationship.StartPoint = e.Location;
+            }
+
+            if (drawingType == DrawingType.UmlClass)
+            {
+                _currentClass.StartPoint = e.Location;
+            }
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             if (_isClickedLeftMouseButton == true)
             {
-                _isClickedLeftMouseButton = false;
-                _currentArrow.Draw(_graphics);
+                if (drawingType == DrawingType.Relationship)
+                {
+                    _currentRelationship.Draw(_graphics);
+                }
+
+                if (drawingType == DrawingType.UmlClass)
+                {
+                    _currentClass.DrawUMLClass(_graphics, e.Location);
+                }
+
                 _mainBitmap = _tmpBitmap;
+                _isClickedLeftMouseButton = false;
             }
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if(_isClickedLeftMouseButton == true)
+            if (_isClickedLeftMouseButton == true)
             {
-                _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+                _tmpBitmap = (Bitmap) _mainBitmap.Clone();
                 _graphics = Graphics.FromImage(_tmpBitmap);
 
-                _currentArrow.EndPoint = e.Location;
+                if (drawingType == DrawingType.Relationship)
+                {
+                    _currentRelationship.EndPoint = e.Location;
+                    _currentRelationship.Draw(_graphics);
+                }
 
-                _currentArrow.Draw(_graphics);
+                if (drawingType == DrawingType.UmlClass)
+                {
+                    _currentClass.DrawUMLClass(_graphics, e.Location);
+                }
 
                 pictureBox1.Image = _tmpBitmap;
-                GC.Collect();
+                //GC.Collect();
             }
         }
 
         private void classButton_Click(object sender, EventArgs e)
         {
-
+            umlClassType = UMLClassType.OneSection;
+            drawingType = DrawingType.UmlClass;
         }
     }
 }

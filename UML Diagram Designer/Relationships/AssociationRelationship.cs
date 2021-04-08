@@ -6,15 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UML_Diagram_Designer.Arrows
+namespace UML_Diagram_Designer.Relationships
 {
-    public class DependencyArrow : AbstractArrow
+    public class AssociationRelationship : AbstractRelationship
     {
-        public DependencyArrow()
+        public AssociationRelationship()
         {
             _pen = new Pen(Color.Black, 6);
             _pen.CustomEndCap = CreateNotFilledArrowCap();
-            _pen.DashStyle = DashStyle.Dash;
+            _pen.DashStyle = DashStyle.Solid;
         }
 
         private CustomLineCap CreateNotFilledArrowCap()

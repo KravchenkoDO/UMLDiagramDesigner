@@ -33,7 +33,6 @@ namespace UML_Diagram_Designer
             this.clearButton = new System.Windows.Forms.Button();
             this.compositionButton = new System.Windows.Forms.Button();
             this.aggregationButton = new System.Windows.Forms.Button();
-            this.dependencyButton = new System.Windows.Forms.Button();
             this.realizationButton = new System.Windows.Forms.Button();
             this.inheritanceButton = new System.Windows.Forms.Button();
             this.associationButton = new System.Windows.Forms.Button();
@@ -84,16 +83,6 @@ namespace UML_Diagram_Designer
             this.aggregationButton.Text = "Агрегация";
             this.aggregationButton.UseVisualStyleBackColor = true;
             this.aggregationButton.Click += new System.EventHandler(this.aggregationButton_Click);
-            // 
-            // dependencyButton
-            // 
-            this.dependencyButton.Location = new System.Drawing.Point(108, 69);
-            this.dependencyButton.Name = "dependencyButton";
-            this.dependencyButton.Size = new System.Drawing.Size(94, 49);
-            this.dependencyButton.TabIndex = 11;
-            this.dependencyButton.Text = "Зависимость";
-            this.dependencyButton.UseVisualStyleBackColor = true;
-            this.dependencyButton.Click += new System.EventHandler(this.dependencyButton_Click);
             // 
             // realizationButton
             // 
@@ -146,7 +135,6 @@ namespace UML_Diagram_Designer
             this.Controls.Add(this.clearButton);
             this.Controls.Add(this.compositionButton);
             this.Controls.Add(this.aggregationButton);
-            this.Controls.Add(this.dependencyButton);
             this.Controls.Add(this.realizationButton);
             this.Controls.Add(this.inheritanceButton);
             this.Controls.Add(this.associationButton);
@@ -165,7 +153,6 @@ namespace UML_Diagram_Designer
         private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.Button compositionButton;
         private System.Windows.Forms.Button aggregationButton;
-        private System.Windows.Forms.Button dependencyButton;
         private System.Windows.Forms.Button realizationButton;
         private System.Windows.Forms.Button inheritanceButton;
         private System.Windows.Forms.Button associationButton;
