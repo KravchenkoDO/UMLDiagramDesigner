@@ -13,19 +13,9 @@ namespace UML_Diagram_Designer.Relationships
         public AssociationRelationship()
         {
             _pen = new Pen(Color.Black, 6);
-            _pen.CustomEndCap = CreateNotFilledArrowCap();
+            AdjustableArrowCap associationRelationshipCap = new AdjustableArrowCap(4, 4, false);
+            _pen.CustomEndCap = associationRelationshipCap;
             _pen.DashStyle = DashStyle.Solid;
-        }
-
-        private CustomLineCap CreateNotFilledArrowCap()
-        {
-            _pathForCustomLineEndCap = new GraphicsPath();
-
-            _pathForCustomLineEndCap.AddLine(new Point(0, 0), new Point(-3, -3));
-            _pathForCustomLineEndCap.AddLine(new Point(-3, -3), new Point(0, 0));
-            _pathForCustomLineEndCap.AddLine(new Point(0, 0), new Point(3, -3));
-
-            return new CustomLineCap(null, _pathForCustomLineEndCap);
         }
 
         public override void Draw(Graphics graphics)
