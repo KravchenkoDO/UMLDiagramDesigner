@@ -13,24 +13,13 @@ namespace UML_Diagram_Designer.Relationships
         public RealizationRelationship()
         {
             _pen = new Pen(Color.Black, 6);
-            _pen.CustomEndCap = CreateFilledArrowCap();
+            AdjustableArrowCap realizationRelationshipCap = new AdjustableArrowCap(4,4);
+            _pen.CustomEndCap = realizationRelationshipCap;
             _pen.DashStyle = DashStyle.Dash;
         }
-
-        private CustomLineCap CreateFilledArrowCap()
-        {
-            _pathForCustomLineEndCap = new GraphicsPath();
-
-            _pathForCustomLineEndCap.AddLine(new Point(0, 0), new Point(-3, -3));
-            _pathForCustomLineEndCap.AddLine(new Point(-3, -3), new Point(0, -3));
-            _pathForCustomLineEndCap.AddLine(new Point(0, -3), new Point(3, -3));
-            _pathForCustomLineEndCap.AddLine(new Point(3, -3), new Point(0, 0));
-
-            return new CustomLineCap(_pathForCustomLineEndCap, null);
-        }
-
         public override void Draw(Graphics graphics)
         {
+            GraphicsPath _pathLine = new GraphicsPath();
             graphics.DrawLines(_pen, GetPoints().ToArray());
         }
     }

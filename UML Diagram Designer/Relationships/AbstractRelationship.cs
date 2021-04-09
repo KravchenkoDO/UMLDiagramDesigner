@@ -19,14 +19,8 @@ namespace UML_Diagram_Designer.Relationships
         protected List<Point> GetPoints()
         {
             List<Point> points = new List<Point>();
-
             points.Add(StartPoint);
-            int middleX = (StartPoint.X + EndPoint.X) / 2;
-
-            points.Add(new Point(middleX, StartPoint.Y));
-            points.Add(new Point(middleX, EndPoint.Y));
             points.Add(EndPoint);
-
             return points;
         }
 

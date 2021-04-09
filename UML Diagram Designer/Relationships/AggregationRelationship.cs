@@ -20,26 +20,16 @@ namespace UML_Diagram_Designer.Relationships
         private CustomLineCap CreateNotFilledDiamondCap()
         {
             _pathForCustomLineEndCap = new GraphicsPath();
-
-            Point point1 = new Point(0, 0);
-            Point point2 = new Point(-2, -3);
-            Point point3 = new Point(0, -6);
-            Point point4 = new Point(2, -3);
-
             Point[] points = new Point[]
             {
-                point1,
-                point2,
-                point3,
-                point4
+                new Point(0, 0),
+                new Point(2, 3),
+                new Point(0, 6),
+                new Point(-2, 3),
+                new Point(0, 0)
             };
 
-            //_pathForCustomLineEndCap.AddLine(new Point(0, 0), new Point(-2, -3));
-            //_pathForCustomLineEndCap.AddLine(new Point(-2, -3), new Point(0, -6));
-            //_pathForCustomLineEndCap.AddLine(new Point(0, -6), new Point(2, -3));
-            //_pathForCustomLineEndCap.AddLine(new Point(2, -3), new Point(0, 0));
-
-            _pathForCustomLineEndCap.AddPolygon(points);
+            _pathForCustomLineEndCap.AddLines(points);
 
             return new CustomLineCap(null, _pathForCustomLineEndCap);
         }

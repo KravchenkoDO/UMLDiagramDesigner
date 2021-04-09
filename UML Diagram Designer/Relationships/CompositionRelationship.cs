@@ -16,16 +16,18 @@ namespace UML_Diagram_Designer.Relationships
             _pen.CustomEndCap = CreateFilledDiamondCap();
             _pen.DashStyle = DashStyle.Solid;
         }
-
         private CustomLineCap CreateFilledDiamondCap()
         {
             _pathForCustomLineEndCap = new GraphicsPath();
-
-            _pathForCustomLineEndCap.AddLine(new PointF(0.0f, 0.0f), new PointF(-2, -3));
-            _pathForCustomLineEndCap.AddLine(new PointF(-2, -3), new PointF(0, -6));
-            _pathForCustomLineEndCap.AddLine(new PointF(0, -6), new PointF(2, -3));
-            _pathForCustomLineEndCap.AddLine(new PointF(2, -3), new PointF(0.0f, 0.0f));
-
+            PointF[] points = new PointF[]
+            {
+                new PointF(0, -0.02f),
+                new PointF(2, 3),
+                new PointF(0, 6),
+                new PointF(-2, 3),
+                new PointF(0, -0.02f)
+            };
+            _pathForCustomLineEndCap.AddLines(points);
             return new CustomLineCap(_pathForCustomLineEndCap, null);
         }
 

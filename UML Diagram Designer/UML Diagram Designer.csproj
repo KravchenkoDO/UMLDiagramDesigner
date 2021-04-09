@@ -69,6 +69,7 @@
     <Compile Include="UMLClasses\OneSectionUMLClass.cs" />
     <Compile Include="UMLClasses\ThreeSectionUMLClass.cs" />
     <Compile Include="UMLClasses\TwoSectionUMLClass.cs" />
+    <Compile Include="UMLClasses\UMLClass.cs" />
     <Compile Include="UMLClasses\UMLClassType.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
