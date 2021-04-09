@@ -24,6 +24,7 @@ namespace UML_Diagram_Designer
         bool _isClickedLeftMouseButton = false;
         RelationshipType relationshipsType;
         UMLClassType umlClassType;
+        ActionType actionType;
         DrawingType drawingType;
         private UMLClass2 _UML;
 
@@ -43,31 +44,31 @@ namespace UML_Diagram_Designer
         private void associationButton_Click(object sender, EventArgs e)
         {
             relationshipsType = RelationshipType.Association;
-            drawingType = DrawingType.Relationship;
+            actionType = ActionType.DrawRelationship;
         }
 
         private void inheritanceButton_Click(object sender, EventArgs e)
         {
             relationshipsType = RelationshipType.Inharitance;
-            drawingType = DrawingType.Relationship;
+            actionType = ActionType.DrawRelationship;
         }
 
         private void realizationButton_Click(object sender, EventArgs e)
         {
             relationshipsType = RelationshipType.Realization;
-            drawingType = DrawingType.Relationship;
+            actionType = ActionType.DrawRelationship;
         }
 
         private void aggregationButton_Click(object sender, EventArgs e)
         {
             relationshipsType = RelationshipType.Aggregation;
-            drawingType = DrawingType.Relationship;
+            actionType = ActionType.DrawRelationship;
         }
 
         private void compositionButton_Click(object sender, EventArgs e)
         {
             relationshipsType = RelationshipType.Composition;
-            drawingType = DrawingType.Relationship;
+            actionType = ActionType.DrawRelationship;
         }
 
         private void clearButton_Click(object sender, EventArgs e)
@@ -120,29 +121,31 @@ namespace UML_Diagram_Designer
 
             _isClickedLeftMouseButton = true;
 
-            if (drawingType == DrawingType.Relationship)
+
+            if (actionType == ActionType.DrawRelationship)
             {
                 _currentRelationship.StartPoint = e.Location;
             }
 
-            if (drawingType == DrawingType.UmlClass)
+            if (actionType == ActionType.DrawUmlClass)
             {
                 //_currentClass.StartPoint = e.Location;
 
                 _UML.StartPoint = e.Location;
             }
+
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             if (_isClickedLeftMouseButton == true)
             {
-                if (drawingType == DrawingType.Relationship)
+                if (actionType == ActionType.DrawRelationship)
                 {
                     _currentRelationship.Draw(_graphics);
                 }
 
-                if (drawingType == DrawingType.UmlClass)
+                if (actionType == ActionType.DrawUmlClass)
                 {
                     //_currentClass.DrawUMLClass(_graphics, e.Location);
                     _UML.DrawUMLClass2(_graphics, e.Location);
@@ -160,13 +163,13 @@ namespace UML_Diagram_Designer
                 _tmpBitmap = (Bitmap) _mainBitmap.Clone();
                 _graphics = Graphics.FromImage(_tmpBitmap);
 
-                if (drawingType == DrawingType.Relationship)
+                if (actionType == ActionType.DrawRelationship)
                 {
                     _currentRelationship.EndPoint = e.Location;
                     _currentRelationship.Draw(_graphics);
                 }
 
-                if (drawingType == DrawingType.UmlClass)
+                if (actionType == ActionType.DrawUmlClass)
                 {
                     //_currentClass.DrawUMLClass(_graphics, e.Location);
                     _UML.DrawUMLClass2(_graphics, e.Location);
@@ -184,6 +187,11 @@ namespace UML_Diagram_Designer
 
             umlClassType = UMLClassType.UMLClass;
             drawingType = DrawingType.UmlClass;
+        }
+
+        private void btnMove_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
