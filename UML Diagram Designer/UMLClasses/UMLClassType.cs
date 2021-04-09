@@ -11,6 +11,7 @@ namespace UML_Diagram_Designer.UMLClasses
         OneSection,
         TwoSection,
         ThreeSection,
-        FourSection
+        FourSection,
+        UMLClass
     }
 }
