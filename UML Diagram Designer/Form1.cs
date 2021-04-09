@@ -25,6 +25,7 @@ namespace UML_Diagram_Designer
         RelationshipType relationshipsType;
         UMLClassType umlClassType;
         DrawingType drawingType;
+        private UMLClass2 _UML;
 
         public Form1()
         {
@@ -112,6 +113,9 @@ namespace UML_Diagram_Designer
                 case UMLClassType.FourSection:
                     _currentClass = new FourSectionUMLClass();
                     break;
+                case UMLClassType.UMLClass:
+                    _UML = new UMLClass2();
+                    break;
             }
 
             _isClickedLeftMouseButton = true;
@@ -123,7 +127,9 @@ namespace UML_Diagram_Designer
 
             if (drawingType == DrawingType.UmlClass)
             {
-                _currentClass.StartPoint = e.Location;
+                //_currentClass.StartPoint = e.Location;
+
+                _UML.StartPoint = e.Location;
             }
         }
 
@@ -138,7 +144,8 @@ namespace UML_Diagram_Designer
 
                 if (drawingType == DrawingType.UmlClass)
                 {
-                    _currentClass.DrawUMLClass(_graphics, e.Location);
+                    //_currentClass.DrawUMLClass(_graphics, e.Location);
+                    _UML.DrawUMLClass2(_graphics, e.Location);
                 }
 
                 _mainBitmap = _tmpBitmap;
@@ -161,17 +168,21 @@ namespace UML_Diagram_Designer
 
                 if (drawingType == DrawingType.UmlClass)
                 {
-                    _currentClass.DrawUMLClass(_graphics, e.Location);
+                    //_currentClass.DrawUMLClass(_graphics, e.Location);
+                    _UML.DrawUMLClass2(_graphics, e.Location);
                 }
 
                 pictureBox1.Image = _tmpBitmap;
-                //GC.Collect();
+                GC.Collect();
             }
         }
 
         private void classButton_Click(object sender, EventArgs e)
         {
-            umlClassType = UMLClassType.OneSection;
+            //umlClassType = UMLClassType.FourSection;
+            //drawingType = DrawingType.UmlClass;
+
+            umlClassType = UMLClassType.UMLClass;
             drawingType = DrawingType.UmlClass;
         }
     }
