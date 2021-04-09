@@ -25,8 +25,7 @@ namespace UML_Diagram_Designer
         RelationshipType relationshipsType;
         UMLClassType umlClassType;
         ActionType actionType;
-        DrawingType drawingType;
-        private UMLClass2 _UML;
+        private UMLClasses.UMLClass _UML;
 
         public Form1()
         {
@@ -115,7 +114,7 @@ namespace UML_Diagram_Designer
                     _currentClass = new FourSectionUMLClass();
                     break;
                 case UMLClassType.UMLClass:
-                    _UML = new UMLClass2();
+                    _UML = new UMLClasses.UMLClass();
                     break;
             }
 
@@ -148,7 +147,7 @@ namespace UML_Diagram_Designer
                 if (actionType == ActionType.DrawUmlClass)
                 {
                     //_currentClass.DrawUMLClass(_graphics, e.Location);
-                    _UML.DrawUMLClass2(_graphics, e.Location);
+                    _UML.DrawUMLClass(_graphics, e.Location);
                 }
 
                 _mainBitmap = _tmpBitmap;
@@ -172,7 +171,7 @@ namespace UML_Diagram_Designer
                 if (actionType == ActionType.DrawUmlClass)
                 {
                     //_currentClass.DrawUMLClass(_graphics, e.Location);
-                    _UML.DrawUMLClass2(_graphics, e.Location);
+                    _UML.DrawUMLClass(_graphics, e.Location);
                 }
 
                 pictureBox1.Image = _tmpBitmap;
@@ -186,7 +185,7 @@ namespace UML_Diagram_Designer
             //drawingType = DrawingType.UmlClass;
 
             umlClassType = UMLClassType.UMLClass;
-            drawingType = DrawingType.UmlClass;
+            actionType = ActionType.DrawUmlClass;
         }
 
         private void btnMove_Click(object sender, EventArgs e)
