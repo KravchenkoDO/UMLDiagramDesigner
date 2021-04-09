@@ -9,7 +9,7 @@ using UML_Diagram_Designer.Interfaces;
 
 namespace UML_Diagram_Designer.Relationships
 {
-     public abstract class AbstractRelationship:IMoveable
+     public abstract class AbstractRelationship: IMoveable, ISelectable
     {
         protected Pen _pen;
         protected GraphicsPath _pathForCustomLineEndCap;

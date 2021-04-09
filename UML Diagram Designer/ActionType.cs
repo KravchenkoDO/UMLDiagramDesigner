@@ -11,6 +11,7 @@ namespace UML_Diagram_Designer
         DrawRelationship = 0,
         DrawUmlClass,
         DrawText,
+        SelectElement,
         MoveElement
 
     }

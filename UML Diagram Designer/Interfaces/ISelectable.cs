@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace UML_Diagram_Designer.Interfaces
 {
-   public interface IMoveable
+   public interface ISelectable
     {
-        void Move(int deltaX, int deltaY);
+        bool IsItYou(Point point);
     }
 }
