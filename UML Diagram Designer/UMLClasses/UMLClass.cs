@@ -11,16 +11,25 @@ namespace UML_Diagram_Designer.UMLClasses
     {
         public Pen _pen = new Pen(Color.Black, 5);
         public Point StartPoint { set; get; }
-        public int width;
-        public int height;
+        public Point EndPoint { set; get; }
+        public int _width { set; get; }
+        public int _height { set; get; }
 
-        public void DrawUMLClass(Graphics graphics, Point StartPoint)
+        //public UMLClass()
+        //{
+        //    StartPoint = new Point(100,100);
+        //    EndPoint = new Point(200, 200);
+        //    _width = 70;
+        //    _height = 90;
+        //}
+
+        public void DrawUMLClass(Graphics graphics)
         {
-            width = 70;
-            height = 100;
+            _width = Math.Abs(EndPoint.X - StartPoint.X);
+            _height = Math.Abs(EndPoint.Y - StartPoint.Y);
 
-            graphics.DrawRectangle(_pen, StartPoint.X, StartPoint.Y, width, height);
-            graphics.DrawRectangle(_pen, StartPoint.X, StartPoint.Y, width, height / 4);
+            graphics.DrawRectangle(_pen, StartPoint.X, StartPoint.Y, _width, _height);
+            graphics.DrawRectangle(_pen, StartPoint.X, StartPoint.Y, _width, _height / 4);
         }
     }
 }
