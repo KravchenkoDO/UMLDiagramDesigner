@@ -38,7 +38,11 @@ namespace UML_Diagram_Designer
             this.associationButton = new System.Windows.Forms.Button();
             this.classButton = new System.Windows.Forms.Button();
             this.btnMove = new System.Windows.Forms.Button();
+            this.ThicknessTrackBar = new System.Windows.Forms.TrackBar();
+            this.colorButton = new System.Windows.Forms.Button();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ThicknessTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -68,7 +72,7 @@ namespace UML_Diagram_Designer
             // 
             // compositionButton
             // 
-            this.compositionButton.Location = new System.Drawing.Point(108, 124);
+            this.compositionButton.Location = new System.Drawing.Point(108, 69);
             this.compositionButton.Name = "compositionButton";
             this.compositionButton.Size = new System.Drawing.Size(94, 50);
             this.compositionButton.TabIndex = 13;
@@ -131,19 +135,41 @@ namespace UML_Diagram_Designer
             // btnMove
             // 
             this.btnMove.Location = new System.Drawing.Point(9, 277);
-            this.btnMove.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnMove.Margin = new System.Windows.Forms.Padding(2);
             this.btnMove.Name = "btnMove";
-            this.btnMove.Size = new System.Drawing.Size(170, 39);
+            this.btnMove.Size = new System.Drawing.Size(190, 39);
             this.btnMove.TabIndex = 16;
             this.btnMove.Text = "Двигать";
             this.btnMove.UseVisualStyleBackColor = true;
             this.btnMove.Click += new System.EventHandler(this.btnMove_Click);
             // 
+            // ThicknessTrackBar
+            // 
+            this.ThicknessTrackBar.Location = new System.Drawing.Point(12, 321);
+            this.ThicknessTrackBar.Minimum = 2;
+            this.ThicknessTrackBar.Name = "ThicknessTrackBar";
+            this.ThicknessTrackBar.Size = new System.Drawing.Size(187, 45);
+            this.ThicknessTrackBar.TabIndex = 17;
+            this.ThicknessTrackBar.Value = 2;
+            this.ThicknessTrackBar.Scroll += new System.EventHandler(this.ThicknessTrackBar_Scroll);
+            // 
+            // colorButton
+            // 
+            this.colorButton.Location = new System.Drawing.Point(108, 124);
+            this.colorButton.Name = "colorButton";
+            this.colorButton.Size = new System.Drawing.Size(94, 51);
+            this.colorButton.TabIndex = 18;
+            this.colorButton.Text = "Цвет";
+            this.colorButton.UseVisualStyleBackColor = true;
+            this.colorButton.Click += new System.EventHandler(this.ColorButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(946, 505);
+            this.ClientSize = new System.Drawing.Size(946, 523);
+            this.Controls.Add(this.colorButton);
+            this.Controls.Add(this.ThicknessTrackBar);
             this.Controls.Add(this.btnMove);
             this.Controls.Add(this.classButton);
             this.Controls.Add(this.clearButton);
@@ -157,7 +183,9 @@ namespace UML_Diagram_Designer
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ThicknessTrackBar)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -172,6 +200,9 @@ namespace UML_Diagram_Designer
         private System.Windows.Forms.Button associationButton;
         private System.Windows.Forms.Button classButton;
         private System.Windows.Forms.Button btnMove;
+        private System.Windows.Forms.TrackBar ThicknessTrackBar;
+        private System.Windows.Forms.Button colorButton;
+        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }
 

@@ -11,7 +11,9 @@ namespace UML_Diagram_Designer.Relationships
 {
      public abstract class AbstractRelationship: IMoveable, ISelectable
     {
-        protected Pen _pen;
+        //public int _thickness;
+        //public 
+        public Pen _pen;
         protected GraphicsPath _pathForCustomLineEndCap;
         public Point StartPoint { get; set; }
         public Point EndPoint { get; set; }

@@ -18,6 +18,7 @@ namespace UML_Diagram_Designer
         RelationshipType relationshipsType;
         ActionType actionType;
         private UMLClass _UMLClass = new UMLClass();
+        private Pen _pen;
         List<AbstractRelationship> listRelationships = new List<AbstractRelationship>();
         List<UMLClass> listUMLClasses = new List<UMLClass>();
 
@@ -31,6 +32,8 @@ namespace UML_Diagram_Designer
             pictureBox1.BackColor = Color.White;
             pictureBox1.Image = _mainBitmap;
             _graphics = Graphics.FromImage(_mainBitmap);
+            _pen = new Pen(colorDialog1.Color, ThicknessTrackBar.Value);
+
         }
         private void associationButton_Click(object sender, EventArgs e)
         {
@@ -165,5 +168,20 @@ namespace UML_Diagram_Designer
         {
             
         }
+
+        private void ThicknessTrackBar_Scroll(object sender, EventArgs e)
+        {
+            _pen.Width = ThicknessTrackBar.Value;
+
+        }
+
+        private void ColorButton_Click(object sender, EventArgs e)
+        {
+            colorDialog1.ShowDialog();
+            colorButton.BackColor = colorDialog1.Color;
+            _pen.Color = colorDialog1.Color;
+        }
+       
+
     }
 }
