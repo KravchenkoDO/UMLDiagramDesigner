@@ -8,10 +8,10 @@ namespace UML_Diagram_Designer
 {
     public enum RelationshipType
     {
-        Aggregation = 0,
+        Inharitance = 0,
         Association,
         Composition,
-        Inharitance,
+        Aggregation,
         Realization
     }
 }
