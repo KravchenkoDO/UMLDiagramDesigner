@@ -37,6 +37,7 @@ namespace UML_Diagram_Designer
             this.inheritanceButton = new System.Windows.Forms.Button();
             this.associationButton = new System.Windows.Forms.Button();
             this.classButton = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,6 +49,7 @@ namespace UML_Diagram_Designer
             this.pictureBox1.Size = new System.Drawing.Size(726, 481);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
@@ -126,11 +128,22 @@ namespace UML_Diagram_Designer
             this.classButton.UseVisualStyleBackColor = true;
             this.classButton.Click += new System.EventHandler(this.classButton_Click);
             // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(12, 278);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 16;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(946, 505);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.classButton);
             this.Controls.Add(this.clearButton);
             this.Controls.Add(this.compositionButton);
@@ -157,6 +170,7 @@ namespace UML_Diagram_Designer
         private System.Windows.Forms.Button inheritanceButton;
         private System.Windows.Forms.Button associationButton;
         private System.Windows.Forms.Button classButton;
+        private System.Windows.Forms.Button btnSave;
     }
 }
 

@@ -1,45 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using UML_Diagram_Designer.Relationships;
-using UML_Diagram_Designer.UMLClass;
 using UML_Diagram_Designer.UMLClasses;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace UML_Diagram_Designer
 {
     public partial class Form1 : Form
     {
         private Bitmap _mainBitmap;
-        private Bitmap _tmpBitmap;
         private Graphics _graphics;
         private AbstractRelationship _currentRelationship;
-        private AbstractUMLClass _currentClass;
-        bool _isClickedLeftMouseButton = false;
+        bool _isMouseMove = false;
         RelationshipType relationshipsType;
-        UMLClassType umlClassType;
         DrawingType drawingType;
-        private UMLClass2 _UML;
+        private UMLClass _UMLClass = new UMLClass();
+        List<AbstractRelationship> listRelationships = new List<AbstractRelationship>();
+        List<UMLClass> listUMLClasses = new List<UMLClass>();
 
         public Form1()
         {
             InitializeComponent();
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             _mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            _graphics = Graphics.FromImage(_mainBitmap);
             pictureBox1.BackColor = Color.White;
             pictureBox1.Image = _mainBitmap;
+            _graphics = Graphics.FromImage(_mainBitmap);
         }
-
         private void associationButton_Click(object sender, EventArgs e)
         {
             relationshipsType = RelationshipType.Association;
@@ -69,13 +61,17 @@ namespace UML_Diagram_Designer
             relationshipsType = RelationshipType.Composition;
             drawingType = DrawingType.Relationship;
         }
+        private void classButton_Click(object sender, EventArgs e)
+        {
+            drawingType = DrawingType.UmlClass;
+        }
 
         private void clearButton_Click(object sender, EventArgs e)
         {
-            _isClickedLeftMouseButton = false;
-
+            _isMouseMove = false;
             _graphics.Clear(Color.White);
-
+            listUMLClasses.Clear();
+            listRelationships.Clear();
             pictureBox1.Invalidate();
         }
 
@@ -99,91 +95,73 @@ namespace UML_Diagram_Designer
                     _currentRelationship = new RealizationRelationship();
                     break;
             }
-            switch (umlClassType)
-            {
-                case UMLClassType.OneSection:
-                    _currentClass = new OneSectionUMLClass();
-                    break;
-                case UMLClassType.TwoSection:
-                    _currentClass = new TwoSectionUMLClass();
-                    break;
-                case UMLClassType.ThreeSection:
-                    _currentClass = new ThreeSectionUMLClass();
-                    break;
-                case UMLClassType.FourSection:
-                    _currentClass = new FourSectionUMLClass();
-                    break;
-                case UMLClassType.UMLClass:
-                    _UML = new UMLClass2();
-                    break;
-            }
-
-            _isClickedLeftMouseButton = true;
-
+            _isMouseMove = true;
             if (drawingType == DrawingType.Relationship)
             {
                 _currentRelationship.StartPoint = e.Location;
             }
-
             if (drawingType == DrawingType.UmlClass)
             {
-                //_currentClass.StartPoint = e.Location;
-
-                _UML.StartPoint = e.Location;
+                _UMLClass.StartPoint = e.Location;
             }
         }
-
-        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (_isClickedLeftMouseButton == true)
-            {
-                if (drawingType == DrawingType.Relationship)
-                {
-                    _currentRelationship.Draw(_graphics);
-                }
-
-                if (drawingType == DrawingType.UmlClass)
-                {
-                    //_currentClass.DrawUMLClass(_graphics, e.Location);
-                    _UML.DrawUMLClass2(_graphics, e.Location);
-                }
-
-                _mainBitmap = _tmpBitmap;
-                _isClickedLeftMouseButton = false;
-            }
-        }
-
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (_isClickedLeftMouseButton == true)
+            if (_isMouseMove)
             {
-                _tmpBitmap = (Bitmap) _mainBitmap.Clone();
-                _graphics = Graphics.FromImage(_tmpBitmap);
-
                 if (drawingType == DrawingType.Relationship)
                 {
                     _currentRelationship.EndPoint = e.Location;
-                    _currentRelationship.Draw(_graphics);
+                }
+                if (drawingType == DrawingType.UmlClass)
+                {
+                    _UMLClass.EndPoint = e.Location;
+                }
+                pictureBox1.Invalidate();
+            }
+        }
+        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (_isMouseMove)
+            {
+                if (drawingType == DrawingType.Relationship)
+                {
+                    listRelationships.Add(_currentRelationship);
                 }
 
                 if (drawingType == DrawingType.UmlClass)
                 {
-                    //_currentClass.DrawUMLClass(_graphics, e.Location);
-                    _UML.DrawUMLClass2(_graphics, e.Location);
+                    listUMLClasses.Add(_UMLClass);
                 }
-
-                pictureBox1.Image = _tmpBitmap;
-                GC.Collect();
+                _isMouseMove = false;
+            }
+        }
+        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        {
+            if (_isMouseMove)
+            {
+                _graphics.Clear(pictureBox1.BackColor);
+                if (drawingType == DrawingType.Relationship)
+                {
+                    _currentRelationship.Draw(_graphics);
+                foreach (var relation in listRelationships)
+                {
+                    relation.Draw(_graphics);
+                }
+                }
+                if (drawingType == DrawingType.UmlClass)
+                {
+                    _UMLClass.DrawUMLClass(_graphics);
+                foreach (var umlClass in listUMLClasses)
+                {
+                    umlClass.DrawUMLClass(_graphics);
+                }
+                }
             }
         }
 
-        private void classButton_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
-            //umlClassType = UMLClassType.FourSection;
-            //drawingType = DrawingType.UmlClass;
-
-            umlClassType = UMLClassType.UMLClass;
-            drawingType = DrawingType.UmlClass;
         }
     }
 }
