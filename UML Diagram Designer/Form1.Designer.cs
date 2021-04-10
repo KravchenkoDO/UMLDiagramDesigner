@@ -29,10 +29,7 @@ namespace UML_Diagram_Designer
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.contextMenuStripRightClick = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.moveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearButton = new System.Windows.Forms.Button();
             this.compositionButton = new System.Windows.Forms.Button();
             this.aggregationButton = new System.Windows.Forms.Button();
@@ -40,14 +37,13 @@ namespace UML_Diagram_Designer
             this.inheritanceButton = new System.Windows.Forms.Button();
             this.associationButton = new System.Windows.Forms.Button();
             this.classButton = new System.Windows.Forms.Button();
+            this.buttonMove = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.contextMenuStripRightClick.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.pictureBox1.ContextMenuStrip = this.contextMenuStripRightClick;
             this.pictureBox1.Location = new System.Drawing.Point(208, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(726, 481);
@@ -58,21 +54,6 @@ namespace UML_Diagram_Designer
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
-            // 
-            // contextMenuStripRightClick
-            // 
-            this.contextMenuStripRightClick.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.moveToolStripMenuItem});
-            this.contextMenuStripRightClick.Name = "contextMenuStripRightClick";
-            this.contextMenuStripRightClick.Size = new System.Drawing.Size(181, 48);
-            this.contextMenuStripRightClick.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripRightClick_Opening);
-            // 
-            // moveToolStripMenuItem
-            // 
-            this.moveToolStripMenuItem.Name = "moveToolStripMenuItem";
-            this.moveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.moveToolStripMenuItem.Text = "Move";
-            this.moveToolStripMenuItem.Click += new System.EventHandler(this.moveToolStripMenuItem_Click);
             // 
             // clearButton
             // 
@@ -148,11 +129,22 @@ namespace UML_Diagram_Designer
             this.classButton.UseVisualStyleBackColor = true;
             this.classButton.Click += new System.EventHandler(this.classButton_Click);
             // 
+            // buttonMove
+            // 
+            this.buttonMove.Location = new System.Drawing.Point(12, 290);
+            this.buttonMove.Name = "buttonMove";
+            this.buttonMove.Size = new System.Drawing.Size(187, 53);
+            this.buttonMove.TabIndex = 16;
+            this.buttonMove.Text = "Move";
+            this.buttonMove.UseVisualStyleBackColor = true;
+            this.buttonMove.Click += new System.EventHandler(this.buttonMove_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(946, 505);
+            this.Controls.Add(this.buttonMove);
             this.Controls.Add(this.classButton);
             this.Controls.Add(this.clearButton);
             this.Controls.Add(this.compositionButton);
@@ -165,7 +157,6 @@ namespace UML_Diagram_Designer
             this.Text = "UML Diagram Designer";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.contextMenuStripRightClick.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -180,8 +171,7 @@ namespace UML_Diagram_Designer
         private System.Windows.Forms.Button inheritanceButton;
         private System.Windows.Forms.Button associationButton;
         private System.Windows.Forms.Button classButton;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStripRightClick;
-        private System.Windows.Forms.ToolStripMenuItem moveToolStripMenuItem;
+        private System.Windows.Forms.Button buttonMove;
     }
 }
 

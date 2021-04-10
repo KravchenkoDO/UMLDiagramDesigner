@@ -15,12 +15,13 @@ namespace UML_Diagram_Designer
         private Graphics _graphics;
         private AbstractRelationship _currentRelationship;
         bool _isMouseMove = false;
-        RelationshipType relationshipsType;
-        ActionType actionType;
+        bool _isClickedMoveButton = false;
+        RelationshipType _relationshipsType;
+        ActionType _actionType;
         private UMLClass _UMLClass;
-        List<AbstractRelationship> listRelationships;
-        List<UMLClass> listUMLClasses;
-        ContextMenuStrip contextMenuStrip = new ContextMenuStrip();
+        List<AbstractRelationship> _listRelationships;
+        List<UMLClass> _listUMLClasses;
+        Point _pointForMove;
 
         public Form1()
         {
@@ -32,49 +33,49 @@ namespace UML_Diagram_Designer
             pictureBox1.BackColor = Color.White;
             pictureBox1.Image = _mainBitmap;
             _graphics = Graphics.FromImage(_mainBitmap);
-            listRelationships = new List<AbstractRelationship>();
-            listUMLClasses = new List<UMLClass>();
+            _listRelationships = new List<AbstractRelationship>();
+            _listUMLClasses = new List<UMLClass>();
         }
         private void associationButton_Click(object sender, EventArgs e)
         {
-            relationshipsType = RelationshipType.Association;
-            actionType = ActionType.DrawRelationship;
+            _relationshipsType = RelationshipType.Association;
+            _actionType = ActionType.DrawRelationship;
         }
 
         private void inheritanceButton_Click(object sender, EventArgs e)
         {
-            relationshipsType = RelationshipType.Inharitance;
-            actionType = ActionType.DrawRelationship;
+            _relationshipsType = RelationshipType.Inharitance;
+            _actionType = ActionType.DrawRelationship;
         }
 
         private void realizationButton_Click(object sender, EventArgs e)
         {
-            relationshipsType = RelationshipType.Realization;
-            actionType = ActionType.DrawRelationship;
+            _relationshipsType = RelationshipType.Realization;
+            _actionType = ActionType.DrawRelationship;
         }
 
         private void aggregationButton_Click(object sender, EventArgs e)
         {
-            relationshipsType = RelationshipType.Aggregation;
-            actionType = ActionType.DrawRelationship;
+            _relationshipsType = RelationshipType.Aggregation;
+            _actionType = ActionType.DrawRelationship;
         }
 
         private void compositionButton_Click(object sender, EventArgs e)
         {
-            relationshipsType = RelationshipType.Composition;
-            actionType = ActionType.DrawRelationship;
+            _relationshipsType = RelationshipType.Composition;
+            _actionType = ActionType.DrawRelationship;
         }
         private void classButton_Click(object sender, EventArgs e)
         {
-            actionType = ActionType.DrawUmlClass;
+            _actionType = ActionType.DrawUmlClass;
         }
 
         private void clearButton_Click(object sender, EventArgs e)
         {
             _isMouseMove = false;
             _graphics.Clear(Color.White);
-            listUMLClasses.Clear();
-            listRelationships.Clear();
+            _listUMLClasses.Clear();
+            _listRelationships.Clear();
             pictureBox1.Invalidate();
         }
 
@@ -82,72 +83,106 @@ namespace UML_Diagram_Designer
         {
             if (e.Button == MouseButtons.Left)
             {
-                switch (relationshipsType)
+                if (_isClickedMoveButton)
                 {
-                    case RelationshipType.Aggregation:
-                        _currentRelationship = new AggregationRelationship();
-                        break;
-                    case RelationshipType.Association:
-                        _currentRelationship = new AssociationRelationship();
-                        break;
-                    case RelationshipType.Composition:
-                        _currentRelationship = new CompositionRelationship();
-                        break;
-                    case RelationshipType.Inharitance:
-                        _currentRelationship = new InheritanceRelationship();
-                        break;
-                    case RelationshipType.Realization:
-                        _currentRelationship = new RealizationRelationship();
-                        break;
+                    foreach (AbstractRelationship a in _listRelationships)
+                    {
+                        if (a.IsItYou(e.Location))
+                        {
+                            _currentRelationship = a;
+                            break;
+                        }
+                    }
+
+                    if (_currentRelationship != null)
+                    {
+                        _listRelationships.Remove(_currentRelationship);
+
+                        foreach (AbstractRelationship a in _listRelationships)
+                        {
+                            a.Draw(_graphics);
+                        }
+
+                        _pointForMove = e.Location;
+                    }
+                }
+                else
+                {
+                    switch (_relationshipsType)
+                    {
+                        case RelationshipType.Aggregation:
+                            _currentRelationship = new AggregationRelationship();
+                            break;
+                        case RelationshipType.Association:
+                            _currentRelationship = new AssociationRelationship();
+                            break;
+                        case RelationshipType.Composition:
+                            _currentRelationship = new CompositionRelationship();
+                            break;
+                        case RelationshipType.Inharitance:
+                            _currentRelationship = new InheritanceRelationship();
+                            break;
+                        case RelationshipType.Realization:
+                            _currentRelationship = new RealizationRelationship();
+                            break;
+                    }
+
+                    if (_actionType == ActionType.DrawRelationship)
+                    {
+                        _currentRelationship.StartPoint = e.Location;
+                    }
+                    if (_actionType == ActionType.DrawUmlClass)
+                    {
+                        _UMLClass = new UMLClass();
+                        _UMLClass.StartPoint = e.Location;
+                    }
                 }
 
                 _isMouseMove = true;
-
-                if (actionType == ActionType.DrawRelationship)
-                {
-                    _currentRelationship.StartPoint = e.Location;
-                }
-                if (actionType == ActionType.DrawUmlClass)
-                {
-                    _UMLClass = new UMLClass();
-                    _UMLClass.StartPoint = e.Location;
-                }
-                if(actionType == ActionType.SelectElement)
-                {
-
-                }
             }
         }
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
             if (_isMouseMove)
             {
-                if (actionType == ActionType.DrawRelationship)
+                if (_isClickedMoveButton)
                 {
-                    _currentRelationship.EndPoint = e.Location;
+                    _currentRelationship.Move(e.X - _pointForMove.X, e.Y - _pointForMove.Y);
+                    _pointForMove = e.Location;
                 }
-                else if (actionType == ActionType.DrawUmlClass)
+                else
                 {
-                    _UMLClass.EndPoint = e.Location;
+                    if (_actionType == ActionType.DrawRelationship)
+                    {
+                        _currentRelationship.EndPoint = e.Location;
+                    }
+                    else if (_actionType == ActionType.DrawUmlClass)
+                    {
+                        _UMLClass.EndPoint = e.Location;
+                    }
                 }
+
                 pictureBox1.Invalidate();
             }
+
+            
         }
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             if (_isMouseMove)
             {
-                if (actionType == ActionType.DrawRelationship)
+                if (_actionType == ActionType.DrawRelationship)
                 {
-                    listRelationships.Add(_currentRelationship);
+                    _listRelationships.Add(_currentRelationship);
                 }
-                else if (actionType == ActionType.DrawUmlClass)
+                else if (_actionType == ActionType.DrawUmlClass)
                 {
-                    listUMLClasses.Add(_UMLClass);
+                    _listUMLClasses.Add(_UMLClass);
                 }
             }
 
             _isMouseMove = false;
+            _isClickedMoveButton = false;
         }
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
@@ -155,19 +190,19 @@ namespace UML_Diagram_Designer
             {
                 _graphics.Clear(pictureBox1.BackColor);
 
-                if (actionType == ActionType.DrawRelationship)
+                if (_actionType == ActionType.DrawRelationship)
                 {
                     _currentRelationship.Draw(_graphics);
                 }
-                if (actionType == ActionType.DrawUmlClass)
+                if (_actionType == ActionType.DrawUmlClass)
                 {
                     _UMLClass.DrawUMLClass(_graphics);
                 }
-                foreach (var relation in listRelationships)
+                foreach (var relation in _listRelationships)
                 {
                     relation.Draw(_graphics);
                 }
-                foreach (var umlClass in listUMLClasses)
+                foreach (var umlClass in _listUMLClasses)
                 {
                     umlClass.DrawUMLClass(_graphics);
                 }
@@ -176,23 +211,13 @@ namespace UML_Diagram_Designer
 
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
-            {
-                if(_currentRelationship.IsItYou(e.Location))
-                {
-                    actionType = ActionType.SelectElement;
-                }
-            }
+            
         }
 
-        private void contextMenuStripRightClick_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        private void buttonMove_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void moveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            actionType = ActionType.MoveElement;
+            _isClickedMoveButton = true;
+            _currentRelationship = null;
         }
     }
 }
