@@ -15,20 +15,12 @@ namespace UML_Diagram_Designer.UMLClasses
         public int _width { set; get; }
         public int _height { set; get; }
 
-        //public UMLClass()
-        //{
-        //    StartPoint = new Point(100,100);
-        //    EndPoint = new Point(200, 200);
-        //    _width = 70;
-        //    _height = 90;
-        //}
-
-        public void DrawUMLClass(Graphics graphics)
+        public void DrawUMLClass(Graphics graphics) //int koef = 1, int classCount = 2)
         {
             _width = Math.Abs(EndPoint.X - StartPoint.X);
             _height = Math.Abs(EndPoint.Y - StartPoint.Y);
 
-            graphics.DrawRectangle(_pen, StartPoint.X, StartPoint.Y, _width, _height);
+            graphics.DrawRectangle(_pen, StartPoint.X, StartPoint.Y, _width, _height);// * koef, _height * koef);
             graphics.DrawRectangle(_pen, StartPoint.X, StartPoint.Y, _width, _height / 4);
         }
     }

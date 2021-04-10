@@ -14,9 +14,9 @@ namespace UML_Diagram_Designer
         private Bitmap _mainBitmap;
         private Graphics _graphics;
         private AbstractRelationship _currentRelationship;
-        bool _isMouseMove = false;
-        bool _isClickedMoveButton = false;
-        RelationshipType _relationshipsType;
+        bool _isMouseMoving = false;
+        bool _isMoveButtonClicked = false;
+        RelationshipType _relationshipsType = RelationshipType.Inharitance;
         ActionType _actionType;
         private UMLClass _UMLClass;
         List<AbstractRelationship> _listRelationships;
@@ -72,7 +72,8 @@ namespace UML_Diagram_Designer
 
         private void clearButton_Click(object sender, EventArgs e)
         {
-            _isMouseMove = false;
+            _isMouseMoving = false;
+            _isMoveButtonClicked = false;
             _graphics.Clear(Color.White);
             _listUMLClasses.Clear();
             _listRelationships.Clear();
@@ -83,13 +84,13 @@ namespace UML_Diagram_Designer
         {
             if (e.Button == MouseButtons.Left)
             {
-                if (_isClickedMoveButton)
+                if (_isMoveButtonClicked)
                 {
-                    foreach (AbstractRelationship a in _listRelationships)
+                    foreach (var relationship in _listRelationships)
                     {
-                        if (a.IsItYou(e.Location))
+                        if (relationship.IsItYou(e.Location))
                         {
-                            _currentRelationship = a;
+                            _currentRelationship = relationship;
                             break;
                         }
                     }
@@ -98,15 +99,19 @@ namespace UML_Diagram_Designer
                     {
                         _listRelationships.Remove(_currentRelationship);
 
-                        foreach (AbstractRelationship a in _listRelationships)
+                        foreach (var relationship in _listRelationships)
                         {
-                            a.Draw(_graphics);
+                            relationship.Draw(_graphics);
                         }
-
+                        _isMouseMoving = true;
                         _pointForMove = e.Location;
                     }
+                    else
+                    {
+                    _isMouseMoving = false;
+                    }
                 }
-                else
+                else 
                 {
                     switch (_relationshipsType)
                     {
@@ -136,16 +141,16 @@ namespace UML_Diagram_Designer
                         _UMLClass = new UMLClass();
                         _UMLClass.StartPoint = e.Location;
                     }
+                    _isMouseMoving = true;
                 }
-
-                _isMouseMove = true;
+                
             }
         }
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (_isMouseMove)
+            if (_isMouseMoving)
             {
-                if (_isClickedMoveButton)
+                if (_isMoveButtonClicked && _currentRelationship != null)// TODO: think about actionType using
                 {
                     _currentRelationship.Move(e.X - _pointForMove.X, e.Y - _pointForMove.Y);
                     _pointForMove = e.Location;
@@ -164,29 +169,10 @@ namespace UML_Diagram_Designer
 
                 pictureBox1.Invalidate();
             }
-
-            
-        }
-        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (_isMouseMove)
-            {
-                if (_actionType == ActionType.DrawRelationship)
-                {
-                    _listRelationships.Add(_currentRelationship);
-                }
-                else if (_actionType == ActionType.DrawUmlClass)
-                {
-                    _listUMLClasses.Add(_UMLClass);
-                }
-            }
-
-            _isMouseMove = false;
-            _isClickedMoveButton = false;
         }
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
-            if (_isMouseMove)
+            if (_isMouseMoving)
             {
                 _graphics.Clear(pictureBox1.BackColor);
 
@@ -208,6 +194,23 @@ namespace UML_Diagram_Designer
                 }
             }
         }
+        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (_isMouseMoving)
+            {
+                if (_actionType == ActionType.DrawRelationship)
+                {
+                    _listRelationships.Add(_currentRelationship);
+                }
+                else if (_actionType == ActionType.DrawUmlClass)
+                {
+                    _listUMLClasses.Add(_UMLClass);
+                }
+            }
+
+            _isMouseMoving = false;
+            _isMoveButtonClicked = false;
+        }
 
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
@@ -216,7 +219,7 @@ namespace UML_Diagram_Designer
 
         private void buttonMove_Click(object sender, EventArgs e)
         {
-            _isClickedMoveButton = true;
+            _isMoveButtonClicked = true;
             _currentRelationship = null;
         }
     }
