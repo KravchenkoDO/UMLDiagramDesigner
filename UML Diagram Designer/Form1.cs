@@ -35,31 +35,31 @@ namespace UML_Diagram_Designer
         private void associationButton_Click(object sender, EventArgs e)
         {
             relationshipsType = RelationshipType.Association;
-            drawingType = DrawingType.Relationship;
+            actionType = ActionType.DrawRelationship;
         }
 
         private void inheritanceButton_Click(object sender, EventArgs e)
         {
             relationshipsType = RelationshipType.Inharitance;
-            drawingType = DrawingType.Relationship;
+            actionType = ActionType.DrawRelationship;
         }
 
         private void realizationButton_Click(object sender, EventArgs e)
         {
             relationshipsType = RelationshipType.Realization;
-            drawingType = DrawingType.Relationship;
+            actionType = ActionType.DrawRelationship;
         }
 
         private void aggregationButton_Click(object sender, EventArgs e)
         {
             relationshipsType = RelationshipType.Aggregation;
-            drawingType = DrawingType.Relationship;
+            actionType = ActionType.DrawRelationship;
         }
 
         private void compositionButton_Click(object sender, EventArgs e)
         {
             relationshipsType = RelationshipType.Composition;
-            drawingType = DrawingType.Relationship;
+            actionType = ActionType.DrawRelationship;
         }
         private void classButton_Click(object sender, EventArgs e)
         {
@@ -104,6 +104,7 @@ namespace UML_Diagram_Designer
             {
                 _UMLClass.StartPoint = e.Location;
             }
+
         }
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
@@ -124,12 +125,12 @@ namespace UML_Diagram_Designer
         {
             if (_isMouseMove)
             {
-                if (drawingType == DrawingType.Relationship)
+                if (actionType == ActionType.DrawRelationship)
                 {
                     listRelationships.Add(_currentRelationship);
                 }
 
-                if (drawingType == DrawingType.UmlClass)
+                if (actionType == ActionType.DrawUmlClass)
                 {
                     listUMLClasses.Add(_UMLClass);
                 }
@@ -162,6 +163,11 @@ namespace UML_Diagram_Designer
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+        }
+
+        private void btnMove_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
