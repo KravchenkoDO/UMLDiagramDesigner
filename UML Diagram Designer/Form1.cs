@@ -16,7 +16,7 @@ namespace UML_Diagram_Designer
         private AbstractRelationship _currentRelationship;
         bool _isMouseMove = false;
         RelationshipType relationshipsType;
-        DrawingType drawingType;
+        ActionType actionType;
         private UMLClass _UMLClass = new UMLClass();
         List<AbstractRelationship> listRelationships = new List<AbstractRelationship>();
         List<UMLClass> listUMLClasses = new List<UMLClass>();
@@ -63,7 +63,7 @@ namespace UML_Diagram_Designer
         }
         private void classButton_Click(object sender, EventArgs e)
         {
-            drawingType = DrawingType.UmlClass;
+            actionType = ActionType.DrawUmlClass;
         }
 
         private void clearButton_Click(object sender, EventArgs e)
@@ -96,11 +96,11 @@ namespace UML_Diagram_Designer
                     break;
             }
             _isMouseMove = true;
-            if (drawingType == DrawingType.Relationship)
+            if (actionType == ActionType.DrawRelationship)
             {
                 _currentRelationship.StartPoint = e.Location;
             }
-            if (drawingType == DrawingType.UmlClass)
+            if (actionType == ActionType.DrawUmlClass)
             {
                 _UMLClass.StartPoint = e.Location;
             }
@@ -110,11 +110,11 @@ namespace UML_Diagram_Designer
         {
             if (_isMouseMove)
             {
-                if (drawingType == DrawingType.Relationship)
+                if (actionType == ActionType.DrawRelationship)
                 {
                     _currentRelationship.EndPoint = e.Location;
                 }
-                if (drawingType == DrawingType.UmlClass)
+                if (actionType == ActionType.DrawUmlClass)
                 {
                     _UMLClass.EndPoint = e.Location;
                 }
@@ -142,27 +142,23 @@ namespace UML_Diagram_Designer
             if (_isMouseMove)
             {
                 _graphics.Clear(pictureBox1.BackColor);
-                if (drawingType == DrawingType.Relationship)
+                if (actionType == ActionType.DrawRelationship)
                 {
                     _currentRelationship.Draw(_graphics);
+                }
+                if (actionType == ActionType.DrawUmlClass)
+                {
+                    _UMLClass.DrawUMLClass(_graphics);
+                }
                 foreach (var relation in listRelationships)
                 {
                     relation.Draw(_graphics);
                 }
-                }
-                if (drawingType == DrawingType.UmlClass)
-                {
-                    _UMLClass.DrawUMLClass(_graphics);
                 foreach (var umlClass in listUMLClasses)
                 {
                     umlClass.DrawUMLClass(_graphics);
                 }
-                }
             }
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
         }
 
         private void btnMove_Click(object sender, EventArgs e)

@@ -37,7 +37,6 @@ namespace UML_Diagram_Designer
             this.inheritanceButton = new System.Windows.Forms.Button();
             this.associationButton = new System.Windows.Forms.Button();
             this.classButton = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             this.btnMove = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -45,10 +44,9 @@ namespace UML_Diagram_Designer
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.pictureBox1.Location = new System.Drawing.Point(277, 15);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(208, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(968, 592);
+            this.pictureBox1.Size = new System.Drawing.Size(726, 481);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
@@ -60,10 +58,9 @@ namespace UML_Diagram_Designer
             // 
             this.clearButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.clearButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.clearButton.Location = new System.Drawing.Point(16, 282);
-            this.clearButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.clearButton.Location = new System.Drawing.Point(9, 229);
             this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(253, 53);
+            this.clearButton.Size = new System.Drawing.Size(190, 43);
             this.clearButton.TabIndex = 14;
             this.clearButton.Text = "Очистить";
             this.clearButton.UseVisualStyleBackColor = false;
@@ -71,10 +68,9 @@ namespace UML_Diagram_Designer
             // 
             // compositionButton
             // 
-            this.compositionButton.Location = new System.Drawing.Point(144, 153);
-            this.compositionButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.compositionButton.Location = new System.Drawing.Point(108, 124);
             this.compositionButton.Name = "compositionButton";
-            this.compositionButton.Size = new System.Drawing.Size(125, 62);
+            this.compositionButton.Size = new System.Drawing.Size(94, 50);
             this.compositionButton.TabIndex = 13;
             this.compositionButton.Text = "Композиция";
             this.compositionButton.UseVisualStyleBackColor = true;
@@ -82,10 +78,9 @@ namespace UML_Diagram_Designer
             // 
             // aggregationButton
             // 
-            this.aggregationButton.Location = new System.Drawing.Point(16, 153);
-            this.aggregationButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.aggregationButton.Location = new System.Drawing.Point(12, 124);
             this.aggregationButton.Name = "aggregationButton";
-            this.aggregationButton.Size = new System.Drawing.Size(120, 62);
+            this.aggregationButton.Size = new System.Drawing.Size(90, 50);
             this.aggregationButton.TabIndex = 12;
             this.aggregationButton.Text = "Агрегация";
             this.aggregationButton.UseVisualStyleBackColor = true;
@@ -93,10 +88,9 @@ namespace UML_Diagram_Designer
             // 
             // realizationButton
             // 
-            this.realizationButton.Location = new System.Drawing.Point(16, 84);
-            this.realizationButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.realizationButton.Location = new System.Drawing.Point(12, 68);
             this.realizationButton.Name = "realizationButton";
-            this.realizationButton.Size = new System.Drawing.Size(120, 62);
+            this.realizationButton.Size = new System.Drawing.Size(90, 50);
             this.realizationButton.TabIndex = 10;
             this.realizationButton.Text = "Реализация";
             this.realizationButton.UseVisualStyleBackColor = true;
@@ -105,10 +99,9 @@ namespace UML_Diagram_Designer
             // inheritanceButton
             // 
             this.inheritanceButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.inheritanceButton.Location = new System.Drawing.Point(144, 16);
-            this.inheritanceButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.inheritanceButton.Location = new System.Drawing.Point(108, 13);
             this.inheritanceButton.Name = "inheritanceButton";
-            this.inheritanceButton.Size = new System.Drawing.Size(125, 62);
+            this.inheritanceButton.Size = new System.Drawing.Size(94, 50);
             this.inheritanceButton.TabIndex = 9;
             this.inheritanceButton.Text = "Наследование";
             this.inheritanceButton.UseVisualStyleBackColor = true;
@@ -117,10 +110,9 @@ namespace UML_Diagram_Designer
             // associationButton
             // 
             this.associationButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.associationButton.Location = new System.Drawing.Point(16, 15);
-            this.associationButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.associationButton.Location = new System.Drawing.Point(12, 12);
             this.associationButton.Name = "associationButton";
-            this.associationButton.Size = new System.Drawing.Size(120, 62);
+            this.associationButton.Size = new System.Drawing.Size(90, 50);
             this.associationButton.TabIndex = 8;
             this.associationButton.Text = "Ассоциация";
             this.associationButton.UseVisualStyleBackColor = true;
@@ -128,30 +120,20 @@ namespace UML_Diagram_Designer
             // 
             // classButton
             // 
-            this.classButton.Location = new System.Drawing.Point(16, 223);
-            this.classButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.classButton.Location = new System.Drawing.Point(12, 181);
             this.classButton.Name = "classButton";
-            this.classButton.Size = new System.Drawing.Size(253, 52);
+            this.classButton.Size = new System.Drawing.Size(190, 42);
             this.classButton.TabIndex = 15;
             this.classButton.Text = "Класс";
             this.classButton.UseVisualStyleBackColor = true;
             this.classButton.Click += new System.EventHandler(this.classButton_Click);
             // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(12, 278);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 16;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
             // btnMove
             // 
-            this.btnMove.Location = new System.Drawing.Point(25, 356);
+            this.btnMove.Location = new System.Drawing.Point(9, 277);
+            this.btnMove.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnMove.Name = "btnMove";
-            this.btnMove.Size = new System.Drawing.Size(226, 48);
+            this.btnMove.Size = new System.Drawing.Size(170, 39);
             this.btnMove.TabIndex = 16;
             this.btnMove.Text = "Двигать";
             this.btnMove.UseVisualStyleBackColor = true;
@@ -159,11 +141,9 @@ namespace UML_Diagram_Designer
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(946, 505);
-            this.Controls.Add(this.btnSave);
-            this.ClientSize = new System.Drawing.Size(1261, 622);
             this.Controls.Add(this.btnMove);
             this.Controls.Add(this.classButton);
             this.Controls.Add(this.clearButton);
@@ -173,7 +153,6 @@ namespace UML_Diagram_Designer
             this.Controls.Add(this.inheritanceButton);
             this.Controls.Add(this.associationButton);
             this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -193,7 +172,6 @@ namespace UML_Diagram_Designer
         private System.Windows.Forms.Button associationButton;
         private System.Windows.Forms.Button classButton;
         private System.Windows.Forms.Button btnMove;
-        private System.Windows.Forms.Button btnSave;
     }
 }
 
