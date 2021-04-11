@@ -22,6 +22,8 @@ namespace UML_Diagram_Designer
         List<AbstractRelationship> _listRelationships;
         List<UMLClass> _listUMLClasses;
         Point _pointForMove;
+        private int _width = 6;
+        private Color _color = Color.Black;
 
         public Form1()
         {
@@ -116,19 +118,19 @@ namespace UML_Diagram_Designer
                     switch (_relationshipsType)
                     {
                         case RelationshipType.Aggregation:
-                            _currentRelationship = new AggregationRelationship();
+                            _currentRelationship = new AggregationRelationship(_color, _width);
                             break;
                         case RelationshipType.Association:
-                            _currentRelationship = new AssociationRelationship();
+                            _currentRelationship = new AssociationRelationship(_color, _width);
                             break;
                         case RelationshipType.Composition:
-                            _currentRelationship = new CompositionRelationship();
+                            _currentRelationship = new CompositionRelationship(_color, _width);
                             break;
                         case RelationshipType.Inharitance:
-                            _currentRelationship = new InheritanceRelationship();
+                            _currentRelationship = new InheritanceRelationship(_color, _width);
                             break;
                         case RelationshipType.Realization:
-                            _currentRelationship = new RealizationRelationship();
+                            _currentRelationship = new RealizationRelationship(_color, _width);
                             break;
                     }
 
@@ -138,7 +140,7 @@ namespace UML_Diagram_Designer
                     }
                     if (_actionType == ActionType.DrawUmlClass)
                     {
-                        _UMLClass = new UMLClass();
+                        _UMLClass = new UMLClass(_color, _width);
                         _UMLClass.StartPoint = e.Location;
                     }
                     _isMouseMoving = true;
@@ -221,6 +223,26 @@ namespace UML_Diagram_Designer
         {
             _isMoveButtonClicked = true;
             _currentRelationship = null;
+        }
+
+        private void ColorButton_Click(object sender, EventArgs e)
+        {
+            colorDialog.ShowDialog();
+
+            if (colorDialog.Color == Color.Black)
+            {
+                colorButton.BackColor = Color.White;
+            }
+            else
+            {
+                colorButton.BackColor = colorDialog.Color;
+            }
+            _color = colorDialog.Color;
+        }
+
+        private void ThicknessTrackBar_Scroll(object sender, EventArgs e)
+        {
+            _width = thicknessTrackBar.Value;
         }
     }
 }

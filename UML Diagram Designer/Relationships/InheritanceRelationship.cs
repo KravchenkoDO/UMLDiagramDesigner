@@ -10,9 +10,9 @@ namespace UML_Diagram_Designer.Relationships
 {
     public class InheritanceRelationship : AbstractRelationship
     {
-        public InheritanceRelationship()
+        public InheritanceRelationship(Color color, int width)
         {
-            _pen = new Pen(Color.Black, 6);
+            _pen = new Pen(color, width);
             AdjustableArrowCap inheritanceRelationshipCap = new AdjustableArrowCap(4, 4);
             _pen.CustomEndCap = inheritanceRelationshipCap;
             _pen.DashStyle = DashStyle.Solid;

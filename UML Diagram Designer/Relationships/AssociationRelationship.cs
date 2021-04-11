@@ -10,9 +10,9 @@ namespace UML_Diagram_Designer.Relationships
 {
     public class AssociationRelationship : AbstractRelationship
     {
-        public AssociationRelationship()
+        public AssociationRelationship(Color color, int width)
         {
-            _pen = new Pen(Color.Black, 6);
+            _pen = new Pen(color, width);
             AdjustableArrowCap associationRelationshipCap = new AdjustableArrowCap(4, 4, false);
             _pen.CustomEndCap = associationRelationshipCap;
             _pen.DashStyle = DashStyle.Solid;

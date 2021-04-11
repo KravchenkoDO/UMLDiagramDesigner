@@ -10,9 +10,9 @@ namespace UML_Diagram_Designer.Relationships
 {
     public class CompositionRelationship : AbstractRelationship
     {
-        public CompositionRelationship()
+        public CompositionRelationship(Color color, int width)
         {
-            _pen = new Pen(Color.Black, 6);
+            _pen = new Pen(color, width);
             _pen.CustomEndCap = CreateFilledDiamondCap();
             _pen.DashStyle = DashStyle.Solid;
         }

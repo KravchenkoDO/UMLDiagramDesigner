@@ -38,7 +38,11 @@ namespace UML_Diagram_Designer
             this.associationButton = new System.Windows.Forms.Button();
             this.classButton = new System.Windows.Forms.Button();
             this.buttonMove = new System.Windows.Forms.Button();
+            this.colorButton = new System.Windows.Forms.Button();
+            this.thicknessTrackBar = new System.Windows.Forms.TrackBar();
+            this.colorDialog = new System.Windows.Forms.ColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.thicknessTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -69,7 +73,7 @@ namespace UML_Diagram_Designer
             // 
             // compositionButton
             // 
-            this.compositionButton.Location = new System.Drawing.Point(108, 124);
+            this.compositionButton.Location = new System.Drawing.Point(108, 69);
             this.compositionButton.Name = "compositionButton";
             this.compositionButton.Size = new System.Drawing.Size(94, 50);
             this.compositionButton.TabIndex = 13;
@@ -139,11 +143,33 @@ namespace UML_Diagram_Designer
             this.buttonMove.UseVisualStyleBackColor = true;
             this.buttonMove.Click += new System.EventHandler(this.buttonMove_Click);
             // 
+            // colorButton
+            // 
+            this.colorButton.Location = new System.Drawing.Point(108, 125);
+            this.colorButton.Name = "colorButton";
+            this.colorButton.Size = new System.Drawing.Size(91, 49);
+            this.colorButton.TabIndex = 17;
+            this.colorButton.Text = "Цвет";
+            this.colorButton.UseVisualStyleBackColor = true;
+            this.colorButton.Click += new System.EventHandler(this.ColorButton_Click);
+            // 
+            // thicknessTrackBar
+            // 
+            this.thicknessTrackBar.Location = new System.Drawing.Point(12, 349);
+            this.thicknessTrackBar.Minimum = 2;
+            this.thicknessTrackBar.Name = "thicknessTrackBar";
+            this.thicknessTrackBar.Size = new System.Drawing.Size(187, 45);
+            this.thicknessTrackBar.TabIndex = 18;
+            this.thicknessTrackBar.Value = 2;
+            this.thicknessTrackBar.Scroll += new System.EventHandler(this.ThicknessTrackBar_Scroll);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(946, 505);
+            this.Controls.Add(this.thicknessTrackBar);
+            this.Controls.Add(this.colorButton);
             this.Controls.Add(this.buttonMove);
             this.Controls.Add(this.classButton);
             this.Controls.Add(this.clearButton);
@@ -157,7 +183,9 @@ namespace UML_Diagram_Designer
             this.Text = "UML Diagram Designer";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.thicknessTrackBar)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -172,6 +200,9 @@ namespace UML_Diagram_Designer
         private System.Windows.Forms.Button associationButton;
         private System.Windows.Forms.Button classButton;
         private System.Windows.Forms.Button buttonMove;
+        private System.Windows.Forms.Button colorButton;
+        private System.Windows.Forms.TrackBar thicknessTrackBar;
+        private System.Windows.Forms.ColorDialog colorDialog;
     }
 }
 
