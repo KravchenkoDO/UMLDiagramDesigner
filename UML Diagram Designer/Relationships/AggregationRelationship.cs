@@ -10,9 +10,9 @@ namespace UML_Diagram_Designer.Relationships
 {
     public class AggregationRelationship : AbstractRelationship
     {
-        public AggregationRelationship()
+        public AggregationRelationship(Color color, int width)
         {
-            _pen = new Pen(Color.Black, 6);
+            _pen = new Pen(color, width);
             _pen.CustomEndCap = CreateNotFilledDiamondCap();
             _pen.DashStyle = DashStyle.Solid;
         }

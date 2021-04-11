@@ -10,9 +10,9 @@ namespace UML_Diagram_Designer.Relationships
 {
     public class RealizationRelationship : AbstractRelationship
     {
-        public RealizationRelationship()
+        public RealizationRelationship(Color color, int width)
         {
-            _pen = new Pen(Color.Black, 6);
+            _pen = new Pen(color, width);
             AdjustableArrowCap realizationRelationshipCap = new AdjustableArrowCap(4,4);
             _pen.CustomEndCap = realizationRelationshipCap;
             _pen.DashStyle = DashStyle.Dash;
