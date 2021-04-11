@@ -112,14 +112,14 @@ namespace UML_Diagram_Designer
                         }
                     }
 
-                    if (_currentRelationship != null || _UMLClass !=null )
+                    if (_currentRelationship != null || _UMLClass != null)
                     {
                         if (_umlObject is AbstractRelationship)
                         {
                             _listAllObjects.Remove(_currentRelationship);
 
                         }
-                        else if(_umlObject is UMLClass)
+                        else if (_umlObject is UMLClass)
                         {
                             _listAllObjects.Remove(_UMLClass);
                         }
@@ -140,10 +140,10 @@ namespace UML_Diagram_Designer
                     }
                     else
                     {
-                    _isMouseMoving = false;
+                        _isMouseMoving = false;
                     }
                 }
-                else 
+                else
                 {
                     switch (_relationshipsType)
                     {
@@ -173,9 +173,9 @@ namespace UML_Diagram_Designer
                         _UMLClass = new UMLClass(_color, _width);
                         _UMLClass.StartPoint = e.Location;
                     }
+
                     _isMouseMoving = true;
                 }
-                
             }
         }
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
@@ -225,11 +225,13 @@ namespace UML_Diagram_Designer
                 {
                     if (umlObject is AbstractRelationship)
                     {
-                        _currentRelationship.Draw(_graphics);
+                        AbstractRelationship arrow = (AbstractRelationship)umlObject;
+                        arrow.Draw(_graphics);
                     }
                     else if (umlObject is UMLClass)
                     {
-                        _UMLClass.DrawUMLClass(_graphics);
+                        UMLClass umlClass = (UMLClass)umlObject;
+                        umlClass.DrawUMLClass(_graphics);
                     }
                 }
             }
@@ -254,7 +256,7 @@ namespace UML_Diagram_Designer
 
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
-            
+
         }
 
         private void buttonMove_Click(object sender, EventArgs e)
