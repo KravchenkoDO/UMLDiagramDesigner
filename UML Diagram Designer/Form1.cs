@@ -6,6 +6,7 @@ using UML_Diagram_Designer.Relationships;
 using UML_Diagram_Designer.UMLClasses;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using UML_Diagram_Designer.Interfaces;
 
 namespace UML_Diagram_Designer
 {
@@ -19,11 +20,13 @@ namespace UML_Diagram_Designer
         RelationshipType _relationshipsType = RelationshipType.Inharitance;
         ActionType _actionType;
         private UMLClass _UMLClass;
-        List<AbstractRelationship> _listRelationships;
-        List<UMLClass> _listUMLClasses;
+        //List<AbstractRelationship> _listRelationships;
+        //List<UMLClass> _listUMLClasses;
+        List<ISelectable> _listAllObjects;
         Point _pointForMove;
         private int _width = 6;
         private Color _color = Color.Black;
+        private ISelectable _umlObject;
 
         public Form1()
         {
@@ -35,8 +38,9 @@ namespace UML_Diagram_Designer
             pictureBox1.BackColor = Color.White;
             pictureBox1.Image = _mainBitmap;
             _graphics = Graphics.FromImage(_mainBitmap);
-            _listRelationships = new List<AbstractRelationship>();
-            _listUMLClasses = new List<UMLClass>();
+            //_listRelationships = new List<AbstractRelationship>();
+            //_listUMLClasses = new List<UMLClass>();
+            _listAllObjects = new List<ISelectable>();
         }
         private void associationButton_Click(object sender, EventArgs e)
         {
@@ -77,8 +81,9 @@ namespace UML_Diagram_Designer
             _isMouseMoving = false;
             _isMoveButtonClicked = false;
             _graphics.Clear(Color.White);
-            _listUMLClasses.Clear();
-            _listRelationships.Clear();
+            //_listUMLClasses.Clear();
+            //_listRelationships.Clear();
+            _listAllObjects.Clear();
             pictureBox1.Invalidate();
         }
 
@@ -88,32 +93,57 @@ namespace UML_Diagram_Designer
             {
                 if (_isMoveButtonClicked)
                 {
-                    foreach (var relationship in _listRelationships)
+                    foreach (var umlObject in _listAllObjects)
                     {
-                        if (relationship.IsItYou(e.Location))
+                        if (umlObject.IsItYou(e.Location))
                         {
-                            _currentRelationship = relationship;
-                            break;
+                            if (umlObject is AbstractRelationship)
+                            {
+                                _currentRelationship = (AbstractRelationship)umlObject;
+                                _umlObject = umlObject;
+                                break;
+                            }
+                            else if (umlObject is UMLClass)
+                            {
+                                _UMLClass = (UMLClass)umlObject;
+                                _umlObject = umlObject;
+                                break;
+                            }
                         }
                     }
 
-                    if (_currentRelationship != null)
+                    if (_currentRelationship != null || _UMLClass != null)
                     {
-                        _listRelationships.Remove(_currentRelationship);
-
-                        foreach (var relationship in _listRelationships)
+                        if (_umlObject is AbstractRelationship)
                         {
-                            relationship.Draw(_graphics);
+                            _listAllObjects.Remove(_currentRelationship);
+
+                        }
+                        else if (_umlObject is UMLClass)
+                        {
+                            _listAllObjects.Remove(_UMLClass);
+                        }
+
+                        foreach (var umlObject in _listAllObjects)
+                        {
+                            if (umlObject is AbstractRelationship)
+                            {
+                                _currentRelationship.Draw(_graphics);
+                            }
+                            else if (umlObject is UMLClass)
+                            {
+                                _UMLClass.DrawUMLClass(_graphics);
+                            }
                         }
                         _isMouseMoving = true;
                         _pointForMove = e.Location;
                     }
                     else
                     {
-                    _isMouseMoving = false;
+                        _isMouseMoving = false;
                     }
                 }
-                else 
+                else
                 {
                     switch (_relationshipsType)
                     {
@@ -143,9 +173,9 @@ namespace UML_Diagram_Designer
                         _UMLClass = new UMLClass(_color, _width);
                         _UMLClass.StartPoint = e.Location;
                     }
+
                     _isMouseMoving = true;
                 }
-                
             }
         }
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
@@ -155,6 +185,11 @@ namespace UML_Diagram_Designer
                 if (_isMoveButtonClicked && _currentRelationship != null)// TODO: think about actionType using
                 {
                     _currentRelationship.Move(e.X - _pointForMove.X, e.Y - _pointForMove.Y);
+                    _pointForMove = e.Location;
+                }
+                else if (_isMoveButtonClicked && _UMLClass != null)
+                {
+                    _UMLClass.Move(e.X - _pointForMove.X, e.Y - _pointForMove.Y);
                     _pointForMove = e.Location;
                 }
                 else
@@ -186,13 +221,18 @@ namespace UML_Diagram_Designer
                 {
                     _UMLClass.DrawUMLClass(_graphics);
                 }
-                foreach (var relation in _listRelationships)
+                foreach (var umlObject in _listAllObjects)
                 {
-                    relation.Draw(_graphics);
-                }
-                foreach (var umlClass in _listUMLClasses)
-                {
-                    umlClass.DrawUMLClass(_graphics);
+                    if (umlObject is AbstractRelationship)
+                    {
+                        AbstractRelationship arrow = (AbstractRelationship)umlObject;
+                        arrow.Draw(_graphics);
+                    }
+                    else if (umlObject is UMLClass)
+                    {
+                        UMLClass umlClass = (UMLClass)umlObject;
+                        umlClass.DrawUMLClass(_graphics);
+                    }
                 }
             }
         }
@@ -202,11 +242,11 @@ namespace UML_Diagram_Designer
             {
                 if (_actionType == ActionType.DrawRelationship)
                 {
-                    _listRelationships.Add(_currentRelationship);
+                    _listAllObjects.Add(_currentRelationship);
                 }
                 else if (_actionType == ActionType.DrawUmlClass)
                 {
-                    _listUMLClasses.Add(_UMLClass);
+                    _listAllObjects.Add(_UMLClass);
                 }
             }
 
@@ -216,13 +256,14 @@ namespace UML_Diagram_Designer
 
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
-            
+
         }
 
         private void buttonMove_Click(object sender, EventArgs e)
         {
             _isMoveButtonClicked = true;
             _currentRelationship = null;
+            _UMLClass = null;
         }
 
         private void ColorButton_Click(object sender, EventArgs e)
