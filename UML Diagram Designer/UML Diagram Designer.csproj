@@ -47,6 +47,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionType.cs" />
+    <Compile Include="ArrowParts\AbstractCap.cs" />
+    <Compile Include="ArrowParts\AbstractLine.cs" />
+    <Compile Include="ArrowParts\ArrowCap.cs" />
+    <Compile Include="ArrowParts\DashLine.cs" />
+    <Compile Include="ArrowParts\DiamondCap.cs" />
+    <Compile Include="ArrowParts\FilledArrowCap.cs" />
+    <Compile Include="ArrowParts\FilledDiamondCap.cs" />
+    <Compile Include="ArrowParts\SolidLine.cs" />
     <Compile Include="Interfaces\IMoveable.cs" />
     <Compile Include="Interfaces\ISelectable.cs" />
     <Compile Include="Relationships\AbstractRelationship.cs" />
