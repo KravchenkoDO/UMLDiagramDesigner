@@ -95,7 +95,7 @@ namespace UML_Diagram_Designer
                 {
                     foreach (var umlObject in _listAllObjects)
                     {
-                        if (umlObject.IsItYou(e.Location))
+                        if (umlObject.CheckIfTheObjectIsClicked(e.Location))
                         {
                             if (umlObject is AbstractRelationship)
                             {

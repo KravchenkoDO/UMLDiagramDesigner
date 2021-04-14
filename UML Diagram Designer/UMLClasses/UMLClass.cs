@@ -30,7 +30,7 @@ namespace UML_Diagram_Designer.UMLClasses
             graphics.DrawRectangle(_pen, StartPoint.X, StartPoint.Y, Width, Height / 4);
         }
 
-        public bool IsItYou(Point point)
+        public bool CheckIfTheObjectIsClicked(Point point)
         {
             int xMax;
             int xMin;

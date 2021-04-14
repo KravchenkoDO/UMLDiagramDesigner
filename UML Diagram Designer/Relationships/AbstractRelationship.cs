@@ -27,7 +27,7 @@ namespace UML_Diagram_Designer.Relationships
 
         public abstract void Draw(Graphics graphics);
 
-        public bool IsItYou(Point point)
+        public bool CheckIfTheObjectIsClicked(Point point)
         {
             int xMax;
             int xMin;

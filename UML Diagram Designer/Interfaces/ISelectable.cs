@@ -9,6 +9,6 @@ namespace UML_Diagram_Designer.Interfaces
 {
    public interface ISelectable
     {
-        bool IsItYou(Point point);
+        bool CheckIfTheObjectIsClicked(Point point);
     }
 }
