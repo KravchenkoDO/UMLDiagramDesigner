@@ -9,7 +9,7 @@ using UML_Diagram_Designer.Interfaces;
 
 namespace UML_Diagram_Designer.Relationships
 {
-    public abstract class AbstractRelationship : IMoveable, ISelectable
+    public abstract class AbstractRelationship : AbstractDiagramElement
     {
         protected Pen _pen;
 
@@ -27,7 +27,7 @@ namespace UML_Diagram_Designer.Relationships
 
         public abstract void Draw(Graphics graphics);
 
-        public bool CheckIfTheObjectIsClicked(Point point)
+        public override bool CheckIfTheObjectIsClicked(Point point)
         {
             int xMax;
             int xMin;
@@ -67,7 +67,7 @@ namespace UML_Diagram_Designer.Relationships
             }
         }
 
-        public void Move(int deltaX, int deltaY)
+        public override void Move(int deltaX, int deltaY)
         {
             StartPoint = new Point(StartPoint.X + deltaX, StartPoint.Y + deltaY);
             EndPoint = new Point(EndPoint.X + deltaX, EndPoint.Y + deltaY);

@@ -8,7 +8,7 @@ using UML_Diagram_Designer.Interfaces;
 
 namespace UML_Diagram_Designer.UMLClasses
 {
-    public class UMLClass:IMoveable,ISelectable
+    public class UMLClass : AbstractDiagramElement
     {
         public Pen _pen = new Pen(Color.Black, 5);
         public Point StartPoint { set; get; }
@@ -30,7 +30,7 @@ namespace UML_Diagram_Designer.UMLClasses
             graphics.DrawRectangle(_pen, StartPoint.X, StartPoint.Y, Width, Height / 4);
         }
 
-        public bool CheckIfTheObjectIsClicked(Point point)
+        public override bool CheckIfTheObjectIsClicked(Point point)
         {
             int xMax;
             int xMin;
@@ -70,7 +70,7 @@ namespace UML_Diagram_Designer.UMLClasses
             }
         }
 
-        public void Move(int deltaX, int deltaY)
+        public override void Move(int deltaX, int deltaY)
         {
             StartPoint = new Point(StartPoint.X + deltaX, StartPoint.Y + deltaY);
             EndPoint = new Point(EndPoint.X + deltaX, EndPoint.Y + deltaY);

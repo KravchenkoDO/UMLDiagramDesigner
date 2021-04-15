@@ -55,6 +55,7 @@
     <Compile Include="ArrowParts\FilledArrowCap.cs" />
     <Compile Include="ArrowParts\FilledDiamondCap.cs" />
     <Compile Include="ArrowParts\SolidLine.cs" />
+    <Compile Include="AbstractDiagramElement.cs" />
     <Compile Include="FactoryClasses\ClassBlockFactories\AbstractClassFactory.cs" />
     <Compile Include="FactoryClasses\ClassBlockFactories\FourBlocksClassFactory.cs" />
     <Compile Include="FactoryClasses\ClassBlockFactories\OneBlockClassFactory.cs" />
@@ -66,7 +67,6 @@
     <Compile Include="FactoryClasses\RelationshipFactories\CompositionRelationshipFactory.cs" />
     <Compile Include="FactoryClasses\RelationshipFactories\InheritanceRelationshipFactory.cs" />
     <Compile Include="FactoryClasses\RelationshipFactories\RealizationRelationshipFactory.cs" />
-    <Compile Include="Interfaces\IDiagramElement.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\IMoveable.cs" />
     <Compile Include="Interfaces\IChangeColors.cs" />
