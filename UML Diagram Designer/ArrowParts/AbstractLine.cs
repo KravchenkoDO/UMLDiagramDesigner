@@ -10,16 +10,13 @@ namespace UML_Diagram_Designer.ArrowParts
 {
     public abstract class AbstractLine
     {
-        protected List<Point> _points;
         protected Point StartPoint { get; set; }
         protected Point EndPoint { get; set; }
-        protected GraphicsPath GrPath { get; set; }
         protected DashStyle LineStyle { get; set; }
 
-        protected void GetLine(List<Point> points)
+        protected void GetLine(DashStyle lineStyle)
         {
-            GrPath = new GraphicsPath();
-            GrPath.AddLines(points.ToArray());
+            LineStyle = lineStyle;
         }
     }
 }

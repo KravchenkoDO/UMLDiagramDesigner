@@ -10,14 +10,6 @@ namespace UML_Diagram_Designer.ArrowParts
 {
     public abstract class AbstractCap
     {
-        protected List<Point> _points;
-        protected Point CapPoint { get; set; }
-        protected GraphicsPath GrPath { get; set; }
-
-        protected void GetCap(List<Point> points)
-        {
-            GrPath = new GraphicsPath();
-            GrPath.AddLines(points.ToArray());
-        }
+        protected abstract void GetCap();
     }
 }

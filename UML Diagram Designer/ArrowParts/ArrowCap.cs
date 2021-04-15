@@ -10,6 +10,7 @@ namespace UML_Diagram_Designer.ArrowParts
 {
     public class ArrowCap : AbstractCap
     {
+        private AdjustableArrowCap _arrowCap;
         public ArrowCap(Point lineEndPoint)
         {
             CapPoint = lineEndPoint;
@@ -22,6 +23,11 @@ namespace UML_Diagram_Designer.ArrowParts
                 new Point(CapPoint.X, CapPoint.Y)
             };
             GetCap(_points);
+        }
+
+        protected override void GetCap()
+        {
+            
         }
     }
 }

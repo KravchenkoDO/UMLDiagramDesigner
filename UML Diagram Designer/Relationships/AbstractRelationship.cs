@@ -11,19 +11,10 @@ namespace UML_Diagram_Designer.Relationships
 {
     public abstract class AbstractRelationship : AbstractDiagramElement
     {
-        protected Pen _pen;
-
-        protected GraphicsPath _pathForCustomLineEndCap;
         public Point StartPoint { get; set; }
         public Point EndPoint { get; set; }
 
-        protected List<Point> GetPoints()
-        {
-            List<Point> points = new List<Point>();
-            points.Add(StartPoint);
-            points.Add(EndPoint);
-            return points;
-        }
+        private 
 
         public abstract void Draw(Graphics graphics);
 
