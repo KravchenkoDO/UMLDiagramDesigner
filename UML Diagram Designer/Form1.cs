@@ -55,32 +55,30 @@ namespace UML_Diagram_Designer
         {
             _currentFactory= new AssociationRelationshipFactory();
             _currentDiagramElement = _currentFactory.GetElement();
-            //_relationshipsType = RelationshipType.Association;
-            //_actionType = ActionType.DrawRelationship;
         }
 
         private void inheritanceButton_Click(object sender, EventArgs e)
         {
-            _relationshipsType = RelationshipType.Inharitance;
-            _actionType = ActionType.DrawRelationship;
+            _currentFactory = new InheritanceRelationshipFactory();
+            _currentDiagramElement = _currentFactory.GetElement();
         }
 
         private void realizationButton_Click(object sender, EventArgs e)
         {
-            _relationshipsType = RelationshipType.Realization;
-            _actionType = ActionType.DrawRelationship;
+            _currentFactory = new RealizationRelationshipFactory();
+            _currentDiagramElement = _currentFactory.GetElement();
         }
 
         private void aggregationButton_Click(object sender, EventArgs e)
         {
-            _relationshipsType = RelationshipType.Aggregation;
-            _actionType = ActionType.DrawRelationship;
+            _currentFactory = new AggregationRelationshipFactory();
+            _currentDiagramElement = _currentFactory.GetElement();
         }
 
         private void compositionButton_Click(object sender, EventArgs e)
         {
-            _relationshipsType = RelationshipType.Composition;
-            _actionType = ActionType.DrawRelationship;
+            _currentFactory = new CompositionRelationshipFactory();
+            _currentDiagramElement = _currentFactory.GetElement();
         }
         private void classButton_Click(object sender, EventArgs e)
         {
