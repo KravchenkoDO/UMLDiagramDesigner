@@ -10,17 +10,26 @@ namespace UML_Diagram_Designer.ArrowParts
 {
     public class FilledDiamondCap : AbstractCap
     {
-        public FilledDiamondCap(Point lineEndPoint)
+        public FilledDiamondCap()
         {
-            CapPoint = lineEndPoint;
-            _points = new List<Point>
+            GetCap();
+        }
+
+        protected override void GetCap()
+        {
+            GraphicsPath graphicsPath = new GraphicsPath();
+            PointF[] points = new PointF[]
             {
-                new Point(CapPoint.X, CapPoint.Y),
-                new Point(CapPoint.X - 5, CapPoint.Y - 5),
-                new Point(CapPoint.X - 10, CapPoint.Y),
-                new Point(CapPoint.X - 5, CapPoint.Y + 5)
+                new PointF(0, -0.02f),
+                new PointF(2, 3),
+                new PointF(0, 6),
+                new PointF(-2, 3),
+                new PointF(0, -0.02f)
             };
-            GetCap(_points);
+
+            graphicsPath.AddLines(points);
+
+            _cap = new CustomLineCap(graphicsPath, null);
         }
     }
 }

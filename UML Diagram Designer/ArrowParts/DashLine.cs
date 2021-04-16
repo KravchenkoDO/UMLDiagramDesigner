@@ -13,6 +13,7 @@ namespace UML_Diagram_Designer.ArrowParts
         public DashLine(Point startPoint, Point endPoint)
         {
             LineStyle = DashStyle.Dash;
+
             GetLine(LineStyle, startPoint, endPoint);
            
             _points = new List<Point>

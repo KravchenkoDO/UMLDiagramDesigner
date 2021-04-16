@@ -10,7 +10,6 @@ namespace UML_Diagram_Designer.ArrowParts
 {
     public class ArrowCap : AbstractCap
     {
-        
         public ArrowCap()
         {
             GetCap();
@@ -18,8 +17,7 @@ namespace UML_Diagram_Designer.ArrowParts
 
         protected override void GetCap()
         {
-            AdjustableArrowCap arrowCap = new AdjustableArrowCap(4, 4, false);
-            _cap = arrowCap;
+            _cap = new AdjustableArrowCap(4, 4, false);
         }
     }
 }

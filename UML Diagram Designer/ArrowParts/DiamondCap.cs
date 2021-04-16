@@ -17,8 +17,20 @@ namespace UML_Diagram_Designer.ArrowParts
 
         protected override void GetCap()
         {
-            AdjustableArrowCap arrowCap = new AdjustableArrowCap(4, 4, false);
-            _cap = arrowCap;
+            GraphicsPath graphicsPath = new GraphicsPath();
+
+            Point[] points = new Point[]
+            {
+                new Point(0, 0),
+                new Point(2, 3),
+                new Point(0, 6),
+                new Point(-2, 3),
+                new Point(0, 0)
+            };
+
+            graphicsPath.AddLines(points);
+
+            _cap = new CustomLineCap(null, graphicsPath);
         }
     }
 }
