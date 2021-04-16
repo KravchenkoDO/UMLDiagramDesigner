@@ -12,16 +12,14 @@ namespace UML_Diagram_Designer.ArrowParts
     {
         public DashLine(Point startPoint, Point endPoint)
         {
-            StartPoint = startPoint;
-            EndPoint = endPoint;
+            LineStyle = DashStyle.Dash;
+            GetLine(LineStyle, startPoint, endPoint);
+           
             _points = new List<Point>
             {
                 StartPoint,
                 EndPoint
             };
-            LineStyle = DashStyle.Dash;
-
-            GetLine(_points);
         }
     }
 }

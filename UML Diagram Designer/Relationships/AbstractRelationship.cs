@@ -11,10 +11,9 @@ namespace UML_Diagram_Designer.Relationships
 {
     public abstract class AbstractRelationship : AbstractDiagramElement
     {
+        public Pen _pen;
         public Point StartPoint { get; set; }
         public Point EndPoint { get; set; }
-
-        private 
 
         public abstract void Draw(Graphics graphics);
 

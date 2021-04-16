@@ -12,16 +12,15 @@ namespace UML_Diagram_Designer.ArrowParts
     {
         public SolidLine(Point startPoint, Point endPoint)
         {
-            StartPoint = startPoint;
-            EndPoint = endPoint;
+            LineStyle = DashStyle.Solid;
+
+            GetLine(LineStyle, startPoint, endPoint);
+
             _points = new List<Point>
             {
                 StartPoint,
                 EndPoint
             };
-            LineStyle = DashStyle.Solid;
-
-            GetLine(_points);
         }
     }
 }
