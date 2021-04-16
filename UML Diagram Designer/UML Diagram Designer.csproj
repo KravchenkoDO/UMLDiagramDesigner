@@ -56,12 +56,11 @@
     <Compile Include="ArrowParts\FilledDiamondCap.cs" />
     <Compile Include="ArrowParts\SolidLine.cs" />
     <Compile Include="AbstractDiagramElement.cs" />
-    <Compile Include="FactoryClasses\ClassBlockFactories\AbstractClassFactory.cs" />
+    <Compile Include="FactoryClasses\AbstractDiagramElementFactory.cs" />
     <Compile Include="FactoryClasses\ClassBlockFactories\FourBlocksClassFactory.cs" />
     <Compile Include="FactoryClasses\ClassBlockFactories\OneBlockClassFactory.cs" />
     <Compile Include="FactoryClasses\ClassBlockFactories\ThreeBlocksClassFactory.cs" />
     <Compile Include="FactoryClasses\ClassBlockFactories\TwoBlocksClassFactory.cs" />
-    <Compile Include="FactoryClasses\RelationshipFactories\AbstractRelationshipFactory.cs" />
     <Compile Include="FactoryClasses\RelationshipFactories\AggregationRelationshipFactory.cs" />
     <Compile Include="FactoryClasses\RelationshipFactories\AssociationRelationshipFactory.cs" />
     <Compile Include="FactoryClasses\RelationshipFactories\CompositionRelationshipFactory.cs" />
@@ -72,6 +71,7 @@
     <Compile Include="Interfaces\IChangeColors.cs" />
     <Compile Include="Interfaces\IResizable.cs" />
     <Compile Include="Interfaces\ISelectable.cs" />
+    <Compile Include="Painter.cs" />
     <Compile Include="Relationships\AbstractRelationship.cs" />
     <Compile Include="Relationships\AggregationRelationship.cs" />
     <Compile Include="Relationships\CompositionRelationship.cs" />

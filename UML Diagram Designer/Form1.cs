@@ -28,16 +28,15 @@ namespace UML_Diagram_Designer
         private Color _color = Color.Black;
         private ISelectable _umlObject;
 
+
         public Form1()
         {
             InitializeComponent();
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            _mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            pictureBox1.BackColor = Color.White;
-            pictureBox1.Image = _mainBitmap;
-            _graphics = Graphics.FromImage(_mainBitmap);
+            Painter painter2d = Painter.GetPainter(pictureBox1.Width, pictureBox1.Height);
+            pictureBox1.Image = painter2d._bitmap;
             //_listRelationships = new List<AbstractRelationship>();
             //_listUMLClasses = new List<UMLClass>();
             _listAllObjects = new List<ISelectable>();

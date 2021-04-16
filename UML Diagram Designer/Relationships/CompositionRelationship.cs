@@ -5,35 +5,18 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UML_Diagram_Designer.ArrowParts;
 
 namespace UML_Diagram_Designer.Relationships
 {
     public class CompositionRelationship : AbstractRelationship
     {
-        public CompositionRelationship(Color color, int width)
+        public CompositionRelationship()
         {
-            _pen = new Pen(color, width);
-            _pen.CustomEndCap = CreateFilledDiamondCap();
-            _pen.DashStyle = DashStyle.Solid;
-        }
-        private CustomLineCap CreateFilledDiamondCap()
-        {
-            _pathForCustomLineEndCap = new GraphicsPath();
-            PointF[] points = new PointF[]
-            {
-                new PointF(0, -0.02f),
-                new PointF(2, 3),
-                new PointF(0, 6),
-                new PointF(-2, 3),
-                new PointF(0, -0.02f)
-            };
-            _pathForCustomLineEndCap.AddLines(points);
-            return new CustomLineCap(_pathForCustomLineEndCap, null);
-        }
-
-        public override void Draw(Graphics graphics)
-        {
-            graphics.DrawLines(_pen, GetPoints().ToArray());
+            FilledDiamondCap filledDiamondCap = new FilledDiamondCap();
+            SolidLine solidLine = new SolidLine();
+            _cap = filledDiamondCap._cap;
+            _lineStyle = solidLine._lineStyle;
         }
     }
 }

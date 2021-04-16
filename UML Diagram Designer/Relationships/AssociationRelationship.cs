@@ -18,13 +18,5 @@ namespace UML_Diagram_Designer.Relationships
             _cap = arrowCap._cap;
             _lineStyle = solidLine._lineStyle;
         }
-
-        public override void Draw(Graphics graphics)
-        {
-            Pen _pen = new Pen(Color.Black, 5);
-            _pen.CustomEndCap = _cap;
-            _pen.DashStyle = _lineStyle;
-            graphics.DrawLine(_pen, StartPoint, EndPoint);
-        }
     }
 }

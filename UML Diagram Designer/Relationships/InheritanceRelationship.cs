@@ -5,22 +5,19 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UML_Diagram_Designer.ArrowParts;
 
 namespace UML_Diagram_Designer.Relationships
 {
     public class InheritanceRelationship : AbstractRelationship
     {
-        public InheritanceRelationship(Color color, int width)
+        public InheritanceRelationship()
         {
-            _pen = new Pen(color, width);
-            AdjustableArrowCap inheritanceRelationshipCap = new AdjustableArrowCap(4, 4);
-            _pen.CustomEndCap = inheritanceRelationshipCap;
-            _pen.DashStyle = DashStyle.Solid;
+            FilledArrowCap filledArrowCap = new FilledArrowCap();
+            SolidLine solidLine = new SolidLine();
+            _cap = filledArrowCap._cap;
+            _lineStyle = solidLine._lineStyle;
         }
 
-        public override void Draw(Graphics graphics)
-        {
-            graphics.DrawLines(_pen, GetPoints().ToArray());
-        }
     }
 }
