@@ -13,6 +13,7 @@ namespace UML_Diagram_Designer.Relationships
     {
         public AggregationRelationship()
         {
+            
             DiamondCap diamondCap = new DiamondCap();
             SolidLine solidLine = new SolidLine();
             _cap = diamondCap._cap;

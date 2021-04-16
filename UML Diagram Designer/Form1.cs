@@ -21,7 +21,7 @@ namespace UML_Diagram_Designer
         bool _isMoveButtonClicked = false;
         RelationshipType _relationshipsType = RelationshipType.Inharitance;
         ActionType _actionType;
-        private UMLClass _UMLClass;
+        //private UMLClass _UMLClass;
         //List<AbstractRelationship> _listRelationships;
         //List<UMLClass> _listUMLClasses;
         List<ISelectable> _listAllObjects;
@@ -29,19 +29,22 @@ namespace UML_Diagram_Designer
         private int _width = 6;
         private Color _color = Color.Black;
         private ISelectable _umlObject;
+        private Painter painter2d;
+
 
 
         AbstractDiagramElement _currentDiagramElement;
         List<AbstractDiagramElement> lstAbstractDiagramElements;
+
         public Form1()
         {
             InitializeComponent();
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            Painter painter2d = Painter.GetPainter(pictureBox1.Width, pictureBox1.Height);
+            painter2d = Painter.GetPainter(pictureBox1.Width, pictureBox1.Height);
             pictureBox1.Image = painter2d._bitmap;
-            lstAbstractDiagramElements = new List<AbstractDiagramElement>;
+            lstAbstractDiagramElements = new List<AbstractDiagramElement>();
             //_listRelationships = new List<AbstractRelationship>();
             //_listUMLClasses = new List<UMLClass>();
             _listAllObjects = new List<ISelectable>();
@@ -97,7 +100,7 @@ namespace UML_Diagram_Designer
         {
             if (e.Button == MouseButtons.Left)
             {
-                _currentDiagramElement.
+                _currentDiagramElement.StartPoint = e.Location;
             }
             //    if (_isMoveButtonClicked)
             //    {
@@ -143,7 +146,7 @@ namespace UML_Diagram_Designer
             //                    _UMLClass.DrawUMLClass(_graphics);
             //                }
             //            }
-            //            _isMouseMoving = true;
+                        _isMouseMoving = true;
             //            _pointForMove = e.Location;
             //        }
             //        else
@@ -188,78 +191,93 @@ namespace UML_Diagram_Designer
         }
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (_isMouseMoving)
+            if (_isMouseMoving == true)
             {
-                if (_isMoveButtonClicked && _currentRelationship != null)// TODO: think about actionType using
-                {
-                    _currentRelationship.Move(e.X - _pointForMove.X, e.Y - _pointForMove.Y);
-                    _pointForMove = e.Location;
-                }
-                else if (_isMoveButtonClicked && _UMLClass != null)
-                {
-                    _UMLClass.Move(e.X - _pointForMove.X, e.Y - _pointForMove.Y);
-                    _pointForMove = e.Location;
-                }
-                else
-                {
-                    if (_actionType == ActionType.DrawRelationship)
-                    {
-                        _currentRelationship.EndPoint = e.Location;
-                    }
-                    else if (_actionType == ActionType.DrawUmlClass)
-                    {
-                        _UMLClass.EndPoint = e.Location;
-                    }
-                }
-
-                pictureBox1.Invalidate();
+            _currentDiagramElement.EndPoint = e.Location;
             }
+            pictureBox1.Invalidate();
+
+
+            //if (_isMouseMoving)
+            //{
+            //    if (_isMoveButtonClicked && _currentRelationship != null)// TODO: think about actionType using
+            //    {
+            //        _currentRelationship.Move(e.X - _pointForMove.X, e.Y - _pointForMove.Y);
+            //        _pointForMove = e.Location;
+            //    }
+            //    else if (_isMoveButtonClicked && _UMLClass != null)
+            //    {
+            //        _UMLClass.Move(e.X - _pointForMove.X, e.Y - _pointForMove.Y);
+            //        _pointForMove = e.Location;
+            //    }
+            //    else
+            //    {
+            //        if (_actionType == ActionType.DrawRelationship)
+            //        {
+            //            _currentRelationship.EndPoint = e.Location;
+            //        }
+            //        else if (_actionType == ActionType.DrawUmlClass)
+            //        {
+            //            _UMLClass.EndPoint = e.Location;
+            //        }
+            //    }
+
+            //    pictureBox1.Invalidate();
+            //}
         }
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
-            if (_isMouseMoving)
+            if (_isMouseMoving ==true)
             {
-                _graphics.Clear(pictureBox1.BackColor);
+                painter2d._graphics.Clear(pictureBox1.BackColor);
+                _currentDiagramElement.Draw(painter2d._graphics);
 
-                if (_actionType == ActionType.DrawRelationship)
-                {
-                    _currentRelationship.Draw(_graphics);
-                }
-                if (_actionType == ActionType.DrawUmlClass)
-                {
-                    _UMLClass.DrawUMLClass(_graphics);
-                }
-                foreach (var umlObject in _listAllObjects)
-                {
-                    if (umlObject is AbstractRelationship)
-                    {
-                        AbstractRelationship arrow = (AbstractRelationship)umlObject;
-                        arrow.Draw(_graphics);
-                    }
-                    else if (umlObject is UMLClass)
-                    {
-                        UMLClass umlClass = (UMLClass)umlObject;
-                        umlClass.DrawUMLClass(_graphics);
-                    }
-                }
             }
-        }
+
+            //if (_isMouseMoving)
+            //{
+                //    _graphics.Clear(pictureBox1.BackColor);
+
+                //    if (_actionType == ActionType.DrawRelationship)
+                //    {
+                //        _currentRelationship.Draw(_graphics);
+                //    }
+                //    if (_actionType == ActionType.DrawUmlClass)
+                //    {
+                //        _UMLClass.DrawUMLClass(_graphics);
+                //    }
+                //    foreach (var umlObject in _listAllObjects)
+                //    {
+                //        if (umlObject is AbstractRelationship)
+                //        {
+                //            AbstractRelationship arrow = (AbstractRelationship)umlObject;
+                //            arrow.Draw(_graphics);
+                //        }
+                //        else if (umlObject is UMLClass)
+                //        {
+                //            UMLClass umlClass = (UMLClass)umlObject;
+                //            umlClass.DrawUMLClass(_graphics);
+                //        }
+                //    }
+                //}
+            }
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             if (_isMouseMoving)
             {
-                if (_actionType == ActionType.DrawRelationship)
-                {
-                    _listAllObjects.Add(_currentRelationship);
-                }
-                else if (_actionType == ActionType.DrawUmlClass)
-                {
-                    _listAllObjects.Add(_UMLClass);
-                }
+                lstAbstractDiagramElements.Add(_currentDiagramElement);
+                //if (_actionType == ActionType.DrawRelationship)
+                //{
+                //    _listAllObjects.Add(_currentRelationship);
+                //}
+                //else if (_actionType == ActionType.DrawUmlClass)
+                //{
+                //    _listAllObjects.Add(_UMLClass);
+                //}
             }
 
             _isMouseMoving = false;
-            _isMoveButtonClicked = false;
+            //_isMoveButtonClicked = false;
         }
 
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
@@ -271,7 +289,7 @@ namespace UML_Diagram_Designer
         {
             _isMoveButtonClicked = true;
             _currentRelationship = null;
-            _UMLClass = null;
+            //_UMLClass = null;
         }
 
         private void ColorButton_Click(object sender, EventArgs e)

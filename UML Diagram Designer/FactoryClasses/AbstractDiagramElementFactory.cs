@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UML_Diagram_Designer.FactoryClasses
 {
-    abstract class AbstractDiagramElementFactory
+   public abstract class AbstractDiagramElementFactory
     {
         public abstract AbstractDiagramElement GetElement();
     }

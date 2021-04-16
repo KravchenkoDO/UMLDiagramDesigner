@@ -8,7 +8,7 @@ using UML_Diagram_Designer.Relationships;
 
 namespace UML_Diagram_Designer.FactoryClasses.RelationshipFactories
 {
-    class AssociationRelationshipFactory : AbstractDiagramElementFactory
+   public class AssociationRelationshipFactory : AbstractDiagramElementFactory
     {
         public override AbstractDiagramElement GetElement()
         {

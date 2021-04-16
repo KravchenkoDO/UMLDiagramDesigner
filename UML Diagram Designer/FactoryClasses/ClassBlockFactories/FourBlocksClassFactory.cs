@@ -7,11 +7,11 @@ using UML_Diagram_Designer.UMLClasses;
 
 namespace UML_Diagram_Designer.FactoryClasses.ClassBlockFactories
 {
-    class FourBlocksClassFactory : AbstractDiagramElementFactory
-    {
-        public override AbstractDiagramElement GetElement()
-        {
-            return new NotImplementedException();
-        }
-    }
+    //class FourBlocksClassFactory : AbstractDiagramElementFactory
+    //{
+    ////    public override AbstractDiagramElement GetElement()
+    ////    {
+    ////        return new NotImplementedException();
+    ////    }
+    //}
 }
