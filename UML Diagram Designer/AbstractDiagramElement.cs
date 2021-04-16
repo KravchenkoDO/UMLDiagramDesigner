@@ -16,7 +16,7 @@ namespace UML_Diagram_Designer
         public int ObjectWidth { get; set; }
 
         public abstract bool CheckIfTheObjectIsClicked(Point point);
-        public abstract void Draw(Graphics graphics);
+        public abstract void Draw(Painter painter);
         public abstract void Move(int deltaX, int deltaY);
     }
 }

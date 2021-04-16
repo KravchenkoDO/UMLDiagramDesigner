@@ -7,11 +7,11 @@ using UML_Diagram_Designer.UMLClasses;
 
 namespace UML_Diagram_Designer.FactoryClasses.ClassBlockFactories
 {
-    //class ThreeBlocksClassFactory : AbstractClassFactory
-    //{
-    //    public override UMLClass GetUMLClass()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-    //}
+    public class UMLNodeNotationFactory : AbstractDiagramElementFactory
+    {
+        public override AbstractDiagramElement GetElement()
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

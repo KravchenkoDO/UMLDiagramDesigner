@@ -15,12 +15,12 @@ namespace UML_Diagram_Designer.Relationships
         public DashStyle _lineStyle;
         private Point _movePoint;
 
-        public override void Draw(Graphics graphics)
+        public override void Draw(Painter painter)
         {
-            Pen _pen = new Pen(Color.Black, 5);
-            _pen.CustomEndCap = _cap;
-            _pen.DashStyle = _lineStyle;
-            graphics.DrawLine(_pen, StartPoint, EndPoint);
+            
+            painter._pen.CustomEndCap = _cap;
+            painter._pen.DashStyle = _lineStyle;
+            painter._graphics.DrawLine(painter._pen, StartPoint, EndPoint);
         }
 
         public override bool CheckIfTheObjectIsClicked(Point point)

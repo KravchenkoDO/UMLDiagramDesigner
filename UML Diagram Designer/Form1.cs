@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using UML_Diagram_Designer.Relationships;
 using UML_Diagram_Designer.UMLClasses;
 using UML_Diagram_Designer.FactoryClasses;
+using UML_Diagram_Designer.FactoryClasses.ClassBlockFactories;
 using UML_Diagram_Designer.FactoryClasses.RelationshipFactories;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -29,14 +30,15 @@ namespace UML_Diagram_Designer
         private int _width = 6;
         private Color _color = Color.Black;
         private ISelectable _umlObject;
+
+
+
+
         private Painter painter2d;
-
-
-
-
         AbstractDiagramElement _currentDiagramElement;
         List<AbstractDiagramElement> lstAbstractDiagramElements;
         AbstractDiagramElementFactory _currentFactory;
+        
 
         public Form1()
         {
@@ -84,7 +86,8 @@ namespace UML_Diagram_Designer
         }
         private void classButton_Click(object sender, EventArgs e)
         {
-            _actionType = ActionType.DrawUmlClass;
+            _currentFactory = new UMLClassFactory();
+            _currentDiagramElement = _currentFactory.GetElement();
         }
 
         private void clearButton_Click(object sender, EventArgs e)
@@ -234,12 +237,12 @@ namespace UML_Diagram_Designer
             if (_isMouseMoving ==true)
             {
                 painter2d._graphics.Clear(pictureBox1.BackColor);
-                _currentDiagramElement.Draw(painter2d._graphics);
+                _currentDiagramElement.Draw(painter2d);
 
             }
             foreach (var element in lstAbstractDiagramElements)
             {
-                element.Draw(painter2d._graphics);
+                element.Draw(painter2d);
             }
 
                 //if (_isMouseMoving)
