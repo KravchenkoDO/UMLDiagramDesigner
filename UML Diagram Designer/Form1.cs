@@ -33,8 +33,10 @@ namespace UML_Diagram_Designer
 
 
 
+
         AbstractDiagramElement _currentDiagramElement;
         List<AbstractDiagramElement> lstAbstractDiagramElements;
+        AbstractDiagramElementFactory _currentFactory;
 
         public Form1()
         {
@@ -51,8 +53,8 @@ namespace UML_Diagram_Designer
         }
         private void associationButton_Click(object sender, EventArgs e)
         {
-            AssociationRelationshipFactory associationRelationshipFactory = new AssociationRelationshipFactory();
-            _currentDiagramElement = associationRelationshipFactory.GetElement();
+            _currentFactory= new AssociationRelationshipFactory();
+            _currentDiagramElement = _currentFactory.GetElement();
             //_relationshipsType = RelationshipType.Association;
             //_actionType = ActionType.DrawRelationship;
         }
@@ -98,8 +100,10 @@ namespace UML_Diagram_Designer
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
+
             if (e.Button == MouseButtons.Left)
             {
+                _currentDiagramElement = _currentFactory.GetElement();
                 _currentDiagramElement.StartPoint = e.Location;
             }
             //    if (_isMoveButtonClicked)
@@ -233,9 +237,13 @@ namespace UML_Diagram_Designer
                 _currentDiagramElement.Draw(painter2d._graphics);
 
             }
+            foreach (var element in lstAbstractDiagramElements)
+            {
+                element.Draw(painter2d._graphics);
+            }
 
-            //if (_isMouseMoving)
-            //{
+                //if (_isMouseMoving)
+                //{
                 //    _graphics.Clear(pictureBox1.BackColor);
 
                 //    if (_actionType == ActionType.DrawRelationship)

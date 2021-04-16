@@ -14,8 +14,6 @@ namespace UML_Diagram_Designer.Relationships
         public CustomLineCap _cap;
         public DashStyle _lineStyle;
         private Point _movePoint;
-        public Point StartPoint { get; set; }
-        public Point EndPoint { get; set; }
 
         public override void Draw(Graphics graphics)
         {
