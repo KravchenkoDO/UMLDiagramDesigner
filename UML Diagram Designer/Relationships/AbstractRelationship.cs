@@ -9,68 +9,51 @@ using UML_Diagram_Designer.Interfaces;
 
 namespace UML_Diagram_Designer.Relationships
 {
-    public abstract class AbstractRelationship : IMoveable, ISelectable
+    public abstract class AbstractRelationship : AbstractDiagramElement
     {
-        protected Pen _pen;
+        public CustomLineCap _cap;
+        public DashStyle _lineStyle;
+        private Point _movePoint;
 
-        protected GraphicsPath _pathForCustomLineEndCap;
-        public Point StartPoint { get; set; }
-        public Point EndPoint { get; set; }
-
-        protected List<Point> GetPoints()
+        public override void Draw(Graphics graphics)
         {
-            List<Point> points = new List<Point>();
-            points.Add(StartPoint);
-            points.Add(EndPoint);
-            return points;
+            Pen _pen = new Pen(Color.Black, 5);
+            _pen.CustomEndCap = _cap;
+            _pen.DashStyle = _lineStyle;
+            graphics.DrawLine(_pen, StartPoint, EndPoint);
         }
 
-        public abstract void Draw(Graphics graphics);
-
-        public bool CheckIfTheObjectIsClicked(Point point)
+        public override bool CheckIfTheObjectIsClicked(Point point)
         {
-            int xMax;
-            int xMin;
-            int yMax;
-            int yMin;
+            const int delta = 5;
 
-            if (StartPoint.X > EndPoint.X)
-            {
-                xMax = StartPoint.X;
-                xMin = EndPoint.X;
-            }
-            else
-            {
-                xMin = StartPoint.X;
-                xMax = EndPoint.X;
-            }
-
-            if (StartPoint.Y > EndPoint.Y)
-            {
-                yMax = StartPoint.Y;
-                yMin = EndPoint.Y;
-            }
-            else
-            {
-                yMin = StartPoint.Y;
-                yMax = EndPoint.Y;
-            }
-
-            if (point.X <= xMax && point.X >= xMin
-               && point.Y <= yMax && point.Y >= yMin)
+            if (point.X < StartPoint.X + delta && point.X > StartPoint.X - delta &&
+                point.Y < StartPoint.Y + delta && point.Y > StartPoint.Y - delta)
             {
                 return true;
+                _movePoint = StartPoint;
             }
-            else
+
+            if (point.X < EndPoint.X + delta && point.X > EndPoint.X - delta &&
+                point.Y < EndPoint.Y + delta && point.Y > EndPoint.Y - delta)
             {
-                return false;
+                return true;
+                _movePoint = EndPoint;
             }
+
+                return false;
         }
 
-        public void Move(int deltaX, int deltaY)
+        public override void Move(int deltaX, int deltaY)
         {
+            if (_movePoint == StartPoint)
+            {
             StartPoint = new Point(StartPoint.X + deltaX, StartPoint.Y + deltaY);
+            }
+            if (_movePoint == EndPoint)
+            {
             EndPoint = new Point(EndPoint.X + deltaX, EndPoint.Y + deltaY);
+            }
         }
     }
 }

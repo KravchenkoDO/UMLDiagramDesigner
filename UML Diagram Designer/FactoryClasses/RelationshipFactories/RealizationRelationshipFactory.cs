@@ -8,11 +8,11 @@ using UML_Diagram_Designer.Relationships;
 
 namespace UML_Diagram_Designer.FactoryClasses.RelationshipFactories
 {
-    class RealizationRelationshipFactory : AbstractRelationshipFactory
+    class RealizationRelationshipFactory : AbstractDiagramElementFactory
     {
-        public override AbstractRelationship GetRelationship(AbstractLine abstractLine, AbstractCap abstractCap)
+        public override AbstractDiagramElement GetElement()
         {
-            throw new NotImplementedException();
+            return new RealizationRelationship();
         }
     }
 }

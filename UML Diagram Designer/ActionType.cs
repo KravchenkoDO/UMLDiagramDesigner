@@ -13,6 +13,5 @@ namespace UML_Diagram_Designer
         DrawText,
         SelectElement,
         MoveElement
-
     }
 }
