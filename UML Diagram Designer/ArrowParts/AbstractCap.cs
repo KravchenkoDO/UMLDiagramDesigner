@@ -10,7 +10,7 @@ namespace UML_Diagram_Designer.ArrowParts
 {
     public abstract class AbstractCap
     {
-        protected CustomLineCap _cap;
+        public CustomLineCap _cap;
         protected abstract void GetCap();
     }
 }

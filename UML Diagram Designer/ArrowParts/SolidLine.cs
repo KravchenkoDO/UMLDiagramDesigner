@@ -10,17 +10,13 @@ namespace UML_Diagram_Designer.ArrowParts
 {
     public class SolidLine : AbstractLine
     {
-        public SolidLine(Point startPoint, Point endPoint)
+        public SolidLine()
         {
-            LineStyle = DashStyle.Solid;
+            _lineStyle = DashStyle.Solid;
 
-            GetLine(LineStyle, startPoint, endPoint);
+            GetLine(_lineStyle);
 
-            _points = new List<Point>
-            {
-                StartPoint,
-                EndPoint
-            };
+            
         }
     }
 }

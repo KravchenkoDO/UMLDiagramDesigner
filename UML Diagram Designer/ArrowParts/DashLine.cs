@@ -10,17 +10,11 @@ namespace UML_Diagram_Designer.ArrowParts
 {
     public class DashLine : AbstractLine
     {
-        public DashLine(Point startPoint, Point endPoint)
+        public DashLine()
         {
-            LineStyle = DashStyle.Dash;
+            _lineStyle = DashStyle.Dash;
 
-            GetLine(LineStyle, startPoint, endPoint);
-           
-            _points = new List<Point>
-            {
-                StartPoint,
-                EndPoint
-            };
+            GetLine(_lineStyle);
         }
     }
 }
