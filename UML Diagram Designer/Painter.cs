@@ -13,13 +13,16 @@ namespace UML_Diagram_Designer
         public Bitmap _bitmap;
         public Graphics _graphics;
         public Pen _pen;
+        public Brush _brush;
         public Color _penColor;
         public int _penSize;
+        public Font _font;
         public Painter(int width, int height)
         {
             _bitmap = new Bitmap(width, height);
             _graphics = Graphics.FromImage(_bitmap);
             _pen = new Pen(Color.Black, 3);
+            _brush = new SolidBrush(Color.Black);
         }
         public static Painter GetPainter( int width, int height)
         {
@@ -35,6 +38,16 @@ namespace UML_Diagram_Designer
         public void ChangePenSize(int penSize)
         {
             _penSize = penSize;
+        }
+
+        public void ChangeBrush(Brush brush)
+        {
+            _brush = brush;
+        }
+
+        public void ChangeFont(Font font)
+        {
+            _font = font;
         }
     }
 }

@@ -41,6 +41,7 @@ namespace UML_Diagram_Designer
             this.colorButton = new System.Windows.Forms.Button();
             this.thicknessTrackBar = new System.Windows.Forms.TrackBar();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
+            this.fontDialog1 = new System.Windows.Forms.FontDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thicknessTrackBar)).BeginInit();
             this.SuspendLayout();
@@ -203,6 +204,7 @@ namespace UML_Diagram_Designer
         private System.Windows.Forms.Button colorButton;
         private System.Windows.Forms.TrackBar thicknessTrackBar;
         private System.Windows.Forms.ColorDialog colorDialog;
+        private System.Windows.Forms.FontDialog fontDialog1;
     }
 }
 

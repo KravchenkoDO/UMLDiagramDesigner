@@ -306,7 +306,7 @@ namespace UML_Diagram_Designer
         private void ColorButton_Click(object sender, EventArgs e)
         {
             colorDialog.ShowDialog();
-
+            fontDialog1.
             if (colorDialog.Color == Color.Black)
             {
                 colorButton.BackColor = Color.White;
