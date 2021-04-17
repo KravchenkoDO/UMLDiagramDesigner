@@ -31,29 +31,39 @@ namespace UML_Diagram_Designer.Relationships
                 point.Y < StartPoint.Y + delta && point.Y > StartPoint.Y - delta)
             {
                 return true;
-                _movePoint = StartPoint;
             }
 
             if (point.X < EndPoint.X + delta && point.X > EndPoint.X - delta &&
                 point.Y < EndPoint.Y + delta && point.Y > EndPoint.Y - delta)
             {
                 return true;
-                _movePoint = EndPoint;
             }
 
-                return false;
+            return false;
+        }
+        public Point CheckingTheStartOrEndOfAnArrow(bool CheckIfTheObjectIsClicked, Point point)
+        {
+
+            if (CheckIfTheObjectIsClicked == true)
+            {
+                if (point == StartPoint)
+                {
+                    _movePoint = StartPoint;
+                }
+                else
+                    _movePoint = EndPoint;
+            }
+
+            return _movePoint;
         }
 
         public override void Move(int deltaX, int deltaY)
         {
-            if (_movePoint == StartPoint)
-            {
-            StartPoint = new Point(StartPoint.X + deltaX, StartPoint.Y + deltaY);
-            }
-            if (_movePoint == EndPoint)
-            {
-            EndPoint = new Point(EndPoint.X + deltaX, EndPoint.Y + deltaY);
-            }
+            _movePoint= new Point(_movePoint.X + deltaX, _movePoint.Y + deltaY);
+            //StartPoint = new Point(StartPoint.X + deltaX, StartPoint.Y + deltaY);
+
+            //EndPoint = new Point(EndPoint.X + deltaX, EndPoint.Y + deltaY);
         }
     }
 }
+
