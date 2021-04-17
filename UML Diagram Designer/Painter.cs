@@ -23,6 +23,7 @@ namespace UML_Diagram_Designer
             _graphics = Graphics.FromImage(_bitmap);
             _pen = new Pen(Color.Black, 3);
             _brush = new SolidBrush(Color.Black);
+            _font = new Font("Times New Roman", 12);
         }
         public static Painter GetPainter( int width, int height)
         {

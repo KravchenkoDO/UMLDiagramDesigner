@@ -30,15 +30,15 @@ namespace UML_Diagram_Designer.Relationships
             if (point.X < StartPoint.X + delta && point.X > StartPoint.X - delta &&
                 point.Y < StartPoint.Y + delta && point.Y > StartPoint.Y - delta)
             {
-                return true;
                 _movePoint = StartPoint;
+                return true;
             }
 
             if (point.X < EndPoint.X + delta && point.X > EndPoint.X - delta &&
                 point.Y < EndPoint.Y + delta && point.Y > EndPoint.Y - delta)
             {
-                return true;
                 _movePoint = EndPoint;
+                return true;
             }
 
                 return false;
@@ -49,10 +49,12 @@ namespace UML_Diagram_Designer.Relationships
             if (_movePoint == StartPoint)
             {
             StartPoint = new Point(StartPoint.X + deltaX, StartPoint.Y + deltaY);
+                _movePoint = StartPoint;
             }
             if (_movePoint == EndPoint)
             {
             EndPoint = new Point(EndPoint.X + deltaX, EndPoint.Y + deltaY);
+                _movePoint = EndPoint;
             }
         }
     }
