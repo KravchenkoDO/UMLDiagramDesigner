@@ -46,7 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionType.cs" />
     <Compile Include="ArrowParts\AbstractCap.cs" />
     <Compile Include="ArrowParts\AbstractLine.cs" />
     <Compile Include="ArrowParts\ArrowCap.cs" />
@@ -84,7 +83,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Relationships\RelationshipType.cs" />
     <Compile Include="UMLClasses\UMLClass.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
