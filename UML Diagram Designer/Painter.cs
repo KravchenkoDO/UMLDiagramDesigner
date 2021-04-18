@@ -14,14 +14,40 @@ namespace UML_Diagram_Designer
         public Graphics _graphics;
         public Pen _pen;
         public Brush _brush;
-        public Color _penColor;
-        public int _penSize;
         public Font _font;
+        private float _penSize;
+        private Color _penColor;
+        public float PenSize
+        {
+            get
+            {
+                return _penSize;
+            }
+            set
+            {
+                _penSize = value;
+                _pen.Width = _penSize;
+            }
+        }
+        public Color PenColor 
+        { 
+            get
+            {
+                return _penColor;
+            }
+            set
+            {
+                _penColor = value;
+                _pen.Color = _penColor;
+            }
+        }
         public Painter(int width, int height)
         {
             _bitmap = new Bitmap(width, height);
             _graphics = Graphics.FromImage(_bitmap);
             _pen = new Pen(Color.Black, 3);
+            _penColor = _pen.Color;
+            _penSize = (int)_pen.Width;
             _brush = new SolidBrush(Color.Black);
             _font = new Font("Times New Roman", 12);
         }
@@ -34,11 +60,11 @@ namespace UML_Diagram_Designer
 
         public void ChangePenColor (Color penColor)
         {
-            _penColor = penColor;
+            PenColor = penColor;
         }
         public void ChangePenSize(int penSize)
         {
-            _penSize = penSize;
+            PenSize = penSize;
         }
 
         public void ChangeBrush(Brush brush)
