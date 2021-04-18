@@ -8,10 +8,8 @@ namespace UML_Diagram_Designer.UMLClasses
 {
     public enum EnumSections
     {
-
         FirstSection = 0,
         SecondSection,
         ThirdSection
-
     }
 }

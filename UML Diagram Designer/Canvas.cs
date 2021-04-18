@@ -17,19 +17,20 @@ namespace UML_Diagram_Designer
         public Color _penColor;
         public int _penSize;
         public Font _font;
-        public Canvas(int width, int height)
+
+        public static Canvas GetCanvas()
+        {
+            if (instance == null)
+                instance = new Canvas();
+            return instance;
+        }
+        public void SetCanvas(int width, int height)
         {
             _bitmap = new Bitmap(width, height);
             _graphics = Graphics.FromImage(_bitmap);
             _pen = new Pen(Color.Black, 3);
             _brush = new SolidBrush(Color.Black);
-            _font = new Font("Times New Roman", 12);
-        }
-        public static Canvas SetCanvas( int width, int height)
-        {
-            if (instance == null)
-                instance = new Canvas(width, height);
-            return instance;
+            _font = new Font("Times New Roman", emSize: 12f, FontStyle.Regular);
         }
 
         public void SetPenColor (Color penColor)

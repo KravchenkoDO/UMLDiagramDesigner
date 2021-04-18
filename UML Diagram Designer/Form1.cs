@@ -27,7 +27,8 @@ namespace UML_Diagram_Designer
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            canvas = Canvas.SetCanvas(pictureBox1.Width, pictureBox1.Height);
+            canvas = Canvas.GetCanvas();
+            canvas.SetCanvas(pictureBox1.Width, pictureBox1.Height);
             pictureBox1.Image = canvas._bitmap;
             listAbstractDiagramElements = new List<AbstractDiagramElement>();
             _currentFactory = new AssociationRelationshipFactory();
@@ -86,8 +87,7 @@ namespace UML_Diagram_Designer
                     }
                 }
             }
-            
-            if (_isMoveButtonClicked)
+            else if (_isMoveButtonClicked)
             {
                 foreach (var element in listAbstractDiagramElements)
                 {
@@ -99,13 +99,15 @@ namespace UML_Diagram_Designer
                     }
                 }
                 _pointForMove = e.Location;
+                _isMouseMoving = true;
             }
             else if (e.Button == MouseButtons.Left)
             {
                 _currentDiagramElement = _currentFactory.GetElement();
                 _currentDiagramElement.StartPoint = e.Location;
+                _isMouseMoving = true;
             }
-            _isMouseMoving = true;
+            _isSelect = false;
         }
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
@@ -175,6 +177,7 @@ namespace UML_Diagram_Designer
         private void BtnTextBoxEnter_Click(object sender, EventArgs e)
         {
             _currentDiagramElement.SaveElementText(textBox1.Text);
+            pictureBox1.Invalidate();
         }
 
         private void BtnSelectElement_Click(object sender, EventArgs e)

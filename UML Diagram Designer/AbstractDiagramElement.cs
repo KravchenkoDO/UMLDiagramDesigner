@@ -18,7 +18,6 @@ namespace UML_Diagram_Designer
         public abstract bool CheckIfTheObjectIsClicked(Point point);
         public abstract void Draw(Canvas painter);
         public abstract void Move(int deltaX, int deltaY);
-
         public abstract void SaveElementText(string strText);
        // public abstract void Resize(Point point);
     }
