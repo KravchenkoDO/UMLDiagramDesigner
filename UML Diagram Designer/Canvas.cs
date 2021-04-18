@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace UML_Diagram_Designer
 {
-    public class Painter
+    public class Canvas
     {
-        private static Painter instance;
+        private static Canvas instance;
         public Bitmap _bitmap;
         public Graphics _graphics;
         public Pen _pen;
@@ -41,7 +41,7 @@ namespace UML_Diagram_Designer
                 _pen.Color = _penColor;
             }
         }
-        public Painter(int width, int height)
+        public Canvas(int width, int height)
         {
             _bitmap = new Bitmap(width, height);
             _graphics = Graphics.FromImage(_bitmap);
@@ -51,10 +51,10 @@ namespace UML_Diagram_Designer
             _brush = new SolidBrush(Color.Black);
             _font = new Font("Times New Roman", 12);
         }
-        public static Painter GetPainter( int width, int height)
+        public static Canvas GetPainter( int width, int height)
         {
             if (instance == null)
-                instance = new Painter(width, height);
+                instance = new Canvas(width, height);
             return instance;
         }
 

@@ -15,7 +15,7 @@ namespace UML_Diagram_Designer
         Point _pointForMove;
         private int _width = 6;
         private Color _color = Color.Black;
-        private Painter painter2d;
+        private Canvas canvas;
         AbstractDiagramElement _currentDiagramElement;
         List<AbstractDiagramElement> lstAbstractDiagramElements;
         AbstractDiagramElementFactory _currentFactory;
@@ -26,8 +26,8 @@ namespace UML_Diagram_Designer
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            painter2d = Painter.GetPainter(pictureBox1.Width, pictureBox1.Height);
-            pictureBox1.Image = painter2d._bitmap;
+            canvas = Canvas.GetPainter(pictureBox1.Width, pictureBox1.Height);
+            pictureBox1.Image = canvas._bitmap;
             lstAbstractDiagramElements = new List<AbstractDiagramElement>();
             _currentFactory = new AssociationRelationshipFactory();
         }
@@ -59,7 +59,7 @@ namespace UML_Diagram_Designer
         {
             _isMouseMoving = false;
             _isMoveButtonClicked = false;
-            painter2d._graphics.Clear(Color.White);
+            canvas._graphics.Clear(Color.White);
             lstAbstractDiagramElements.Clear();
             pictureBox1.Invalidate();
         }
@@ -82,7 +82,7 @@ namespace UML_Diagram_Designer
             }
             else if (e.Button == MouseButtons.Left)
             {
-                _currentDiagramElement = _currentFactory.GetElement(painter2d.PenColor, painter2d.PenSize);
+                _currentDiagramElement = _currentFactory.GetElement(canvas.PenColor, canvas.PenSize);
                 _currentDiagramElement.StartPoint = e.Location;
             }
             _isMouseMoving = true;
@@ -112,16 +112,16 @@ namespace UML_Diagram_Designer
             {
                 if (!(_currentDiagramElement is null))
                 {
-                    painter2d._graphics.Clear(pictureBox1.BackColor);
-                    painter2d.PenColor = _currentDiagramElement.ObjectColor;
-                    painter2d.PenSize = _currentDiagramElement.ObjectWidth;
-                    _currentDiagramElement.Draw(painter2d);
+                    canvas._graphics.Clear(pictureBox1.BackColor);
+                    canvas.PenColor = _currentDiagramElement.ObjectColor;
+                    canvas.PenSize = _currentDiagramElement.ObjectWidth;
+                    _currentDiagramElement.Draw(canvas);
                 }
                 foreach (var element in lstAbstractDiagramElements)
                 {
-                    painter2d.PenColor = element.ObjectColor;
-                    painter2d.PenSize = element.ObjectWidth;
-                    element.Draw(painter2d);
+                    canvas.PenColor = element.ObjectColor;
+                    canvas.PenSize = element.ObjectWidth;
+                    element.Draw(canvas);
                 }
             }
         }
@@ -151,11 +151,11 @@ namespace UML_Diagram_Designer
                 colorButton.BackColor = colorDialog.Color;
             }
 
-            painter2d.ChangePenColor(colorDialog.Color);
+            canvas.ChangePenColor(colorDialog.Color);
         }
         private void ThicknessTrackBar_Scroll(object sender, EventArgs e)
         {
-            painter2d.ChangePenSize(thicknessTrackBar.Value);
+            canvas.ChangePenSize(thicknessTrackBar.Value);
         }
     }
 }

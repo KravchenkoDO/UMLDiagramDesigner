@@ -14,7 +14,7 @@ namespace UML_Diagram_Designer.UMLClasses
             throw new NotImplementedException();
         }
 
-        public override void Draw(Painter painter)
+        public override void Draw(Canvas painter)
         {
             // Create a Graphics object
             string text = "Yeah!!!We are drawing string text in the rectangle!";
