@@ -17,7 +17,7 @@ namespace UML_Diagram_Designer
         private Color _color = Color.Black;
         private Canvas canvas;
         AbstractDiagramElement _currentDiagramElement;
-        List<AbstractDiagramElement> lstAbstractDiagramElements;
+        List<AbstractDiagramElement> listAbstractDiagramElements;
         AbstractDiagramElementFactory _currentFactory;
 
         public Form1()
@@ -26,9 +26,9 @@ namespace UML_Diagram_Designer
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            canvas = Canvas.GetPainter(pictureBox1.Width, pictureBox1.Height);
+            canvas = Canvas.SetCanvas(pictureBox1.Width, pictureBox1.Height);
             pictureBox1.Image = canvas._bitmap;
-            lstAbstractDiagramElements = new List<AbstractDiagramElement>();
+            listAbstractDiagramElements = new List<AbstractDiagramElement>();
             _currentFactory = new AssociationRelationshipFactory();
         }
         private void associationButton_Click(object sender, EventArgs e)
@@ -60,7 +60,7 @@ namespace UML_Diagram_Designer
             _isMouseMoving = false;
             _isMoveButtonClicked = false;
             canvas._graphics.Clear(Color.White);
-            lstAbstractDiagramElements.Clear();
+            listAbstractDiagramElements.Clear();
             pictureBox1.Invalidate();
         }
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
@@ -69,12 +69,12 @@ namespace UML_Diagram_Designer
 
             if (_isMoveButtonClicked)
             {
-                foreach (var element in lstAbstractDiagramElements)
+                foreach (var element in listAbstractDiagramElements)
                 {
                     if (element.CheckIfTheObjectIsClicked(e.Location))
                     {
                         _currentDiagramElement = element;
-                        lstAbstractDiagramElements.Remove(element);
+                        listAbstractDiagramElements.Remove(element);
                         break;
                     }
                 }
@@ -117,19 +117,18 @@ namespace UML_Diagram_Designer
                     canvas.PenSize = _currentDiagramElement.ObjectWidth;
                     _currentDiagramElement.Draw(canvas);
                 }
-                foreach (var element in lstAbstractDiagramElements)
-                {
+            foreach (var element in listAbstractDiagramElements)
+            {
                     canvas.PenColor = element.ObjectColor;
                     canvas.PenSize = element.ObjectWidth;
                     element.Draw(canvas);
-                }
             }
         }
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             if (_isMouseMoving)
             {
-                lstAbstractDiagramElements.Add(_currentDiagramElement);
+                listAbstractDiagramElements.Add(_currentDiagramElement);
             }
             _isMoveButtonClicked = false;
             _isMouseMoving = false;
