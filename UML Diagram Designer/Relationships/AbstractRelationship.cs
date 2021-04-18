@@ -13,7 +13,7 @@ namespace UML_Diagram_Designer.Relationships
             StartPoint = 0,
             EndPoint
         }
-        public override void Draw(Painter painter)
+        public override void Draw(Canvas painter)
         {
             painter._pen.CustomEndCap = _cap;
             painter._pen.DashStyle = _lineStyle;
