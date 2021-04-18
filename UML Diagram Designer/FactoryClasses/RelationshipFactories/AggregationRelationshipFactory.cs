@@ -11,9 +11,9 @@ namespace UML_Diagram_Designer.FactoryClasses.RelationshipFactories
 {
     class AggregationRelationshipFactory : AbstractDiagramElementFactory
     {
-        public override AbstractDiagramElement GetElement()
+        public override AbstractDiagramElement GetElement(Color lineColor, float lineWidth)
         {
-            return new AggregationRelationship();
+            return new AggregationRelationship(lineColor, lineWidth);
         }
     }
 }

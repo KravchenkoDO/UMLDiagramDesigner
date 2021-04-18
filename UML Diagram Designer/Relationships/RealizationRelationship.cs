@@ -11,12 +11,14 @@ namespace UML_Diagram_Designer.Relationships
 {
     public class RealizationRelationship : AbstractRelationship
     {
-        public RealizationRelationship()
+        public RealizationRelationship(Color lineColor, float lineWidth)
         {
             FilledArrowCap filledArrowCap = new FilledArrowCap();
             DashLine dashLine = new DashLine();
             _cap = filledArrowCap._cap;
             _lineStyle = dashLine._lineStyle;
+            ObjectColor = lineColor;
+            ObjectWidth = lineWidth;
         }
     }
 }

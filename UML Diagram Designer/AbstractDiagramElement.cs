@@ -13,7 +13,7 @@ namespace UML_Diagram_Designer
         public Point StartPoint { get; set; }
         public Point EndPoint { get; set; }
         public Color ObjectColor { get; set; }
-        public int ObjectWidth { get; set; }
+        public float ObjectWidth { get; set; }
 
         public abstract bool CheckIfTheObjectIsClicked(Point point);
         public abstract void Draw(Canvas painter);

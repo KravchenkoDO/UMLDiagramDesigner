@@ -55,6 +55,7 @@
     <Compile Include="ArrowParts\FilledDiamondCap.cs" />
     <Compile Include="ArrowParts\SolidLine.cs" />
     <Compile Include="AbstractDiagramElement.cs" />
+    <Compile Include="Canvas.cs" />
     <Compile Include="FactoryClasses\AbstractDiagramElementFactory.cs" />
     <Compile Include="FactoryClasses\ClassBlockFactories\UMLNodeNotationFactory.cs" />
     <Compile Include="FactoryClasses\ClassBlockFactories\UMLClassFactory.cs" />
@@ -68,7 +69,6 @@
     <Compile Include="Interfaces\IChangeColors.cs" />
     <Compile Include="Interfaces\IResizable.cs" />
     <Compile Include="Interfaces\ISelectable.cs" />
-    <Compile Include="Canvas.cs" />
     <Compile Include="Relationships\AbstractRelationship.cs" />
     <Compile Include="Relationships\AggregationRelationship.cs" />
     <Compile Include="Relationships\CompositionRelationship.cs" />

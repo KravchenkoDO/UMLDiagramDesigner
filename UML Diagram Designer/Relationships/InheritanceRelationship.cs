@@ -11,12 +11,14 @@ namespace UML_Diagram_Designer.Relationships
 {
     public class InheritanceRelationship : AbstractRelationship
     {
-        public InheritanceRelationship()
+        public InheritanceRelationship(Color lineColor, float lineWidth)
         {
             FilledArrowCap filledArrowCap = new FilledArrowCap();
             SolidLine solidLine = new SolidLine();
             _cap = filledArrowCap._cap;
             _lineStyle = solidLine._lineStyle;
+            ObjectColor = lineColor;
+            ObjectWidth = lineWidth;
         }
 
     }

@@ -33,33 +33,27 @@ namespace UML_Diagram_Designer
         }
         private void associationButton_Click(object sender, EventArgs e)
         {
-            _currentFactory= new AssociationRelationshipFactory();
-            _currentDiagramElement = _currentFactory.GetElement();
+            _currentFactory = new AssociationRelationshipFactory();
         }
         private void inheritanceButton_Click(object sender, EventArgs e)
         {
             _currentFactory = new InheritanceRelationshipFactory();
-            _currentDiagramElement = _currentFactory.GetElement();
         }
         private void realizationButton_Click(object sender, EventArgs e)
         {
             _currentFactory = new RealizationRelationshipFactory();
-            _currentDiagramElement = _currentFactory.GetElement();
         }
         private void aggregationButton_Click(object sender, EventArgs e)
         {
             _currentFactory = new AggregationRelationshipFactory();
-            _currentDiagramElement = _currentFactory.GetElement();
         }
         private void compositionButton_Click(object sender, EventArgs e)
         {
             _currentFactory = new CompositionRelationshipFactory();
-            _currentDiagramElement = _currentFactory.GetElement();
         }
         private void classButton_Click(object sender, EventArgs e)
         {
             _currentFactory = new UMLClassFactory();
-            _currentDiagramElement = _currentFactory.GetElement();
         }
         private void clearButton_Click(object sender, EventArgs e)
         {
@@ -72,6 +66,7 @@ namespace UML_Diagram_Designer
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             _currentDiagramElement = null;
+
             if (_isMoveButtonClicked)
             {
                 foreach (var element in listAbstractDiagramElements)
@@ -87,7 +82,7 @@ namespace UML_Diagram_Designer
             }
             else if (e.Button == MouseButtons.Left)
             {
-                _currentDiagramElement = _currentFactory.GetElement();
+                _currentDiagramElement = _currentFactory.GetElement(canvas.PenColor, canvas.PenSize);
                 _currentDiagramElement.StartPoint = e.Location;
             }
             _isMouseMoving = true;
@@ -118,12 +113,16 @@ namespace UML_Diagram_Designer
                 if (!(_currentDiagramElement is null))
                 {
                     canvas._graphics.Clear(pictureBox1.BackColor);
+                    canvas.PenColor = _currentDiagramElement.ObjectColor;
+                    canvas.PenSize = _currentDiagramElement.ObjectWidth;
                     _currentDiagramElement.Draw(canvas);
                 }
-            foreach (var element in listAbstractDiagramElements)
-            {
-                element.Draw(canvas);
-            }
+                foreach (var element in listAbstractDiagramElements)
+                {
+                    canvas.PenColor = element.ObjectColor;
+                    canvas.PenSize = element.ObjectWidth;
+                    element.Draw(canvas);
+                }
             }
         }
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
@@ -142,6 +141,7 @@ namespace UML_Diagram_Designer
         private void ColorButton_Click(object sender, EventArgs e)
         {
             colorDialog.ShowDialog();
+
             if (colorDialog.Color == Color.Black)
             {
                 colorButton.BackColor = Color.White;
@@ -150,11 +150,12 @@ namespace UML_Diagram_Designer
             {
                 colorButton.BackColor = colorDialog.Color;
             }
-            _color = colorDialog.Color;
+
+            canvas.SetPenColor(colorDialog.Color);
         }
         private void ThicknessTrackBar_Scroll(object sender, EventArgs e)
         {
-            _width = thicknessTrackBar.Value;
+            canvas.SetPenSize(thicknessTrackBar.Value);
         }
     }
 }
