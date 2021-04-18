@@ -82,6 +82,8 @@ namespace UML_Diagram_Designer
             }
             else if (e.Button == MouseButtons.Left)
             {
+                canvas.PenColor = colorDialog.Color;
+                canvas.PenSize = thicknessTrackBar.Value;
                 _currentDiagramElement = _currentFactory.GetElement(canvas.PenColor, canvas.PenSize);
                 _currentDiagramElement.StartPoint = e.Location;
             }
@@ -112,15 +114,15 @@ namespace UML_Diagram_Designer
             {
                 if (!(_currentDiagramElement is null))
                 {
+                    canvas.PenColor = _currentDiagramElement.ObjectPenColor;
+                    canvas.PenSize = _currentDiagramElement.ObjectPenWidth;
                     canvas._graphics.Clear(pictureBox1.BackColor);
-                    canvas.PenColor = _currentDiagramElement.ObjectColor;
-                    canvas.PenSize = _currentDiagramElement.ObjectWidth;
                     _currentDiagramElement.Draw(canvas);
                 }
                 foreach (var element in listAbstractDiagramElements)
                 {
-                    canvas.PenColor = element.ObjectColor;
-                    canvas.PenSize = element.ObjectWidth;
+                    canvas.PenColor = element.ObjectPenColor;
+                    canvas.PenSize = element.ObjectPenWidth;
                     element.Draw(canvas);
                 }
             }
@@ -151,11 +153,11 @@ namespace UML_Diagram_Designer
                 colorButton.BackColor = colorDialog.Color;
             }
 
-            canvas.SetPenColor(colorDialog.Color);
+            canvas.PenColor = colorDialog.Color;
         }
         private void ThicknessTrackBar_Scroll(object sender, EventArgs e)
         {
-            canvas.SetPenSize(thicknessTrackBar.Value);
+            canvas.PenSize = thicknessTrackBar.Value;
         }
     }
 }

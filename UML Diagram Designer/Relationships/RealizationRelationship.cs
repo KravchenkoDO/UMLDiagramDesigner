@@ -17,8 +17,8 @@ namespace UML_Diagram_Designer.Relationships
             DashLine dashLine = new DashLine();
             _cap = filledArrowCap._cap;
             _lineStyle = dashLine._lineStyle;
-            ObjectColor = lineColor;
-            ObjectWidth = lineWidth;
+            ObjectPenColor = lineColor;
+            ObjectPenWidth = lineWidth;
         }
     }
 }
