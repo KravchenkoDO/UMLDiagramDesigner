@@ -12,6 +12,7 @@ namespace UML_Diagram_Designer
     {
         bool _isMouseMoving = false;
         bool _isMoveButtonClicked = false;
+        bool _isDeleteButtonClicked = false;
         Point _pointForMove;
         private int _width = 6;
         private Color _color = Color.Black;
@@ -67,7 +68,7 @@ namespace UML_Diagram_Designer
         {
             _currentDiagramElement = null;
 
-            if (_isMoveButtonClicked)
+            if (_isMoveButtonClicked||_isDeleteButtonClicked)
             {
                 foreach (var element in listAbstractDiagramElements)
                 {
@@ -133,6 +134,7 @@ namespace UML_Diagram_Designer
             }
             _isMoveButtonClicked = false;
             _isMouseMoving = false;
+           
         }
         private void buttonMove_Click(object sender, EventArgs e)
         {
@@ -156,6 +158,13 @@ namespace UML_Diagram_Designer
         private void ThicknessTrackBar_Scroll(object sender, EventArgs e)
         {
             canvas.SetPenSize(thicknessTrackBar.Value);
+        }
+
+        private void btnDelete_MouseClick(object sender, MouseEventArgs e)
+        {
+            _isDeleteButtonClicked = true;
+            
+
         }
     }
 }
