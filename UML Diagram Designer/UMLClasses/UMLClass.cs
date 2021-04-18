@@ -14,8 +14,13 @@ namespace UML_Diagram_Designer.UMLClasses
         List<string> _rect1Text = new List<string>();
         List<string> _rect2Text = new List<string>();
         List<string> _rect3Text = new List<string>();
-
-        public override void Draw(Painter painter)
+        public enum SelectedSection
+        {
+            FirstSection = 0,
+            SecondSection,
+            ThirdSection
+        }
+        public override void Draw(Canvas painter)
         {
             //// Create a Graphics object
             //string text = "Yeah!!!We are drawing string text in the rectangle!";
