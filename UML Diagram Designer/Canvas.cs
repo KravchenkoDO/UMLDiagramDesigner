@@ -58,14 +58,11 @@ namespace UML_Diagram_Designer
             return instance;
         }
 
-        //public void SetPenColor (Color penColor)
-        //{
-        //    _penColor = penColor;
-        //}
-        //public void SetPenSize(int penSize)
-        //{
-        //    _penSize = penSize;
-        //}
+        public void SetPenParameters(Color color, float width)
+        {
+            PenColor = color;
+            PenSize = width;
+        }
 
         public void SetBrush(Brush brush)
         {
