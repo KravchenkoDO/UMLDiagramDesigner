@@ -55,6 +55,7 @@ namespace UML_Diagram_Designer
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
+            this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
@@ -158,7 +159,7 @@ namespace UML_Diagram_Designer
             this.thicknessTrackBar.Location = new System.Drawing.Point(12, 349);
             this.thicknessTrackBar.Minimum = 2;
             this.thicknessTrackBar.Name = "thicknessTrackBar";
-            this.thicknessTrackBar.Size = new System.Drawing.Size(187, 42);
+            this.thicknessTrackBar.Size = new System.Drawing.Size(187, 45);
             this.thicknessTrackBar.TabIndex = 18;
             this.thicknessTrackBar.Value = 2;
             this.thicknessTrackBar.Scroll += new System.EventHandler(this.ThicknessTrackBar_Scroll);

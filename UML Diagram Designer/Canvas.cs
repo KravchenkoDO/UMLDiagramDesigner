@@ -29,8 +29,8 @@ namespace UML_Diagram_Designer
                 _pen.Width = _penSize;
             }
         }
-        public Color PenColor 
-        { 
+        public Color PenColor
+        {
             get
             {
                 return _penColor;
@@ -51,21 +51,18 @@ namespace UML_Diagram_Designer
             _brush = new SolidBrush(Color.Black);
             _font = new Font("Times New Roman", 12);
         }
-        public static Canvas SetCanvas( int width, int height)
+        public static Canvas SetCanvas(int width, int height)
         {
             if (instance == null)
                 instance = new Canvas(width, height);
             return instance;
         }
 
-        //public void SetPenColor (Color penColor)
-        //{
-        //    _penColor = penColor;
-        //}
-        //public void SetPenSize(int penSize)
-        //{
-        //    _penSize = penSize;
-        //}
+        public void SetPenParameters(Color color, float width)
+        {
+            PenColor = color;
+            PenSize = width;
+        }
 
         public void SetBrush(Brush brush)
         {

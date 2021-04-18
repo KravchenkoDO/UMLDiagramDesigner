@@ -21,7 +21,7 @@ namespace UML_Diagram_Designer.Relationships
         }
         public override bool CheckIfTheObjectIsClicked(Point point)
         {
-            const int delta = 5;
+            const int delta = 20;
             if (point.X < StartPoint.X + delta && point.X > StartPoint.X - delta &&
                 point.Y < StartPoint.Y + delta && point.Y > StartPoint.Y - delta)
             {
