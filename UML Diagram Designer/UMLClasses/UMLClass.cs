@@ -19,24 +19,10 @@ namespace UML_Diagram_Designer.UMLClasses
         List<string> _listForRect1Text = new List<string>();
         List<string> _listForRect2Text = new List<string>();
         List<string> _listForRect3Text = new List<string>();
+        EnumSections select;
 
-        public enum SelectedSection
-        {
-            FirstSection = 0,
-            SecondSection,
-            ThirdSection
-        }
-        public void SaveRectText(string rectStr)
-        {
-            _listForRect1Text.Add("Name");
-
-            _listForRect2Text.Add("Bla-Bla");
-            _listForRect2Text.Add("Bla-Bla-Bla");
-
-            _listForRect3Text.Add("Bla-Bla-Bla");
-            _listForRect3Text.Add("Bla-Bla-Bla");
-            _listForRect3Text.Add("Bla-Bla-Bla");
-        }
+        
+        
         public int GetCoordinatesForRect1()
         {
             _rect1Height = 1 * 10;//(int)(_listForRect1Text.Count * canvas._font.Size);
@@ -97,31 +83,43 @@ namespace UML_Diagram_Designer.UMLClasses
         }
         public override bool CheckIfTheObjectIsClicked(Point point)
         {
-            int xMax;
-            int xMin;
-            int yMax;
-            int yMin;
-            SelectedSection select;
+            _rect1Height = GetCoordinatesForRect1();
 
             if ((StartPoint.X < point.X) && (point.X < StartPoint.X + _width) &&
                 (StartPoint.Y < point.Y) && (point.Y < StartPoint.Y + _rect1Height))
             {
-                select = SelectedSection.FirstSection;
+                select = EnumSections.FirstSection;
                 return true;
             }
             if ((GetCoordinatesForRect2(StartPoint).X < point.X) && (point.X < GetCoordinatesForRect2(StartPoint).X + _width) &&
                 (GetCoordinatesForRect2(StartPoint).Y < point.Y) && (point.Y < GetCoordinatesForRect2(StartPoint).Y + _rect2Height))
             {
-                select = SelectedSection.FirstSection;
+                select = EnumSections.SecondSection;
                 return true;
             }
             if ((GetCoordinatesForRect3(StartPoint).X < point.X) && (point.X < GetCoordinatesForRect3(StartPoint).X + _width) &&
                (GetCoordinatesForRect3(StartPoint).Y < point.Y) && (GetCoordinatesForRect3(StartPoint).Y < StartPoint.Y + _rect3Height))
             {
-                select = SelectedSection.FirstSection;
+                select = EnumSections.ThirdSection;
                 return true;
             }
                 return false;
+        }
+
+        public override void SaveElementText(string strText)
+        {
+            if (select == EnumSections.FirstSection)
+            {
+                _listForRect1Text.Add(strText);
+            }
+            else if (select == EnumSections.SecondSection)
+            {
+                _listForRect2Text.Add(strText);
+            }
+            else if (select == EnumSections.ThirdSection)
+            {
+                _listForRect3Text.Add(strText);
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Drawing.Drawing2D;
 
 namespace UML_Diagram_Designer.Relationships
@@ -46,6 +47,10 @@ namespace UML_Diagram_Designer.Relationships
             {
             EndPoint = new Point(EndPoint.X + deltaX, EndPoint.Y + deltaY);
             }
+        }
+        public override void SaveElementText(string strText)
+        {
+            throw new NotImplementedException();
         }
     }
 }

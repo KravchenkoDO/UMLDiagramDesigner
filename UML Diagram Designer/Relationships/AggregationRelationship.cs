@@ -19,5 +19,7 @@ namespace UML_Diagram_Designer.Relationships
             _cap = diamondCap._cap;
             _lineStyle = solidLine._lineStyle;
         }
+
+        
     }
 }

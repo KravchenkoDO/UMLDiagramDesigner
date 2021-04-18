@@ -12,6 +12,7 @@ namespace UML_Diagram_Designer
     {
         bool _isMouseMoving = false;
         bool _isMoveButtonClicked = false;
+        bool _isSelect = false;
         Point _pointForMove;
         private int _width = 6;
         private Color _color = Color.Black;
@@ -58,6 +59,8 @@ namespace UML_Diagram_Designer
         }
         private void classButton_Click(object sender, EventArgs e)
         {
+            _isSelect = false;
+
             _currentFactory = new UMLClassFactory();
             _currentDiagramElement = _currentFactory.GetElement();
         }
@@ -72,6 +75,18 @@ namespace UML_Diagram_Designer
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             _currentDiagramElement = null;
+            if (_isSelect)
+            {
+                foreach (var element in listAbstractDiagramElements)
+                {
+                    if (element.CheckIfTheObjectIsClicked(e.Location))
+                    {
+                        _currentDiagramElement = element;
+                        break;
+                    }
+                }
+            }
+            
             if (_isMoveButtonClicked)
             {
                 foreach (var element in listAbstractDiagramElements)
@@ -155,6 +170,16 @@ namespace UML_Diagram_Designer
         private void ThicknessTrackBar_Scroll(object sender, EventArgs e)
         {
             _width = thicknessTrackBar.Value;
+        }
+
+        private void BtnTextBoxEnter_Click(object sender, EventArgs e)
+        {
+            _currentDiagramElement.SaveElementText(textBox1.Text);
+        }
+
+        private void BtnSelectElement_Click(object sender, EventArgs e)
+        {
+            _isSelect = true;
         }
     }
 }
