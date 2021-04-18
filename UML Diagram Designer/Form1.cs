@@ -117,11 +117,12 @@ namespace UML_Diagram_Designer
                     canvas.PenSize = _currentDiagramElement.ObjectWidth;
                     _currentDiagramElement.Draw(canvas);
                 }
-            foreach (var element in listAbstractDiagramElements)
-            {
+                foreach (var element in listAbstractDiagramElements)
+                {
                     canvas.PenColor = element.ObjectColor;
                     canvas.PenSize = element.ObjectWidth;
                     element.Draw(canvas);
+                }
             }
         }
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
@@ -150,11 +151,11 @@ namespace UML_Diagram_Designer
                 colorButton.BackColor = colorDialog.Color;
             }
 
-            canvas.ChangePenColor(colorDialog.Color);
+            canvas.SetPenColor(colorDialog.Color);
         }
         private void ThicknessTrackBar_Scroll(object sender, EventArgs e)
         {
-            canvas.ChangePenSize(thicknessTrackBar.Value);
+            canvas.SetPenSize(thicknessTrackBar.Value);
         }
     }
 }

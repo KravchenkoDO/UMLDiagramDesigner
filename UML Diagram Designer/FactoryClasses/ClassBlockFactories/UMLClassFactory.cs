@@ -12,7 +12,7 @@ namespace UML_Diagram_Designer.FactoryClasses.ClassBlockFactories
     {
         public override AbstractDiagramElement GetElement(Color lineColor, float lineWidth)
         {
-            return new UMLClass();
+            return new UMLClass(lineColor, lineWidth);
         }
     }
 }

@@ -69,7 +69,6 @@
     <Compile Include="Interfaces\IChangeColors.cs" />
     <Compile Include="Interfaces\IResizable.cs" />
     <Compile Include="Interfaces\ISelectable.cs" />
-    <Compile Include="Canvas.cs" />
     <Compile Include="Relationships\AbstractRelationship.cs" />
     <Compile Include="Relationships\AggregationRelationship.cs" />
     <Compile Include="Relationships\CompositionRelationship.cs" />
