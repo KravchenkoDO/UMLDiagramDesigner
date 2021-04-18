@@ -7,10 +7,15 @@ namespace UML_Diagram_Designer.UMLClasses
 {
     public class UMLClass : AbstractDiagramElement
     {
-        public int _width;
-        public int _height;
-        const double _deltaX = 0.2;
-        const double _deltaY = 0.3;
+        public Point _startPointRect2;
+        public Point _startPointRect3;
+        public int _rect2NewHeight;
+        public int _rect3NewHeight;
+        private Canvas canvas;
+        public int _width=30;
+        public int _height = 50;
+        const int _deltaX = 15;
+        const int _deltaY = 20;
         List<string> _rect1Text = new List<string>();
         List<string> _rect2Text = new List<string>();
         List<string> _rect3Text = new List<string>();
@@ -19,6 +24,33 @@ namespace UML_Diagram_Designer.UMLClasses
             FirstSection = 0,
             SecondSection,
             ThirdSection
+        }
+        public void SaveRectText(string rectStr)
+        {
+            _rect1Text.Add("Name");
+            _rect2Text.Add("Bla-Bla");
+            _rect2Text.Add("Bla-Bla-Bla");
+            _rect3Text.Add("Bla-Bla-Bla");
+            _rect3Text.Add("Bla-Bla-Bla");
+            _rect3Text.Add("Bla-Bla-Bla");
+        }
+
+
+        public Point GetDynamicPoint2(Point StartPoint)
+        {
+            _startPointRect2.X = StartPoint.X;
+            _startPointRect2.Y = StartPoint.Y + _rect1Text.Count;
+            _rect2NewHeight = _deltaY + _rect2Text.Count;
+            return _startPointRect2;
+
+        }
+
+        public Point GetDynamicPoint3(Point StartPoint)
+        {
+            _startPointRect3.X = StartPoint.X;
+            _startPointRect3.Y = StartPoint.Y + _rect2Text.Count;
+            _rect3NewHeight = _deltaY + (int)(_rect3Text.Count * canvas._font.Size);
+            return _startPointRect3;
         }
         public override void Draw(Canvas painter)
         {
@@ -55,23 +87,18 @@ namespace UML_Diagram_Designer.UMLClasses
             //verdanaFont.Dispose();
             //arialFamily.Dispose();
 
-            _width = Math.Abs((int)(painter._bitmap.Width * _deltaX));
-            _height = Math.Abs((int)(painter._bitmap.Height * _deltaY));
+            //_width = Math.Abs((int)(painter._bitmap.Width * _deltaX));
+            //_height = Math.Abs((int)(painter._bitmap.Height * _deltaY));
 
-            _rect1Text.Add("Name");
-            _rect2Text.Add("Bla-Bla");
-            _rect2Text.Add("Bla-Bla-Bla");
-            _rect3Text.Add("Bla-Bla-Bla");
-            _rect3Text.Add("Bla-Bla-Bla");
-            _rect3Text.Add("Bla-Bla-Bla");
+           
 
-            Rectangle rect1 = new Rectangle(StartPoint.X, StartPoint.Y, _width, (int)(_height * 0.2));
-            Rectangle rect2 = new Rectangle(StartPoint.X, StartPoint.Y + (int)(_height * 0.2), _width, (int)(_height * 0.4 ));//* _rect2Text.Count / 10
-            Rectangle rect3 = new Rectangle(StartPoint.X, StartPoint.Y + (int)(_height * 0.6), _width, (int)(_height * 0.4 ));//* _rect3Text.Count / 10
+            Rectangle rect1 = new Rectangle(StartPoint.X, StartPoint.Y, _width, _height);
+            Rectangle rect2 = new Rectangle(StartPoint.X, GetDynamicPoint2(StartPoint).Y, _width, _rect2NewHeight);//* _rect2Text.Count / 10
+            //Rectangle rect3 = new Rectangle(StartPoint.X, GetDynamicPoint3(GetDynamicPoint2(StartPoint)).Y, _width, _rect3NewHeight );//* _rect3Text.Count / 10
 
             painter._graphics.DrawRectangle(painter._pen, rect1);
             painter._graphics.DrawRectangle(painter._pen, rect2);
-            painter._graphics.DrawRectangle(painter._pen, rect3);
+            //painter._graphics.DrawRectangle(painter._pen, rect3);
 
 
         }
