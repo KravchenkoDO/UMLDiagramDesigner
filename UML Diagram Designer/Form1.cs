@@ -67,8 +67,18 @@ namespace UML_Diagram_Designer
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             _currentDiagramElement = null;
-
-            if (_isMoveButtonClicked||_isDeleteButtonClicked)
+            if (_isDeleteButtonClicked)
+            {
+                foreach (var element in listAbstractDiagramElements)
+                {
+                    if (element.CheckIfTheObjectIsClicked(e.Location))
+                    {
+                        listAbstractDiagramElements.Remove(element);
+                        break;
+                    }
+                }
+            }
+            else if (_isMoveButtonClicked)
             {
                 foreach (var element in listAbstractDiagramElements)
                 {
@@ -80,13 +90,15 @@ namespace UML_Diagram_Designer
                     }
                 }
                 _pointForMove = e.Location;
+                _isMouseMoving = true;
             }
             else if (e.Button == MouseButtons.Left)
             {
                 _currentDiagramElement = _currentFactory.GetElement(canvas.PenColor, canvas.PenSize);
                 _currentDiagramElement.StartPoint = e.Location;
+                _isMouseMoving = true;
             }
-            _isMouseMoving = true;
+            _isDeleteButtonClicked = false;
         }
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
@@ -125,6 +137,15 @@ namespace UML_Diagram_Designer
                     element.Draw(canvas);
                 }
             }
+            if (_isDeleteButtonClicked)
+            {
+                foreach (var element in listAbstractDiagramElements)
+                {
+                    canvas.PenColor = element.ObjectColor;
+                    canvas.PenSize = element.ObjectWidth;
+                    element.Draw(canvas);
+                }
+            }
         }
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
@@ -134,7 +155,7 @@ namespace UML_Diagram_Designer
             }
             _isMoveButtonClicked = false;
             _isMouseMoving = false;
-           
+
         }
         private void buttonMove_Click(object sender, EventArgs e)
         {
@@ -163,8 +184,6 @@ namespace UML_Diagram_Designer
         private void btnDelete_MouseClick(object sender, MouseEventArgs e)
         {
             _isDeleteButtonClicked = true;
-            
-
         }
     }
 }
