@@ -20,11 +20,11 @@ namespace UML_Diagram_Designer.ArrowParts
             GraphicsPath graphicsPath = new GraphicsPath();
             PointF[] points = new PointF[]
             {
-                new PointF(0, -0.02f),
-                new PointF(2, 3),
-                new PointF(0, 6),
-                new PointF(-2, 3),
-                new PointF(0, -0.02f)
+                new PointF(0, -1),
+                new PointF(2, 2),
+                new PointF(0, 5),
+                new PointF(-2, 2),
+                new PointF(0, -1)
             };
 
             graphicsPath.AddLines(points);
