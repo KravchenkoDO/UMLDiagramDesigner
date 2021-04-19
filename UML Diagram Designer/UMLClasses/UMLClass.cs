@@ -20,10 +20,10 @@ namespace UML_Diagram_Designer.UMLClasses
         List<string> _listForRect2Text = new List<string>();
         List<string> _listForRect3Text = new List<string>();
 
-        public UMLClass(Color color, float width)
+        public UMLClass(Color lineColor, float lineWidth)
         {
-            ObjectColor = color;
-            ObjectWidth = width;
+            ObjectPenColor = lineColor;
+            ObjectPenWidth = lineWidth;
         }
         public enum SelectedSection
         {

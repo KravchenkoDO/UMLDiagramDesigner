@@ -17,8 +17,8 @@ namespace UML_Diagram_Designer.Relationships
             SolidLine solidLine = new SolidLine();
             _cap = diamondCap._cap;
             _lineStyle = solidLine._lineStyle;
-            ObjectColor = lineColor;
-            ObjectWidth = lineWidth;
+            ObjectPenColor = lineColor;
+            ObjectPenWidth = lineWidth;
         }
     }
 }

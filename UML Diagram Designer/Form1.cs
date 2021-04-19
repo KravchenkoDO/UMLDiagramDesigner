@@ -26,7 +26,8 @@ namespace UML_Diagram_Designer
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            canvas = Canvas.SetCanvas(pictureBox1.Width, pictureBox1.Height);
+            canvas = Canvas.GetCanvas();
+            canvas.SetCanvas(pictureBox1.Width, pictureBox1.Height);
             pictureBox1.Image = canvas._bitmap;
             listAbstractDiagramElements = new List<AbstractDiagramElement>();
             _currentFactory = new AssociationRelationshipFactory();
@@ -82,6 +83,7 @@ namespace UML_Diagram_Designer
             }
             else if (e.Button == MouseButtons.Left)
             {
+                canvas.SetPenParameters(colorDialog.Color, thicknessTrackBar.Value);
                 _currentDiagramElement = _currentFactory.GetElement(canvas.PenColor, canvas.PenSize);
                 _currentDiagramElement.StartPoint = e.Location;
             }
@@ -112,15 +114,13 @@ namespace UML_Diagram_Designer
             {
                 if (!(_currentDiagramElement is null))
                 {
+                    canvas.SetPenParameters(_currentDiagramElement.ObjectPenColor, _currentDiagramElement.ObjectPenWidth);
                     canvas._graphics.Clear(pictureBox1.BackColor);
-                    canvas.PenColor = _currentDiagramElement.ObjectColor;
-                    canvas.PenSize = _currentDiagramElement.ObjectWidth;
                     _currentDiagramElement.Draw(canvas);
                 }
                 foreach (var element in listAbstractDiagramElements)
                 {
-                    canvas.PenColor = element.ObjectColor;
-                    canvas.PenSize = element.ObjectWidth;
+                    canvas.SetPenParameters(element.ObjectPenColor, element.ObjectPenWidth);
                     element.Draw(canvas);
                 }
             }
@@ -151,11 +151,36 @@ namespace UML_Diagram_Designer
                 colorButton.BackColor = colorDialog.Color;
             }
 
-            canvas.SetPenColor(colorDialog.Color);
+            canvas.PenColor = colorDialog.Color;
         }
         private void ThicknessTrackBar_Scroll(object sender, EventArgs e)
         {
-            canvas.SetPenSize(thicknessTrackBar.Value);
+            canvas.PenSize = thicknessTrackBar.Value;
+        }
+
+        private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Left)
+            {
+                foreach (var element in listAbstractDiagramElements)
+                {
+                    if (element.CheckIfTheObjectIsClicked(e.Location))
+                    {
+                        _currentDiagramElement = element;
+                        listAbstractDiagramElements.Remove(element);
+                        break;
+                    }
+                }
+
+                if(!(_currentDiagramElement is null))
+                {
+                    _currentDiagramElement.ObjectPenColor = colorDialog.Color;
+                    _currentDiagramElement.ObjectPenWidth = thicknessTrackBar.Value;
+                    listAbstractDiagramElements.Add(_currentDiagramElement);
+                    _currentDiagramElement.Draw(canvas);
+                    pictureBox1.Invalidate();
+                }
+            }
         }
     }
 }
