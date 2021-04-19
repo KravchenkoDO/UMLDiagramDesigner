@@ -24,11 +24,13 @@ namespace UML_Diagram_Designer.UMLClasses
         Canvas canvas = Canvas.GetCanvas();
 
 
-        public UMLClass()
+        public UMLClass(Color lineColor, float lineWidth)
         {
             _listForRect1Text = new List<string>(); //{ "" };
             _listForRect2Text = new List<string>(); //{ "", "" };
             _listForRect3Text = new List<string>(); //{ "", "", "" };
+            ObjectPenColor = lineColor;
+            ObjectPenWidth = lineWidth;
         }
         
         public float GetCoordinatesForRect1()
