@@ -12,6 +12,7 @@ namespace UML_Diagram_Designer
     {
         bool _isMouseMoving = false;
         bool _isMoveButtonClicked = false;
+        bool _isSelect = false;
         Point _pointForMove;
         private int _width = 6;
         private Color _color = Color.Black;
@@ -54,6 +55,8 @@ namespace UML_Diagram_Designer
         }
         private void classButton_Click(object sender, EventArgs e)
         {
+            _isSelect = false;
+
             _currentFactory = new UMLClassFactory();
         }
         private void clearButton_Click(object sender, EventArgs e)
@@ -67,8 +70,18 @@ namespace UML_Diagram_Designer
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             _currentDiagramElement = null;
-
-            if (_isMoveButtonClicked)
+            if (_isSelect)
+            {
+                foreach (var element in listAbstractDiagramElements)
+                {
+                    if (element.CheckIfTheObjectIsClicked(e.Location))
+                    {
+                        _currentDiagramElement = element;
+                        break;
+                    }
+                }
+            }
+            else if (_isMoveButtonClicked)
             {
                 foreach (var element in listAbstractDiagramElements)
                 {
@@ -80,14 +93,16 @@ namespace UML_Diagram_Designer
                     }
                 }
                 _pointForMove = e.Location;
+                _isMouseMoving = true;
             }
             else if (e.Button == MouseButtons.Left)
             {
                 canvas.SetPenParameters(colorDialog.Color, thicknessTrackBar.Value);
                 _currentDiagramElement = _currentFactory.GetElement(canvas.PenColor, canvas.PenSize);
                 _currentDiagramElement.StartPoint = e.Location;
+                _isMouseMoving = true;
             }
-            _isMouseMoving = true;
+            _isSelect = false;
         }
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
@@ -156,6 +171,17 @@ namespace UML_Diagram_Designer
         private void ThicknessTrackBar_Scroll(object sender, EventArgs e)
         {
             canvas.PenSize = thicknessTrackBar.Value;
+        }
+
+        private void BtnTextBoxEnter_Click(object sender, EventArgs e)
+        {
+            _currentDiagramElement.SaveElementText(textBox1.Text);
+            pictureBox1.Invalidate();
+        }
+
+        private void BtnSelectElement_Click(object sender, EventArgs e)
+        {
+            _isSelect = true;
         }
 
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)

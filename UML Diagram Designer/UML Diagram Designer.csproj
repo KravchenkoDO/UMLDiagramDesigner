@@ -83,6 +83,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UMLClasses\AbstractUMLClass.cs" />
+    <Compile Include="UMLClasses\EnumSections.cs" />
     <Compile Include="UMLClasses\UMLClass.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

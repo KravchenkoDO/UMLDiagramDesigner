@@ -20,5 +20,7 @@ namespace UML_Diagram_Designer.Relationships
             ObjectPenColor = lineColor;
             ObjectPenWidth = lineWidth;
         }
+
+        
     }
 }
