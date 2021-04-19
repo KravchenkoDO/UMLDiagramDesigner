@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,9 +11,9 @@ namespace UML_Diagram_Designer.FactoryClasses.RelationshipFactories
 {
     class InheritanceRelationshipFactory : AbstractDiagramElementFactory
     {
-        public override AbstractDiagramElement GetElement()
+        public override AbstractDiagramElement GetElement(Color lineColor, float lineWidth)
         {
-            return new InheritanceRelationship();
+            return new InheritanceRelationship(lineColor, lineWidth);
         }
     }
 }

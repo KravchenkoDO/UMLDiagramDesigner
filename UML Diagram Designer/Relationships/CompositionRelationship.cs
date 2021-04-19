@@ -11,12 +11,14 @@ namespace UML_Diagram_Designer.Relationships
 {
     public class CompositionRelationship : AbstractRelationship
     {
-        public CompositionRelationship()
+        public CompositionRelationship(Color lineColor, float lineWidth)
         {
             FilledDiamondCap filledDiamondCap = new FilledDiamondCap();
             SolidLine solidLine = new SolidLine();
             _cap = filledDiamondCap._cap;
             _lineStyle = solidLine._lineStyle;
+            ObjectPenColor = lineColor;
+            ObjectPenWidth = lineWidth;
         }
     }
 }
