@@ -64,6 +64,10 @@
     <Compile Include="FactoryClasses\RelationshipFactories\CompositionRelationshipFactory.cs" />
     <Compile Include="FactoryClasses\RelationshipFactories\InheritanceRelationshipFactory.cs" />
     <Compile Include="FactoryClasses\RelationshipFactories\RealizationRelationshipFactory.cs" />
+    <Compile Include="HandlerClasses\AbstractHandler.cs" />
+    <Compile Include="HandlerClasses\ChangeColorAndSizeHandler.cs" />
+    <Compile Include="HandlerClasses\DrawHandler.cs" />
+    <Compile Include="HandlerClasses\MoveHandler.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\IMoveable.cs" />
     <Compile Include="Interfaces\IChangeColors.cs" />
