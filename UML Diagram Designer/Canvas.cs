@@ -41,7 +41,15 @@ namespace UML_Diagram_Designer
                 _pen.Color = _penColor;
             }
         }
-        public Canvas(int width, int height)
+        
+        public static Canvas GetCanvas()
+        {
+            if (instance == null)
+                instance = new Canvas();
+            return instance;
+        }
+
+        public void SetCanvas(int width, int height)
         {
             _bitmap = new Bitmap(width, height);
             _graphics = Graphics.FromImage(_bitmap);
@@ -50,12 +58,6 @@ namespace UML_Diagram_Designer
             _penSize = _pen.Width;
             _brush = new SolidBrush(Color.Black);
             _font = new Font("Times New Roman", 12);
-        }
-        public static Canvas SetCanvas(int width, int height)
-        {
-            if (instance == null)
-                instance = new Canvas(width, height);
-            return instance;
         }
 
         public void SetPenParameters(Color color, float width)

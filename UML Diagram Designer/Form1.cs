@@ -26,7 +26,8 @@ namespace UML_Diagram_Designer
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            canvas = Canvas.SetCanvas(pictureBox1.Width, pictureBox1.Height);
+            canvas = Canvas.GetCanvas();
+            canvas.SetCanvas(pictureBox1.Width, pictureBox1.Height);
             pictureBox1.Image = canvas._bitmap;
             listAbstractDiagramElements = new List<AbstractDiagramElement>();
             _currentFactory = new AssociationRelationshipFactory();
