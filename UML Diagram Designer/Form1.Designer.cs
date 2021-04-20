@@ -48,6 +48,7 @@ namespace UML_Diagram_Designer
             this.btnTextBoxEnter = new System.Windows.Forms.Button();
             this.btnCancelTextEntering = new System.Windows.Forms.Button();
             this.btnSelectElement = new System.Windows.Forms.Button();
+            this.btnEditClassText = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thicknessTrackBar)).BeginInit();
             this.SuspendLayout();
@@ -165,7 +166,7 @@ namespace UML_Diagram_Designer
             this.thicknessTrackBar.Location = new System.Drawing.Point(12, 357);
             this.thicknessTrackBar.Minimum = 2;
             this.thicknessTrackBar.Name = "thicknessTrackBar";
-            this.thicknessTrackBar.Size = new System.Drawing.Size(187, 45);
+            this.thicknessTrackBar.Size = new System.Drawing.Size(187, 42);
             this.thicknessTrackBar.TabIndex = 18;
             this.thicknessTrackBar.Value = 2;
             this.thicknessTrackBar.Scroll += new System.EventHandler(this.ThicknessTrackBar_Scroll);
@@ -212,11 +213,22 @@ namespace UML_Diagram_Designer
             this.btnSelectElement.UseVisualStyleBackColor = true;
             this.btnSelectElement.Click += new System.EventHandler(this.BtnSelectElement_Click);
             // 
+            // btnEditClassText
+            // 
+            this.btnEditClassText.Location = new System.Drawing.Point(64, 490);
+            this.btnEditClassText.Name = "btnEditClassText";
+            this.btnEditClassText.Size = new System.Drawing.Size(75, 23);
+            this.btnEditClassText.TabIndex = 22;
+            this.btnEditClassText.Text = "EditClassText";
+            this.btnEditClassText.UseVisualStyleBackColor = true;
+            this.btnEditClassText.Click += new System.EventHandler(this.btnEditClassText_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(946, 505);
+            this.ClientSize = new System.Drawing.Size(946, 517);
+            this.Controls.Add(this.btnEditClassText);
             this.Controls.Add(this.btnSelectElement);
             this.Controls.Add(this.btnCancelTextEntering);
             this.Controls.Add(this.btnTextBoxEnter);
@@ -262,6 +274,7 @@ namespace UML_Diagram_Designer
         private System.Windows.Forms.Button btnTextBoxEnter;
         private System.Windows.Forms.Button btnCancelTextEntering;
         private System.Windows.Forms.Button btnSelectElement;
+        private System.Windows.Forms.Button btnEditClassText;
     }
 }
 

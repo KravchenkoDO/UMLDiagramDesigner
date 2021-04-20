@@ -20,6 +20,7 @@ namespace UML_Diagram_Designer
         AbstractDiagramElement _currentDiagramElement;
         List<AbstractDiagramElement> listAbstractDiagramElements;
         AbstractDiagramElementFactory _currentFactory;
+        public List<string> _currentClassTextList;
 
         public Form1()
         {
@@ -175,7 +176,7 @@ namespace UML_Diagram_Designer
 
         private void BtnTextBoxEnter_Click(object sender, EventArgs e)
         {
-            _currentDiagramElement.SaveElementText(textBox1.Text);
+            _currentClassTextList = _currentDiagramElement.SaveElementText(textBox1.Text);
             pictureBox1.Invalidate();
         }
 
@@ -207,6 +208,12 @@ namespace UML_Diagram_Designer
                     pictureBox1.Invalidate();
                 }
             }
+        }
+
+        private void btnEditClassText_Click(object sender, EventArgs e)
+        {
+            EditClassTextForm editClassTextForm = new EditClassTextForm(_currentClassTextList);
+            editClassTextForm.ShowDialog();
         }
     }
 }

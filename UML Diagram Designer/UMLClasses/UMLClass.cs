@@ -94,20 +94,25 @@ namespace UML_Diagram_Designer.UMLClasses
             }
             return false;
         }
-        public override void SaveElementText(string strText)
+        public override List<string> SaveElementText(string strText)
         {
+            List<string> currentList = new List<string>();
             if (select == EnumSections.FirstSection)
             {
                 _listForRect1Text.Add(strText);
+                currentList = _listForRect1Text;
             }
             else if (select == EnumSections.SecondSection)
             {
                 _listForRect2Text.Add(strText);
+                currentList = _listForRect2Text;
             }
             else if (select == EnumSections.ThirdSection)
             {
                 _listForRect3Text.Add(strText);
+                currentList = _listForRect3Text;
             }
+            return currentList;
         }
         public void CalculateClassCoordinates(List<string> rect1Text, List<string> rect2Text, List<string> rect3Text)
         {

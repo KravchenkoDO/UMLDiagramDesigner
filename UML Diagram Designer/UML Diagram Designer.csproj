@@ -56,6 +56,12 @@
     <Compile Include="ArrowParts\SolidLine.cs" />
     <Compile Include="AbstractDiagramElement.cs" />
     <Compile Include="Canvas.cs" />
+    <Compile Include="EditClassTextForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditClassTextForm.Designer.cs">
+      <DependentUpon>EditClassTextForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FactoryClasses\AbstractDiagramElementFactory.cs" />
     <Compile Include="FactoryClasses\ClassBlockFactories\UMLNodeNotationFactory.cs" />
     <Compile Include="FactoryClasses\ClassBlockFactories\UMLClassFactory.cs" />
@@ -86,6 +92,9 @@
     <Compile Include="UMLClasses\AbstractUMLClass.cs" />
     <Compile Include="UMLClasses\EnumSections.cs" />
     <Compile Include="UMLClasses\UMLClass.cs" />
+    <EmbeddedResource Include="EditClassTextForm.resx">
+      <DependentUpon>EditClassTextForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
