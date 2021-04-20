@@ -208,5 +208,15 @@ namespace UML_Diagram_Designer
                 }
             }
         }
+
+        private void BtnFont_Click(object sender, EventArgs e)
+        {
+            FontDialog fontDialog1 = new FontDialog();
+            if (!String.IsNullOrEmpty(textBox1.Text) && fontDialog1.ShowDialog() == DialogResult.OK)
+            {
+                canvas.Font = fontDialog1.Font;
+                textBox1.Font = fontDialog1.Font;
+            }
+        }
     }
 }

@@ -48,6 +48,7 @@ namespace UML_Diagram_Designer
             this.btnTextBoxEnter = new System.Windows.Forms.Button();
             this.btnCancelTextEntering = new System.Windows.Forms.Button();
             this.btnSelectElement = new System.Windows.Forms.Button();
+            this.btnFont = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thicknessTrackBar)).BeginInit();
             this.SuspendLayout();
@@ -57,7 +58,7 @@ namespace UML_Diagram_Designer
             this.pictureBox1.BackColor = System.Drawing.SystemColors.Window;
             this.pictureBox1.Location = new System.Drawing.Point(205, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(726, 481);
+            this.pictureBox1.Size = new System.Drawing.Size(726, 506);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
@@ -175,7 +176,7 @@ namespace UML_Diagram_Designer
             this.textBox1.Location = new System.Drawing.Point(9, 408);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(187, 35);
+            this.textBox1.Size = new System.Drawing.Size(187, 20);
             this.textBox1.TabIndex = 19;
             // 
             // contextMenuStrip1
@@ -185,7 +186,7 @@ namespace UML_Diagram_Designer
             // 
             // btnTextBoxEnter
             // 
-            this.btnTextBoxEnter.Location = new System.Drawing.Point(12, 449);
+            this.btnTextBoxEnter.Location = new System.Drawing.Point(9, 474);
             this.btnTextBoxEnter.Name = "btnTextBoxEnter";
             this.btnTextBoxEnter.Size = new System.Drawing.Size(93, 35);
             this.btnTextBoxEnter.TabIndex = 20;
@@ -195,7 +196,7 @@ namespace UML_Diagram_Designer
             // 
             // btnCancelTextEntering
             // 
-            this.btnCancelTextEntering.Location = new System.Drawing.Point(106, 449);
+            this.btnCancelTextEntering.Location = new System.Drawing.Point(108, 474);
             this.btnCancelTextEntering.Name = "btnCancelTextEntering";
             this.btnCancelTextEntering.Size = new System.Drawing.Size(93, 35);
             this.btnCancelTextEntering.TabIndex = 20;
@@ -212,11 +213,22 @@ namespace UML_Diagram_Designer
             this.btnSelectElement.UseVisualStyleBackColor = true;
             this.btnSelectElement.Click += new System.EventHandler(this.BtnSelectElement_Click);
             // 
+            // btnFont
+            // 
+            this.btnFont.Location = new System.Drawing.Point(9, 434);
+            this.btnFont.Name = "btnFont";
+            this.btnFont.Size = new System.Drawing.Size(93, 34);
+            this.btnFont.TabIndex = 22;
+            this.btnFont.Text = "Font";
+            this.btnFont.UseVisualStyleBackColor = true;
+            this.btnFont.Click += new System.EventHandler(this.BtnFont_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(946, 505);
+            this.ClientSize = new System.Drawing.Size(946, 521);
+            this.Controls.Add(this.btnFont);
             this.Controls.Add(this.btnSelectElement);
             this.Controls.Add(this.btnCancelTextEntering);
             this.Controls.Add(this.btnTextBoxEnter);
@@ -262,6 +274,7 @@ namespace UML_Diagram_Designer
         private System.Windows.Forms.Button btnTextBoxEnter;
         private System.Windows.Forms.Button btnCancelTextEntering;
         private System.Windows.Forms.Button btnSelectElement;
+        private System.Windows.Forms.Button btnFont;
     }
 }
 
