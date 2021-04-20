@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,22 +10,22 @@ namespace UML_Diagram_Designer.HandlerClasses
 {
     class ChangeColorAndSizeHandler : AbstractHandler
     {
-        public override void MouseClick(MouseEventArgs e)
+        public override void MouseClick(Point point)
         {
             throw new NotImplementedException();
         }
 
-        public override void MouseDown(MouseEventArgs e)
+        public override void MouseDown(Point point)
         {
             throw new NotImplementedException();
         }
 
-        public override void MouseMove(MouseEventArgs e)
+        public override void MouseMove(Point point)
         {
             throw new NotImplementedException();
         }
 
-        public override void MouseUp(MouseEventArgs e)
+        public override void MouseUp(Point point)
         {
             throw new NotImplementedException();
         }

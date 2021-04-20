@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,9 +10,9 @@ namespace UML_Diagram_Designer.HandlerClasses
 {
     public abstract class AbstractHandler
     {
-        public abstract void MouseDown(MouseEventArgs e);
-        public abstract void MouseMove(MouseEventArgs e);
-        public abstract void MouseUp(MouseEventArgs e);
-        public abstract void MouseClick(MouseEventArgs e);
+        public abstract void MouseDown(Point point);
+        public abstract void MouseMove(Point point);
+        public abstract void MouseUp(Point point);
+        public abstract void MouseClick(Point point);
     }
 }
