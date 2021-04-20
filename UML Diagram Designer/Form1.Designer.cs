@@ -167,7 +167,7 @@ namespace UML_Diagram_Designer
             this.thicknessTrackBar.Location = new System.Drawing.Point(12, 357);
             this.thicknessTrackBar.Minimum = 2;
             this.thicknessTrackBar.Name = "thicknessTrackBar";
-            this.thicknessTrackBar.Size = new System.Drawing.Size(187, 42);
+            this.thicknessTrackBar.Size = new System.Drawing.Size(187, 45);
             this.thicknessTrackBar.TabIndex = 18;
             this.thicknessTrackBar.Value = 2;
             this.thicknessTrackBar.Scroll += new System.EventHandler(this.ThicknessTrackBar_Scroll);
@@ -216,9 +216,9 @@ namespace UML_Diagram_Designer
             // 
             // btnEditClassText
             // 
-            this.btnEditClassText.Location = new System.Drawing.Point(64, 490);
+            this.btnEditClassText.Location = new System.Drawing.Point(108, 434);
             this.btnEditClassText.Name = "btnEditClassText";
-            this.btnEditClassText.Size = new System.Drawing.Size(75, 23);
+            this.btnEditClassText.Size = new System.Drawing.Size(94, 34);
             this.btnEditClassText.TabIndex = 22;
             this.btnEditClassText.Text = "EditClassText";
             this.btnEditClassText.UseVisualStyleBackColor = true;
@@ -238,9 +238,8 @@ namespace UML_Diagram_Designer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(946, 517);
-            this.Controls.Add(this.btnEditClassText);
             this.ClientSize = new System.Drawing.Size(946, 521);
+            this.Controls.Add(this.btnEditClassText);
             this.Controls.Add(this.btnFont);
             this.Controls.Add(this.btnSelectElement);
             this.Controls.Add(this.btnCancelTextEntering);
