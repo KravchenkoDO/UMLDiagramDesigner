@@ -19,6 +19,5 @@ namespace UML_Diagram_Designer
         public abstract void Draw(Canvas painter);
         public abstract void Move(int deltaX, int deltaY);
         public abstract List<string> SaveElementText(string strText);
-       // public abstract void Resize(Point point);
     }
 }

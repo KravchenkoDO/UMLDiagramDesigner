@@ -212,8 +212,11 @@ namespace UML_Diagram_Designer
 
         private void btnEditClassText_Click(object sender, EventArgs e)
         {
+            if (!(_currentClassTextList is null))
+            {
             EditClassTextForm editClassTextForm = new EditClassTextForm(_currentClassTextList);
             editClassTextForm.ShowDialog();
+            }
         }
 
         private void BtnFont_Click(object sender, EventArgs e)

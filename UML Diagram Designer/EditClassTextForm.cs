@@ -13,6 +13,7 @@ namespace UML_Diagram_Designer
     public partial class EditClassTextForm : Form
     {
         List<string> listClassText;
+        DataTable dataTable;
         public EditClassTextForm()
         {
             InitializeComponent();
@@ -25,18 +26,29 @@ namespace UML_Diagram_Designer
         
         private void EditClassTextForm_Load(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("Elements", typeof(string));
+            dataTable = new DataTable();
+            dataTable.Columns.Add("Elements", typeof(string));
 
             foreach (var element in listClassText)
             {
-                dt.Rows.Add(element); 
+                dataTable.Rows.Add(element); 
             }
-            dataGridView1.DataSource = dt;
+            dataGridView1.DataSource = dataTable;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            listClassText.Clear();
+            int col = 0;
+            for (int rows = 0; rows < dataGridView1.Rows.Count-1; rows++)
+            {
+                    listClassText.Add(dataGridView1.Rows[rows].Cells[col].Value.ToString());
+            }
             this.Close();
         }
     }

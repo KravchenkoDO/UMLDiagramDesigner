@@ -51,6 +51,7 @@ namespace UML_Diagram_Designer
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "Save Changes";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCancel
             // 
@@ -70,6 +71,9 @@ namespace UML_Diagram_Designer
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.dataGridView1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "EditClassTextForm";
             this.Text = "EditClassTextForm";
             this.Load += new System.EventHandler(this.EditClassTextForm_Load);
