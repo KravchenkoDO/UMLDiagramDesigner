@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using UML_Diagram_Designer.HandlerClasses;
 using UML_Diagram_Designer.FactoryClasses;
 using UML_Diagram_Designer.FactoryClasses.ClassBlockFactories;
 using UML_Diagram_Designer.FactoryClasses.RelationshipFactories;
@@ -19,6 +20,7 @@ namespace UML_Diagram_Designer
         private Canvas canvas;
         AbstractDiagramElement _currentDiagramElement;
         AbstractDiagramElementFactory _currentFactory;
+        AbstractHandler _currentHandler;
 
         public Form1()
         {
@@ -29,46 +31,60 @@ namespace UML_Diagram_Designer
             canvas = Canvas.GetCanvas();
             canvas.SetCanvas(pictureBox1.Width, pictureBox1.Height);
             pictureBox1.Image = canvas._bitmap;
-            canvas.listAbstractDiagramElements = new List<AbstractDiagramElement>();
+            canvas._pictureBox = pictureBox1;
+            canvas._listAbstractDiagramElements = new List<AbstractDiagramElement>();
+            canvas.SetPenParameters(colorDialog.Color, thicknessTrackBar.Value);
             _currentFactory = new AssociationRelationshipFactory();
+            _currentHandler = new DrawHandler(_currentFactory);
+            
         }
         private void associationButton_Click(object sender, EventArgs e)
         {
             _currentFactory = new AssociationRelationshipFactory();
+            _currentHandler = new DrawHandler(_currentFactory);
         }
         private void inheritanceButton_Click(object sender, EventArgs e)
         {
             _currentFactory = new InheritanceRelationshipFactory();
+            _currentHandler = new DrawHandler(_currentFactory);
         }
         private void realizationButton_Click(object sender, EventArgs e)
         {
             _currentFactory = new RealizationRelationshipFactory();
+            _currentHandler = new DrawHandler(_currentFactory);
         }
         private void aggregationButton_Click(object sender, EventArgs e)
         {
             _currentFactory = new AggregationRelationshipFactory();
+            _currentHandler = new DrawHandler(_currentFactory);
         }
         private void compositionButton_Click(object sender, EventArgs e)
         {
             _currentFactory = new CompositionRelationshipFactory();
+            _currentHandler = new DrawHandler(_currentFactory);
         }
         private void classButton_Click(object sender, EventArgs e)
         {
             _isSelect = false;
 
             _currentFactory = new UMLClassFactory();
+            _currentHandler = new DrawHandler(_currentFactory);
         }
         private void clearButton_Click(object sender, EventArgs e)
         {
             _isMouseMoving = false;
             _isMoveButtonClicked = false;
             canvas._graphics.Clear(Color.White);
-            canvas.listAbstractDiagramElements.Clear();
-            pictureBox1.Invalidate();
+            canvas._listAbstractDiagramElements.Clear();
+            canvas._pictureBox.Invalidate();
         }
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            _currentDiagramElement = null;
+            if (_currentHandler is DrawHandler)
+            {
+                _currentHandler.MouseDown(e.Location);
+            }
+            //_currentDiagramElement = null;
             //if (_isSelect)
             //{
             //    foreach (var element in canvas.listAbstractDiagramElements)
@@ -91,61 +107,72 @@ namespace UML_Diagram_Designer
             //            break;
             //        }
             //    }
-                //_pointForMove = e.Location;
-                //_isMouseMoving = true;
-            }
-            else if (e.Button == MouseButtons.Left)
-            {
-                canvas.SetPenParameters(colorDialog.Color, thicknessTrackBar.Value);
-                _currentDiagramElement = _currentFactory.GetElement(canvas.PenColor, canvas.PenSize);
-                _currentDiagramElement.StartPoint = e.Location;
-                _isMouseMoving = true;
-            }
-            _isSelect = false;
+            //_pointForMove = e.Location;
+            //_isMouseMoving = true;
+            //}
+            //else if (e.Button == MouseButtons.Left)
+            //{
+            //    canvas.SetPenParameters(colorDialog.Color, thicknessTrackBar.Value);
+            //    _currentDiagramElement = _currentFactory.GetElement(canvas.PenColor, canvas.PenSize);
+            //    _currentDiagramElement.StartPoint = e.Location;
+            _isMouseMoving = true;
+            //}
+            //_isSelect = false;
         }
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (_isMouseMoving)
+
+            if (_currentHandler is DrawHandler)
             {
-                if (_isMoveButtonClicked)
-                {
-                    if (!(_currentDiagramElement is null))
-                    {
-                        _currentDiagramElement.Move(e.X - _pointForMove.X, e.Y - _pointForMove.Y);
-                        _pointForMove = e.Location;
-                    }
-                }
-                else
-                {
-                    _currentDiagramElement.EndPoint = e.Location;
-                }
-                pictureBox1.Invalidate();
+                _currentHandler.MouseMove(e.Location);
             }
+            //else if (_isMouseMoving)
+            //{
+            //    if (_isMoveButtonClicked)
+            //    {
+            //        if (!(_currentDiagramElement is null))
+            //        {
+            //            _currentDiagramElement.Move(e.X - _pointForMove.X, e.Y - _pointForMove.Y);
+            //            _pointForMove = e.Location;
+            //        }
+            //    }
+                //else
+                //{
+                //    _currentDiagramElement.EndPoint = e.Location;
+                //}
+                canvas._pictureBox.Invalidate();
+            
         }
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
-            if (_isMouseMoving == true)
+            if (_isMouseMoving)
             {
-                if (!(_currentDiagramElement is null))
-                {
-                    canvas.SetPenParameters(_currentDiagramElement.ObjectPenColor, _currentDiagramElement.ObjectPenWidth);
-                    canvas._graphics.Clear(pictureBox1.BackColor);
-                    _currentDiagramElement.Draw(canvas);
-                }
-                foreach (var element in canvas.listAbstractDiagramElements)
-                {
-                    canvas.SetPenParameters(element.ObjectPenColor, element.ObjectPenWidth);
-                    element.Draw(canvas);
-                }
+                _currentHandler.Paint();
+                canvas.RedrawElementsFromElementsList();
             }
+
+            //{
+            //    if (!(_currentDiagramElement is null))
+            //    {
+            //        canvas.SetPenParameters(_currentDiagramElement.ObjectPenColor, _currentDiagramElement.ObjectPenWidth);
+            //        canvas._graphics.Clear(pictureBox1.BackColor);
+            //        _currentDiagramElement.Draw(canvas);
+            //    }
+            //    foreach (var element in canvas.listAbstractDiagramElements)
+            //    {
+            //        canvas.SetPenParameters(element.ObjectPenColor, element.ObjectPenWidth);
+            //        element.Draw(canvas);
+            //    }
+            //}
         }
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            if (_isMouseMoving)
-            {
-                canvas.listAbstractDiagramElements.Add(_currentDiagramElement);
-            }
-            _isMoveButtonClicked = false;
+            _currentHandler.MouseUp();
+            //if (_isMouseMoving)
+            //{
+            //    canvas.listAbstractDiagramElements.Add(_currentDiagramElement);
+            //}
+            //_isMoveButtonClicked = false;
             _isMouseMoving = false;
         }
         private void buttonMove_Click(object sender, EventArgs e)
@@ -175,7 +202,7 @@ namespace UML_Diagram_Designer
         private void BtnTextBoxEnter_Click(object sender, EventArgs e)
         {
             _currentDiagramElement.SaveElementText(textBox1.Text);
-            pictureBox1.Invalidate();
+            canvas._pictureBox.Invalidate();
         }
 
         private void BtnSelectElement_Click(object sender, EventArgs e)
@@ -183,29 +210,29 @@ namespace UML_Diagram_Designer
             _isSelect = true;
         }
 
-        private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
-        {
-            if(e.Button == MouseButtons.Left)
-            {
-                foreach (var element in canvas.listAbstractDiagramElements)
-                {
-                    if (element.CheckIfTheObjectIsClicked(e.Location))
-                    {
-                        _currentDiagramElement = element;
-                        canvas.listAbstractDiagramElements.Remove(element);
-                        break;
-                    }
-                }
+        //private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
+        //{
+        //    if (e.Button == MouseButtons.Left)
+        //    {
+        //        foreach (var element in canvas._listAbstractDiagramElements)
+        //        {
+        //            if (element.CheckIfTheObjectIsClicked(e.Location))
+        //            {
+        //                _currentDiagramElement = element;
+        //                canvas._listAbstractDiagramElements.Remove(element);
+        //                break;
+        //            }
+        //        }
 
-                if(!(_currentDiagramElement is null))
-                {
-                    _currentDiagramElement.ObjectPenColor = colorDialog.Color;
-                    _currentDiagramElement.ObjectPenWidth = thicknessTrackBar.Value;
-                    canvas.listAbstractDiagramElements.Add(_currentDiagramElement);
-                    _currentDiagramElement.Draw(canvas);
-                    pictureBox1.Invalidate();
-                }
-            }
-        }
+        //        if (!(_currentDiagramElement is null))
+        //        {
+        //            _currentDiagramElement.ObjectPenColor = colorDialog.Color;
+        //            _currentDiagramElement.ObjectPenWidth = thicknessTrackBar.Value;
+        //            canvas._listAbstractDiagramElements.Add(_currentDiagramElement);
+        //            _currentDiagramElement.Draw(canvas);
+        //            canvas._pictureBox.Invalidate();
+        //        }
+        //    }
+        //}
     }
 }

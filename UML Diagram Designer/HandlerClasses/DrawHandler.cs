@@ -9,35 +9,41 @@ using UML_Diagram_Designer.FactoryClasses;
 
 namespace UML_Diagram_Designer.HandlerClasses
 {
-    class DrawHandler
+    class DrawHandler : AbstractHandler
     {
         public Canvas canvas = Canvas.GetCanvas();
-        public AbstractDiagramElement _currentDiagramElement;
+
         public DrawHandler(AbstractDiagramElementFactory diagramFactory)
         {
-            _currentDiagramElement = diagramFactory.GetElement(canvas.PenColor, canvas.PenSize);
+            _currentFactory = diagramFactory;
         }
 
-        public void MouseClick(Point point)
+        public override void MouseDown(Point point)
         {
-            throw new NotImplementedException();
-        }
-
-        public void MouseDown(Point point)
-        {
-            canvas.SetPenParameters(colorDialog.Color, thicknessTrackBar.Value);
+            canvas.SetPenParameters(canvas.PenColor, canvas.PenSize);
             _currentDiagramElement = _currentFactory.GetElement(canvas.PenColor, canvas.PenSize);
             _currentDiagramElement.StartPoint = point;
         }
 
-        public void MouseMove(Point point)
+        public override void MouseMove(Point point)
         {
-            throw new NotImplementedException();
+            if(!(_currentDiagramElement is null))
+            {
+                _currentDiagramElement.EndPoint = point;
+            }
         }
 
-        public void MouseUp(Point point)
+        public override void Paint()
         {
-            throw new NotImplementedException();
+            canvas.SetPenParameters(_currentDiagramElement.ObjectPenColor, _currentDiagramElement.ObjectPenWidth);
+            canvas._graphics.Clear(canvas._pictureBox.BackColor);
+            _currentDiagramElement.Draw(canvas);
+        }
+
+        public override void MouseUp()
+        {
+            canvas._listAbstractDiagramElements.Add(_currentDiagramElement);
+            _currentDiagramElement = null;
         }
     }
 }
