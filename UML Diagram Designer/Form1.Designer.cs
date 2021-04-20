@@ -54,6 +54,7 @@ namespace UML_Diagram_Designer
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.openDeserializeFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.btnSaveImage = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thicknessTrackBar)).BeginInit();
             this.SuspendLayout();
@@ -268,11 +269,22 @@ namespace UML_Diagram_Designer
             this.openDeserializeFileDialog.Filter = "UML files|*.uml";
             this.openDeserializeFileDialog.Title = "Open UML File";
             // 
+            // btnSaveImage
+            // 
+            this.btnSaveImage.Location = new System.Drawing.Point(171, 539);
+            this.btnSaveImage.Name = "btnSaveImage";
+            this.btnSaveImage.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveImage.TabIndex = 24;
+            this.btnSaveImage.Text = "SaveImage";
+            this.btnSaveImage.UseVisualStyleBackColor = true;
+            this.btnSaveImage.Click += new System.EventHandler(this.btnSaveImage_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(946, 574);
+            this.Controls.Add(this.btnSaveImage);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnEditClassText);
@@ -328,6 +340,7 @@ namespace UML_Diagram_Designer
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.OpenFileDialog openDeserializeFileDialog;
+        private System.Windows.Forms.Button btnSaveImage;
     }
 }
 

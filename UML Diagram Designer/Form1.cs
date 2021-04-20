@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Text.Json;
 using System.Windows.Forms;
@@ -233,11 +234,12 @@ namespace UML_Diagram_Designer
 
         private void button1_Click(object sender, EventArgs e)
         {
+            saveSerializeFileDialog.Title = "Save UML File";
+            saveSerializeFileDialog.Filter = "UML files(*.uml)|*.uml";
             if (saveSerializeFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (saveSerializeFileDialog.FileName != null)
+                if (saveSerializeFileDialog.FileName != string.Empty)
                 {
-
                     string filename = saveSerializeFileDialog.FileName;
                     string jsonString = JsonSerializer.Serialize(listAbstractDiagramElements);
                     jsonString = JsonSerializer.Serialize(listAbstractDiagramElements);
@@ -251,6 +253,8 @@ namespace UML_Diagram_Designer
 
         private void button2_Click(object sender, EventArgs e)
         {
+            openDeserializeFileDialog.Title = "Open UML File";
+            openDeserializeFileDialog.Filter = "UML files(*.uml)|*.uml";
             if (openDeserializeFileDialog.ShowDialog() == DialogResult.OK)
             {
                 if (openDeserializeFileDialog.FileName != null)
@@ -259,6 +263,19 @@ namespace UML_Diagram_Designer
                     string jsonString = File.ReadAllText(filename);
                     listAbstractDiagramElements = JsonSerializer.Deserialize<List<AbstractDiagramElement>>(jsonString);
                     MessageBox.Show("Data has been opened from file!!!");
+                }
+            }
+        }
+
+        private void btnSaveImage_Click(object sender, EventArgs e)
+        {
+            saveSerializeFileDialog.Filter = "JPG Image(*.jpeg)|*.jpg|BMP Image(*.bmp)|*.bmp";
+            saveSerializeFileDialog.Title = "Save Image File";
+            if (saveSerializeFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (saveSerializeFileDialog.FileName != string.Empty)
+                {
+                    pictureBox1.Image.Save(saveSerializeFileDialog.FileName);
                 }
             }
         }
