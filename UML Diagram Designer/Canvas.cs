@@ -18,18 +18,18 @@ namespace UML_Diagram_Designer
         public Brush _brush;
         public Font _font;
         public List<AbstractDiagramElement> _listAbstractDiagramElements;
-        private float _penSize;
+        private float _penWidth;
         private Color _penColor;
         public float PenSize
         {
             get
             {
-                return _penSize;
+                return _penWidth;
             }
             set
             {
-                _penSize = value;
-                _pen.Width = _penSize;
+                _penWidth = value;
+                _pen.Width = _penWidth;
             }
         }
         public Color PenColor
@@ -56,9 +56,9 @@ namespace UML_Diagram_Designer
         {
             _bitmap = new Bitmap(width, height);
             _graphics = Graphics.FromImage(_bitmap);
-            _pen = new Pen(Color.Black, 3);
-            _penColor = _pen.Color;
-            _penSize = _pen.Width;
+            _pen = new Pen(_penColor, _penWidth/*Color.Black, 3*/);
+            //_penColor = _pen.Color;
+            //_penWidth = _pen.Width;
             _brush = new SolidBrush(Color.Black);
             _font = new Font("Times New Roman", 12);
         }

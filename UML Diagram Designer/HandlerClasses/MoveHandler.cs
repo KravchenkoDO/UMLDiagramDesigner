@@ -1,63 +1,63 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Drawing;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-//using System.Windows.Forms;
-//using UML_Diagram_Designer.FactoryClasses;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using UML_Diagram_Designer.FactoryClasses;
 
-//namespace UML_Diagram_Designer.HandlerClasses
-//{
-//    class MoveHandler : AbstractHandler
-//    {
-//        public Canvas canvas = Canvas.GetCanvas();
-//        public AbstractDiagramElement _currentDiagramElement;
-//        public Point _pointForMove;
-//        public MoveHandler(AbstractDiagramElementFactory diagramFactory)
-//        {
-//            _currentDiagramElement = diagramFactory.GetElement(canvas.PenColor, canvas.PenSize);
-//        }
-//        public void MouseClick(Point point)
-//        {
-//            throw new NotImplementedException();
-//        }
+namespace UML_Diagram_Designer.HandlerClasses
+{
+    class MoveHandler : AbstractHandler //баг: если квадрат на одной оси Y с кончиком стрелки, то иногда выбирается квадрат, а не стрелка
+    {
+        public Canvas canvas = Canvas.GetCanvas();
+        public Point _pointForMove;
 
-//        public void MouseDown(Point point)
-//        {
-//            foreach (var element in canvas.listAbstractDiagramElements)
-//            {
-//                if (element.CheckIfTheObjectIsClicked(point))
-//                {
-//                    _currentDiagramElement = element;
-//                    canvas.listAbstractDiagramElements.Remove(element);
-//                    break;
-//                }
-//            }
-//            _pointForMove = point;
-//        }
+        public override void MouseDown(Point point)
+        {
+            foreach (var element in canvas._listAbstractDiagramElements)
+            {
+                if (element.CheckIfTheObjectIsClicked(point))
+                {
+                    _currentDiagramElement = element;
+                    canvas._listAbstractDiagramElements.Remove(element);
+                    break;
+                }
+            }
+            _pointForMove = point;
+        }
 
-//        public void MouseMove(Point point)
-//        {
-//            _currentDiagramElement.EndPoint = point;
-//        }
+        public override void MouseMove(Point point)
+        {
+            if (!(_currentDiagramElement is null))
+            {
+                _currentDiagramElement.Move(point.X - _pointForMove.X, point.Y - _pointForMove.Y);
+                _pointForMove = point;
+            }
+        }
 
-//        public void Paint()
-//        {
-//            canvas.SetPenParameters(_currentDiagramElement.ObjectPenColor, _currentDiagramElement.ObjectPenWidth);
-//            canvas._graphics.Clear(canvas._pictureBox.BackColor);
-//            _currentDiagramElement.Draw(canvas);
+        public override void Paint()
+        {
+            if (!(_currentDiagramElement is null))
+            {
+                canvas.SetPenParameters(_currentDiagramElement.ObjectPenColor, _currentDiagramElement.ObjectPenWidth);
+                canvas._graphics.Clear(canvas._pictureBox.BackColor);
+                _currentDiagramElement.Draw(canvas);
 
-//            foreach (var element in canvas.listAbstractDiagramElements)
-//            {
-//                canvas.SetPenParameters(element.ObjectPenColor, element.ObjectPenWidth);
-//                element.Draw(canvas);
-//            }
-//        }
+                foreach (var element in canvas._listAbstractDiagramElements)
+                {
+                    canvas.SetPenParameters(element.ObjectPenColor, element.ObjectPenWidth);
+                    element.Draw(canvas);
+                }
+            }
+            
+        }
 
-//        public void MouseUp()
-//        {
-//            canvas.listAbstractDiagramElements.Add(_currentDiagramElement);
-//        }
-//    }
-//}
+        public override void MouseUp()
+        {
+            canvas._listAbstractDiagramElements.Add(_currentDiagramElement);
+            _currentDiagramElement = null;
+        }
+    }
+}

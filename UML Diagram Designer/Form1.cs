@@ -12,13 +12,13 @@ namespace UML_Diagram_Designer
     public partial class Form1 : Form
     {
         bool _isMouseMoving = false;
-        bool _isMoveButtonClicked = false;
-        bool _isSelect = false;
-        Point _pointForMove;
-        private int _width = 6;
-        private Color _color = Color.Black;
+        //bool _isMoveButtonClicked = false;
+        //bool _isSelect = false;
+        //Point _pointForMove;
+        //private int _width = 6;
+        //private Color _color = Color.Black;
         private Canvas canvas;
-        AbstractDiagramElement _currentDiagramElement;
+        //AbstractDiagramElement _currentDiagramElement;
         AbstractDiagramElementFactory _currentFactory;
         AbstractHandler _currentHandler;
 
@@ -36,7 +36,7 @@ namespace UML_Diagram_Designer
             canvas.SetPenParameters(colorDialog.Color, thicknessTrackBar.Value);
             _currentFactory = new AssociationRelationshipFactory();
             _currentHandler = new DrawHandler(_currentFactory);
-            
+
         }
         private void associationButton_Click(object sender, EventArgs e)
         {
@@ -65,7 +65,7 @@ namespace UML_Diagram_Designer
         }
         private void classButton_Click(object sender, EventArgs e)
         {
-            _isSelect = false;
+            //_isSelect = false;
 
             _currentFactory = new UMLClassFactory();
             _currentHandler = new DrawHandler(_currentFactory);
@@ -73,17 +73,15 @@ namespace UML_Diagram_Designer
         private void clearButton_Click(object sender, EventArgs e)
         {
             _isMouseMoving = false;
-            _isMoveButtonClicked = false;
+            //_isMoveButtonClicked = false;
             canvas._graphics.Clear(Color.White);
             canvas._listAbstractDiagramElements.Clear();
             canvas._pictureBox.Invalidate();
         }
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            if (_currentHandler is DrawHandler)
-            {
-                _currentHandler.MouseDown(e.Location);
-            }
+            _currentHandler.MouseDown(e.Location);
+
             //_currentDiagramElement = null;
             //if (_isSelect)
             //{
@@ -121,11 +119,8 @@ namespace UML_Diagram_Designer
         }
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
+            _currentHandler.MouseMove(e.Location);
 
-            if (_currentHandler is DrawHandler)
-            {
-                _currentHandler.MouseMove(e.Location);
-            }
             //else if (_isMouseMoving)
             //{
             //    if (_isMoveButtonClicked)
@@ -136,12 +131,12 @@ namespace UML_Diagram_Designer
             //            _pointForMove = e.Location;
             //        }
             //    }
-                //else
-                //{
-                //    _currentDiagramElement.EndPoint = e.Location;
-                //}
-                canvas._pictureBox.Invalidate();
-            
+            //else
+            //{
+            //    _currentDiagramElement.EndPoint = e.Location;
+            //}
+            canvas._pictureBox.Invalidate();
+
         }
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
@@ -150,7 +145,6 @@ namespace UML_Diagram_Designer
                 _currentHandler.Paint();
                 canvas.RedrawElementsFromElementsList();
             }
-
             //{
             //    if (!(_currentDiagramElement is null))
             //    {
@@ -177,7 +171,8 @@ namespace UML_Diagram_Designer
         }
         private void buttonMove_Click(object sender, EventArgs e)
         {
-            _isMoveButtonClicked = true;
+            //_isMoveButtonClicked = true;
+            _currentHandler = new MoveHandler();
         }
         private void ColorButton_Click(object sender, EventArgs e)
         {
@@ -201,13 +196,13 @@ namespace UML_Diagram_Designer
 
         private void BtnTextBoxEnter_Click(object sender, EventArgs e)
         {
-            _currentDiagramElement.SaveElementText(textBox1.Text);
+            //_currentDiagramElement.SaveElementText(textBox1.Text);
             canvas._pictureBox.Invalidate();
         }
 
         private void BtnSelectElement_Click(object sender, EventArgs e)
         {
-            _isSelect = true;
+            //_isSelect = true;
         }
 
         //private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
