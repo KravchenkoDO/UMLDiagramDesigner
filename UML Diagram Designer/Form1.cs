@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
+using System.Text.Json;
 using System.Windows.Forms;
 using UML_Diagram_Designer.FactoryClasses;
 using UML_Diagram_Designer.FactoryClasses.ClassBlockFactories;
@@ -187,7 +189,7 @@ namespace UML_Diagram_Designer
 
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
-            if(e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
             {
                 foreach (var element in listAbstractDiagramElements)
                 {
@@ -199,7 +201,7 @@ namespace UML_Diagram_Designer
                     }
                 }
 
-                if(!(_currentDiagramElement is null))
+                if (!(_currentDiagramElement is null))
                 {
                     _currentDiagramElement.ObjectPenColor = colorDialog.Color;
                     _currentDiagramElement.ObjectPenWidth = thicknessTrackBar.Value;
@@ -214,8 +216,8 @@ namespace UML_Diagram_Designer
         {
             if (!(_currentClassTextList is null))
             {
-            EditClassTextForm editClassTextForm = new EditClassTextForm(_currentClassTextList);
-            editClassTextForm.ShowDialog();
+                EditClassTextForm editClassTextForm = new EditClassTextForm(_currentClassTextList);
+                editClassTextForm.ShowDialog();
             }
         }
 
@@ -226,6 +228,38 @@ namespace UML_Diagram_Designer
             {
                 canvas.Font = fontDialog1.Font;
                 textBox1.Font = fontDialog1.Font;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (saveSerializeFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (saveSerializeFileDialog.FileName != null)
+                {
+
+                    string filename = saveSerializeFileDialog.FileName;
+                    string jsonString = JsonSerializer.Serialize(listAbstractDiagramElements);
+                    jsonString = JsonSerializer.Serialize(listAbstractDiagramElements);
+                    File.WriteAllText(filename, jsonString);
+                    //FileStream fileStream = new FileStream(filename, FileMode.OpenOrCreate);
+                    //JsonSerializer.Serialize<List<AbstractDiagramElement>>(fileStream, listAbstractDiagramElements);
+                    MessageBox.Show("Data has been saved to file!!!");
+                }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (openDeserializeFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (openDeserializeFileDialog.FileName != null)
+                {
+                    string filename = openDeserializeFileDialog.FileName;
+                    string jsonString = File.ReadAllText(filename);
+                    listAbstractDiagramElements = JsonSerializer.Deserialize<List<AbstractDiagramElement>>(jsonString);
+                    MessageBox.Show("Data has been opened from file!!!");
+                }
             }
         }
     }

@@ -50,6 +50,10 @@ namespace UML_Diagram_Designer
             this.btnSelectElement = new System.Windows.Forms.Button();
             this.btnEditClassText = new System.Windows.Forms.Button();
             this.btnFont = new System.Windows.Forms.Button();
+            this.saveSerializeFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.openDeserializeFileDialog = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thicknessTrackBar)).BeginInit();
             this.SuspendLayout();
@@ -167,7 +171,7 @@ namespace UML_Diagram_Designer
             this.thicknessTrackBar.Location = new System.Drawing.Point(12, 357);
             this.thicknessTrackBar.Minimum = 2;
             this.thicknessTrackBar.Name = "thicknessTrackBar";
-            this.thicknessTrackBar.Size = new System.Drawing.Size(187, 45);
+            this.thicknessTrackBar.Size = new System.Drawing.Size(187, 42);
             this.thicknessTrackBar.TabIndex = 18;
             this.thicknessTrackBar.Value = 2;
             this.thicknessTrackBar.Scroll += new System.EventHandler(this.ThicknessTrackBar_Scroll);
@@ -234,11 +238,43 @@ namespace UML_Diagram_Designer
             this.btnFont.UseVisualStyleBackColor = true;
             this.btnFont.Click += new System.EventHandler(this.BtnFont_Click);
             // 
+            // saveSerializeFileDialog
+            // 
+            this.saveSerializeFileDialog.Filter = "UML files|*.uml";
+            this.saveSerializeFileDialog.Title = "Save UML File";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(9, 539);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 23;
+            this.button1.Text = "Save";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(90, 539);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 23;
+            this.button2.Text = "Open";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // openDeserializeFileDialog
+            // 
+            this.openDeserializeFileDialog.Filter = "UML files|*.uml";
+            this.openDeserializeFileDialog.Title = "Open UML File";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(946, 521);
+            this.ClientSize = new System.Drawing.Size(946, 574);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnEditClassText);
             this.Controls.Add(this.btnFont);
             this.Controls.Add(this.btnSelectElement);
@@ -288,6 +324,10 @@ namespace UML_Diagram_Designer
         private System.Windows.Forms.Button btnSelectElement;
         private System.Windows.Forms.Button btnEditClassText;
         private System.Windows.Forms.Button btnFont;
+        private System.Windows.Forms.SaveFileDialog saveSerializeFileDialog;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.OpenFileDialog openDeserializeFileDialog;
     }
 }
 
