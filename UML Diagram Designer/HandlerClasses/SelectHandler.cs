@@ -4,16 +4,15 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using UML_Diagram_Designer.FactoryClasses;
 
 namespace UML_Diagram_Designer.HandlerClasses
 {
-    class ChangeColorAndSizeHandler
+    class SelectHandler
     {
         public Canvas canvas = Canvas.GetCanvas();
         public AbstractDiagramElement _currentDiagramElement;
-        public ChangeColorAndSizeHandler(AbstractDiagramElementFactory diagramFactory)
+        public SelectHandler(AbstractDiagramElementFactory diagramFactory)
         {
             _currentDiagramElement = diagramFactory.GetElement(canvas.PenColor, canvas.PenSize);
         }
@@ -25,7 +24,14 @@ namespace UML_Diagram_Designer.HandlerClasses
 
         public void MouseDown(Point point)
         {
-            throw new NotImplementedException();
+            foreach (var element in canvas.listAbstractDiagramElements)
+            {
+                if (element.CheckIfTheObjectIsClicked(point))
+                {
+                    _currentDiagramElement = element;
+                    break;
+                }
+            }
         }
 
         public void MouseMove(Point point)

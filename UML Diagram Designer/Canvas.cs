@@ -15,6 +15,7 @@ namespace UML_Diagram_Designer
         public Pen _pen;
         public Brush _brush;
         public Font _font;
+        public List<AbstractDiagramElement> listAbstractDiagramElements;
         private float _penSize;
         private Color _penColor;
         public float PenSize
