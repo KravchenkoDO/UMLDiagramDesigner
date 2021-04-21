@@ -24,7 +24,7 @@ namespace UML_Diagram_Designer.HandlerClasses
             }
         }
 
-        public override AbstractDiagramElement ReturnElement() //не забыть отбить ошибку с null где-то 
+        public override AbstractDiagramElement ReturnElement()
         {
             return _currentDiagramElement;
         }

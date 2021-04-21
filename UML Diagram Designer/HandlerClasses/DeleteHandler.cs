@@ -17,6 +17,7 @@ namespace UML_Diagram_Designer.HandlerClasses
                 if (element.CheckIfTheObjectIsClicked(point))
                 {
                     canvas._listAbstractDiagramElements.Remove(element);
+                    canvas._graphics.Clear(Color.White);
                     canvas.RedrawElementsFromElementsList();
                     break;
                 }

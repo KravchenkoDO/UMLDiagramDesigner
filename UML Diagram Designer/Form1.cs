@@ -123,7 +123,7 @@ namespace UML_Diagram_Designer
 
         private void BtnTextBoxEnter_Click(object sender, EventArgs e)
         {
-            //_currentDiagramElement.SaveElementText(textBox1.Text);
+            _currentClassTextList = _selectedElement.SaveElementText(textBox1.Text);
             canvas._pictureBox.Invalidate();
         }
 

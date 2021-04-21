@@ -18,7 +18,7 @@ namespace UML_Diagram_Designer.HandlerClasses
         {
             foreach (var element in canvas._listAbstractDiagramElements)
             {
-                if (element.CheckIfTheObjectIsClicked(point))
+                if (!(element is null) && element.CheckIfTheObjectIsClicked(point))
                 {
                     _currentDiagramElement = element;
                     canvas._listAbstractDiagramElements.Remove(element);
@@ -51,12 +51,16 @@ namespace UML_Diagram_Designer.HandlerClasses
                     element.Draw(canvas);
                 }
             }
-            
+
         }
 
         public override void MouseUp()
         {
-            canvas._listAbstractDiagramElements.Add(_currentDiagramElement);
+            if (!(_currentDiagramElement is null))
+            {
+                canvas._listAbstractDiagramElements.Add(_currentDiagramElement);
+
+            }
             _currentDiagramElement = null;
         }
 
