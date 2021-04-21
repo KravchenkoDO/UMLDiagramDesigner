@@ -176,7 +176,23 @@ namespace UML_Diagram_Designer
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openDeserializeFileDialog.Title = "Open UML File";
+            openDeserializeFileDialog.Filter = "UML files(*.uml)|*.uml";
+            if (openDeserializeFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (openDeserializeFileDialog.FileName != null)
+                {
+                    string filename = openDeserializeFileDialog.FileName;
+                    string jsonString = File.ReadAllText(filename);
+                    canvas._listAbstractDiagramElements = JsonSerializer.Deserialize<List<AbstractDiagramElement>>(jsonString);
+                    MessageBox.Show("Data has been opened from file!!!");
+                }
+            }
+        }
+
+        private void uMLToolStripMenuItem_Click(object sender, EventArgs e)
         {
             saveSerializeFileDialog.Title = "Save UML File";
             saveSerializeFileDialog.Filter = "UML files(*.uml)|*.uml";
@@ -195,23 +211,7 @@ namespace UML_Diagram_Designer
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            openDeserializeFileDialog.Title = "Open UML File";
-            openDeserializeFileDialog.Filter = "UML files(*.uml)|*.uml";
-            if (openDeserializeFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                if (openDeserializeFileDialog.FileName != null)
-                {
-                    string filename = openDeserializeFileDialog.FileName;
-                    string jsonString = File.ReadAllText(filename);
-                    canvas._listAbstractDiagramElements = JsonSerializer.Deserialize<List<AbstractDiagramElement>>(jsonString);
-                    MessageBox.Show("Data has been opened from file!!!");
-                }
-            }
-        }
-
-        private void btnSaveImage_Click(object sender, EventArgs e)
+        private void jPGToolStripMenuItem_Click(object sender, EventArgs e)
         {
             saveSerializeFileDialog.Filter = "JPG Image(*.jpeg)|*.jpg|BMP Image(*.bmp)|*.bmp";
             saveSerializeFileDialog.Title = "Save Image File";
@@ -222,6 +222,39 @@ namespace UML_Diagram_Designer
                     pictureBox1.Image.Save(saveSerializeFileDialog.FileName);
                 }
             }
+
         }
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Save the changes?", "Mesage", MessageBoxButtons.YesNo);
+            
+            if (ShowDialog()==DialogResult.Yes)
+            {
+                saveSerializeFileDialog.Title = "Save UML File";
+                saveSerializeFileDialog.Filter = "UML files(*.uml)|*.uml";
+                if (saveSerializeFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    if (saveSerializeFileDialog.FileName != string.Empty)
+                    {
+                        string filename = saveSerializeFileDialog.FileName;
+                        string jsonString = JsonSerializer.Serialize(canvas._listAbstractDiagramElements);
+                        jsonString = JsonSerializer.Serialize(canvas._listAbstractDiagramElements);
+                        File.WriteAllText(filename, jsonString);
+                        //FileStream fileStream = new FileStream(filename, FileMode.OpenOrCreate);
+                        //JsonSerializer.Serialize<List<AbstractDiagramElement>>(fileStream, listAbstractDiagramElements);
+                        MessageBox.Show("Data has been saved to file!!!");
+                    }
+                }
+            }
+            else if (ShowDialog() == DialogResult.No)
+            {
+                Close();
+            }
+
+
+        }
+
     }
 }
+
+        
