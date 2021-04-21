@@ -9,7 +9,7 @@ using UML_Diagram_Designer.FactoryClasses;
 
 namespace UML_Diagram_Designer.HandlerClasses
 {
-    class MoveHandler : AbstractHandler //баг: если квадрат на одной оси Y с кончиком стрелки, то иногда выбирается квадрат, а не стрелка
+    class MoveHandler : AbstractHandler
     {
         public Canvas canvas = Canvas.GetCanvas();
         public Point _pointForMove;
@@ -58,6 +58,13 @@ namespace UML_Diagram_Designer.HandlerClasses
         {
             canvas._listAbstractDiagramElements.Add(_currentDiagramElement);
             _currentDiagramElement = null;
+        }
+
+        public override void MouseClick(Point point) { }
+
+        public override AbstractDiagramElement ReturnElement()
+        {
+            throw new NotImplementedException();
         }
     }
 }

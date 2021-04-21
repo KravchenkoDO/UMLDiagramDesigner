@@ -18,7 +18,7 @@ namespace UML_Diagram_Designer
         //private int _width = 6;
         //private Color _color = Color.Black;
         private Canvas canvas;
-        //AbstractDiagramElement _currentDiagramElement;
+        AbstractDiagramElement _selectedElement;
         AbstractDiagramElementFactory _currentFactory;
         AbstractHandler _currentHandler;
 
@@ -143,7 +143,6 @@ namespace UML_Diagram_Designer
             if (_isMouseMoving)
             {
                 _currentHandler.Paint();
-                canvas.RedrawElementsFromElementsList();
             }
             //{
             //    if (!(_currentDiagramElement is null))
@@ -203,10 +202,17 @@ namespace UML_Diagram_Designer
         private void BtnSelectElement_Click(object sender, EventArgs e)
         {
             //_isSelect = true;
+            _currentHandler = new SelectHandler();
         }
 
-        //private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
-        //{
+        private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            _currentHandler.MouseClick(e.Location);
+
+            if(!(_currentHandler.ReturnElement() is null))
+            {
+                _selectedElement = _currentHandler.ReturnElement();
+            }
         //    if (e.Button == MouseButtons.Left)
         //    {
         //        foreach (var element in canvas._listAbstractDiagramElements)
@@ -228,6 +234,6 @@ namespace UML_Diagram_Designer
         //            canvas._pictureBox.Invalidate();
         //        }
         //    }
-        //}
+        }
     }
 }

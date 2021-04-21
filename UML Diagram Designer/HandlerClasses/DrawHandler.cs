@@ -38,12 +38,21 @@ namespace UML_Diagram_Designer.HandlerClasses
             canvas.SetPenParameters(_currentDiagramElement.ObjectPenColor, _currentDiagramElement.ObjectPenWidth);
             canvas._graphics.Clear(canvas._pictureBox.BackColor);
             _currentDiagramElement.Draw(canvas);
+            canvas.RedrawElementsFromElementsList();
+            canvas.SetPenParameters(_currentDiagramElement.ObjectPenColor, _currentDiagramElement.ObjectPenWidth);
         }
 
         public override void MouseUp()
         {
             canvas._listAbstractDiagramElements.Add(_currentDiagramElement);
             _currentDiagramElement = null;
+        }
+
+        public override void MouseClick(Point point) { }
+
+        public override AbstractDiagramElement ReturnElement()
+        {
+            throw new NotImplementedException();
         }
     }
 }

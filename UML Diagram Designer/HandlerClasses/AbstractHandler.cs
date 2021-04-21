@@ -16,5 +16,7 @@ namespace UML_Diagram_Designer.HandlerClasses
         public abstract void MouseMove(Point point);
         public abstract void MouseUp();
         public abstract void Paint();
+        public abstract void MouseClick(Point point);
+        public abstract AbstractDiagramElement ReturnElement();
     }
 }
