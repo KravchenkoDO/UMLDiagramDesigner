@@ -4,29 +4,32 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace UML_Diagram_Designer
 {
     public class Canvas
     {
         private static Canvas instance;
+        public PictureBox _pictureBox;
         public Bitmap _bitmap;
         public Graphics _graphics;
         public Pen _pen;
         public Brush _brush;
         public Font _font;
-        private float _penSize;
+        public List<AbstractDiagramElement> _listAbstractDiagramElements;
+        private float _penWidth;
         private Color _penColor;
         public float PenSize
         {
             get
             {
-                return _penSize;
+                return _penWidth;
             }
             set
             {
-                _penSize = value;
-                _pen.Width = _penSize;
+                _penWidth = value;
+                _pen.Width = _penWidth;
             }
         }
         public Color PenColor
@@ -66,9 +69,7 @@ namespace UML_Diagram_Designer
         {
             _bitmap = new Bitmap(width, height);
             _graphics = Graphics.FromImage(_bitmap);
-            _pen = new Pen(Color.Black, 3);
-            _penColor = _pen.Color;
-            _penSize = _pen.Width;
+            _pen = new Pen(_penColor, _penWidth);
             _brush = new SolidBrush(Color.Black);
             _font = new Font("Times New Roman", 12);
         }
@@ -87,6 +88,15 @@ namespace UML_Diagram_Designer
         public void SetFont(Font font)
         {
             Font = font;
+        }
+
+        public void RedrawElementsFromElementsList()
+        {
+            foreach (var element in _listAbstractDiagramElements)
+            {
+                SetPenParameters(element.ObjectPenColor, element.ObjectPenWidth);
+                element.Draw(instance);
+            }
         }
     }
 }

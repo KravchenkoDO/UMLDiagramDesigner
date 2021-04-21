@@ -48,6 +48,7 @@ namespace UML_Diagram_Designer
             this.btnTextBoxEnter = new System.Windows.Forms.Button();
             this.btnCancelTextEntering = new System.Windows.Forms.Button();
             this.btnSelectElement = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.btnEditClassText = new System.Windows.Forms.Button();
             this.btnFont = new System.Windows.Forms.Button();
             this.saveSerializeFileDialog = new System.Windows.Forms.SaveFileDialog();
@@ -172,7 +173,7 @@ namespace UML_Diagram_Designer
             this.thicknessTrackBar.Location = new System.Drawing.Point(12, 357);
             this.thicknessTrackBar.Minimum = 2;
             this.thicknessTrackBar.Name = "thicknessTrackBar";
-            this.thicknessTrackBar.Size = new System.Drawing.Size(187, 42);
+            this.thicknessTrackBar.Size = new System.Drawing.Size(187, 45);
             this.thicknessTrackBar.TabIndex = 18;
             this.thicknessTrackBar.Value = 2;
             this.thicknessTrackBar.Scroll += new System.EventHandler(this.ThicknessTrackBar_Scroll);
@@ -219,6 +220,16 @@ namespace UML_Diagram_Designer
             this.btnSelectElement.UseVisualStyleBackColor = true;
             this.btnSelectElement.Click += new System.EventHandler(this.BtnSelectElement_Click);
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(9, 515);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(93, 31);
+            this.btnDelete.TabIndex = 22;
+            this.btnDelete.Text = "Delete Elem";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
+            // 
             // btnEditClassText
             // 
             this.btnEditClassText.Location = new System.Drawing.Point(108, 434);
@@ -246,7 +257,7 @@ namespace UML_Diagram_Designer
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(9, 539);
+            this.button1.Location = new System.Drawing.Point(205, 531);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 23;
@@ -256,7 +267,7 @@ namespace UML_Diagram_Designer
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(90, 539);
+            this.button2.Location = new System.Drawing.Point(286, 531);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 23;
@@ -271,7 +282,7 @@ namespace UML_Diagram_Designer
             // 
             // btnSaveImage
             // 
-            this.btnSaveImage.Location = new System.Drawing.Point(171, 539);
+            this.btnSaveImage.Location = new System.Drawing.Point(367, 531);
             this.btnSaveImage.Name = "btnSaveImage";
             this.btnSaveImage.Size = new System.Drawing.Size(75, 23);
             this.btnSaveImage.TabIndex = 24;
@@ -284,6 +295,7 @@ namespace UML_Diagram_Designer
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(946, 574);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnSaveImage);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -334,6 +346,7 @@ namespace UML_Diagram_Designer
         private System.Windows.Forms.Button btnTextBoxEnter;
         private System.Windows.Forms.Button btnCancelTextEntering;
         private System.Windows.Forms.Button btnSelectElement;
+        private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnEditClassText;
         private System.Windows.Forms.Button btnFont;
         private System.Windows.Forms.SaveFileDialog saveSerializeFileDialog;
