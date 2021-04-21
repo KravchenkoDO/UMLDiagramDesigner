@@ -66,6 +66,7 @@
     <Compile Include="FactoryClasses\RelationshipFactories\RealizationRelationshipFactory.cs" />
     <Compile Include="HandlerClasses\AbstractHandler.cs" />
     <Compile Include="HandlerClasses\ChangeColorAndSizeHandler.cs" />
+    <Compile Include="HandlerClasses\DeleteHandler.cs" />
     <Compile Include="HandlerClasses\DrawHandler.cs" />
     <Compile Include="HandlerClasses\MoveHandler.cs" />
     <Compile Include="HandlerClasses\SelectHandler.cs" />

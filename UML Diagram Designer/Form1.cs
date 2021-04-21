@@ -205,35 +205,42 @@ namespace UML_Diagram_Designer
             _currentHandler = new SelectHandler();
         }
 
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            _currentHandler = new DeleteHandler();
+        }
+
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
             _currentHandler.MouseClick(e.Location);
 
-            if(!(_currentHandler.ReturnElement() is null))
+            if (!(_currentHandler.ReturnElement() is null))
             {
                 _selectedElement = _currentHandler.ReturnElement();
             }
-        //    if (e.Button == MouseButtons.Left)
-        //    {
-        //        foreach (var element in canvas._listAbstractDiagramElements)
-        //        {
-        //            if (element.CheckIfTheObjectIsClicked(e.Location))
-        //            {
-        //                _currentDiagramElement = element;
-        //                canvas._listAbstractDiagramElements.Remove(element);
-        //                break;
-        //            }
-        //        }
+            //    if (e.Button == MouseButtons.Left)
+            //    {
+            //        foreach (var element in canvas._listAbstractDiagramElements)
+            //        {
+            //            if (element.CheckIfTheObjectIsClicked(e.Location))
+            //            {
+            //                _currentDiagramElement = element;
+            //                canvas._listAbstractDiagramElements.Remove(element);
+            //                break;
+            //            }
+            //        }
 
-        //        if (!(_currentDiagramElement is null))
-        //        {
-        //            _currentDiagramElement.ObjectPenColor = colorDialog.Color;
-        //            _currentDiagramElement.ObjectPenWidth = thicknessTrackBar.Value;
-        //            canvas._listAbstractDiagramElements.Add(_currentDiagramElement);
-        //            _currentDiagramElement.Draw(canvas);
-        //            canvas._pictureBox.Invalidate();
-        //        }
-        //    }
+            //        if (!(_currentDiagramElement is null))
+            //        {
+            //            _currentDiagramElement.ObjectPenColor = colorDialog.Color;
+            //            _currentDiagramElement.ObjectPenWidth = thicknessTrackBar.Value;
+            //            canvas._listAbstractDiagramElements.Add(_currentDiagramElement);
+            //            _currentDiagramElement.Draw(canvas);
+            //            canvas._pictureBox.Invalidate();
+            //        }
+            //    }
         }
+
+        
     }
 }

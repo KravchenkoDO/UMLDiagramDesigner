@@ -48,6 +48,7 @@ namespace UML_Diagram_Designer
             this.btnTextBoxEnter = new System.Windows.Forms.Button();
             this.btnCancelTextEntering = new System.Windows.Forms.Button();
             this.btnSelectElement = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thicknessTrackBar)).BeginInit();
             this.SuspendLayout();
@@ -61,7 +62,6 @@ namespace UML_Diagram_Designer
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
-            //this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
@@ -212,11 +212,22 @@ namespace UML_Diagram_Designer
             this.btnSelectElement.UseVisualStyleBackColor = true;
             this.btnSelectElement.Click += new System.EventHandler(this.BtnSelectElement_Click);
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(12, 490);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(93, 31);
+            this.btnDelete.TabIndex = 22;
+            this.btnDelete.Text = "Delete Elem";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(946, 505);
+            this.ClientSize = new System.Drawing.Size(946, 533);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnSelectElement);
             this.Controls.Add(this.btnCancelTextEntering);
             this.Controls.Add(this.btnTextBoxEnter);
@@ -262,6 +273,7 @@ namespace UML_Diagram_Designer
         private System.Windows.Forms.Button btnTextBoxEnter;
         private System.Windows.Forms.Button btnCancelTextEntering;
         private System.Windows.Forms.Button btnSelectElement;
+        private System.Windows.Forms.Button btnDelete;
     }
 }
 
