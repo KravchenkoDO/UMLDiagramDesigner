@@ -56,9 +56,7 @@ namespace UML_Diagram_Designer
         {
             _bitmap = new Bitmap(width, height);
             _graphics = Graphics.FromImage(_bitmap);
-            _pen = new Pen(_penColor, _penWidth/*Color.Black, 3*/);
-            //_penColor = _pen.Color;
-            //_penWidth = _pen.Width;
+            _pen = new Pen(_penColor, _penWidth);
             _brush = new SolidBrush(Color.Black);
             _font = new Font("Times New Roman", 12);
         }

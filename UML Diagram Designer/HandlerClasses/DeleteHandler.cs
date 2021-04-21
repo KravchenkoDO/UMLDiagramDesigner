@@ -18,6 +18,7 @@ namespace UML_Diagram_Designer.HandlerClasses
                 {
                     canvas._listAbstractDiagramElements.Remove(element);
                     canvas.RedrawElementsFromElementsList();
+                    break;
                 }
             }
         }

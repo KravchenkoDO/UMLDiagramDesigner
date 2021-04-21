@@ -64,7 +64,7 @@ namespace UML_Diagram_Designer.HandlerClasses
 
         public override AbstractDiagramElement ReturnElement()
         {
-            throw new NotImplementedException();
+            return null;
         }
     }
 }
