@@ -26,7 +26,7 @@ namespace UML_Diagram_Designer.UMLClasses
             throw new NotImplementedException();
         }
 
-        public override void SaveElementText(string strText)
+        public override List<string> SaveElementText(string strText)
         {
             throw new NotImplementedException();
         }

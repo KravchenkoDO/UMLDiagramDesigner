@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Text.Json;
 using System.Windows.Forms;
 using UML_Diagram_Designer.HandlerClasses;
 using UML_Diagram_Designer.FactoryClasses;
@@ -15,6 +18,7 @@ namespace UML_Diagram_Designer
         private Canvas canvas;
         AbstractDiagramElement _selectedElement;
         AbstractDiagramElementFactory _currentFactory;
+        public List<string> _currentClassTextList;
         AbstractHandler _currentHandler;
 
         public Form1()
@@ -153,6 +157,71 @@ namespace UML_Diagram_Designer
             //    }
         }
 
-        
+        private void btnEditClassText_Click(object sender, EventArgs e)
+        {
+            if (!(_currentClassTextList is null))
+            {
+                EditClassTextForm editClassTextForm = new EditClassTextForm(_currentClassTextList);
+                editClassTextForm.ShowDialog();
+            }
+        }
+
+        private void BtnFont_Click(object sender, EventArgs e)
+        {
+            FontDialog fontDialog1 = new FontDialog();
+            if (!String.IsNullOrEmpty(textBox1.Text) && fontDialog1.ShowDialog() == DialogResult.OK)
+            {
+                canvas.Font = fontDialog1.Font;
+                textBox1.Font = fontDialog1.Font;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            saveSerializeFileDialog.Title = "Save UML File";
+            saveSerializeFileDialog.Filter = "UML files(*.uml)|*.uml";
+            if (saveSerializeFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (saveSerializeFileDialog.FileName != string.Empty)
+                {
+                    string filename = saveSerializeFileDialog.FileName;
+                    string jsonString = JsonSerializer.Serialize(listAbstractDiagramElements);
+                    jsonString = JsonSerializer.Serialize(listAbstractDiagramElements);
+                    File.WriteAllText(filename, jsonString);
+                    //FileStream fileStream = new FileStream(filename, FileMode.OpenOrCreate);
+                    //JsonSerializer.Serialize<List<AbstractDiagramElement>>(fileStream, listAbstractDiagramElements);
+                    MessageBox.Show("Data has been saved to file!!!");
+                }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            openDeserializeFileDialog.Title = "Open UML File";
+            openDeserializeFileDialog.Filter = "UML files(*.uml)|*.uml";
+            if (openDeserializeFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (openDeserializeFileDialog.FileName != null)
+                {
+                    string filename = openDeserializeFileDialog.FileName;
+                    string jsonString = File.ReadAllText(filename);
+                    listAbstractDiagramElements = JsonSerializer.Deserialize<List<AbstractDiagramElement>>(jsonString);
+                    MessageBox.Show("Data has been opened from file!!!");
+                }
+            }
+        }
+
+        private void btnSaveImage_Click(object sender, EventArgs e)
+        {
+            saveSerializeFileDialog.Filter = "JPG Image(*.jpeg)|*.jpg|BMP Image(*.bmp)|*.bmp";
+            saveSerializeFileDialog.Title = "Save Image File";
+            if (saveSerializeFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (saveSerializeFileDialog.FileName != string.Empty)
+                {
+                    pictureBox1.Image.Save(saveSerializeFileDialog.FileName);
+                }
+            }
+        }
     }
 }

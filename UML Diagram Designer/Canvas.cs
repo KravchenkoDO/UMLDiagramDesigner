@@ -44,6 +44,19 @@ namespace UML_Diagram_Designer
                 _pen.Color = _penColor;
             }
         }
+
+        public Font Font
+        {
+            get
+            {
+                return _font;
+            }
+            set
+            {
+                _font = value;
+                
+            }
+        }
         
         public static Canvas GetCanvas()
         {
@@ -74,7 +87,7 @@ namespace UML_Diagram_Designer
 
         public void SetFont(Font font)
         {
-            _font = font;
+            Font = font;
         }
 
         public void RedrawElementsFromElementsList()
