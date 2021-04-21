@@ -10,6 +10,10 @@ namespace UML_Diagram_Designer
 {
     public abstract class AbstractDiagramElement : IDrawable, ISelectable, IMoveable, IResizable, IChangeColors
     {
+        public AbstractDiagramElement()
+        {
+
+        }
         public Point StartPoint { get; set; }
         public Point EndPoint { get; set; }
         public Color ObjectPenColor { get; set; }
@@ -18,7 +22,6 @@ namespace UML_Diagram_Designer
         public abstract bool CheckIfTheObjectIsClicked(Point point);
         public abstract void Draw(Canvas painter);
         public abstract void Move(int deltaX, int deltaY);
-        public abstract void SaveElementText(string strText);
-       // public abstract void Resize(Point point);
+        public abstract List<string> SaveElementText(string strText);
     }
 }
