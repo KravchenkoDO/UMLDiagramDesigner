@@ -18,13 +18,13 @@ namespace UML_Diagram_Designer.ArrowParts
         protected override void GetCap()
         {
             GraphicsPath graphicsPath = new GraphicsPath();
-            PointF[] points = new PointF[]
+            Point[] points = new Point[]
             {
-                new PointF(0, -0.02f),
-                new PointF(2, 3),
-                new PointF(0, 6),
-                new PointF(-2, 3),
-                new PointF(0, -0.02f)
+                new Point(0, -1),
+                new Point(2, 2),
+                new Point(0, 5),
+                new Point(-2, 2),
+                new Point(0, -1)
             };
 
             graphicsPath.AddLines(points);

@@ -185,8 +185,8 @@ namespace UML_Diagram_Designer
                 if (saveSerializeFileDialog.FileName != string.Empty)
                 {
                     string filename = saveSerializeFileDialog.FileName;
-                    string jsonString = JsonSerializer.Serialize(listAbstractDiagramElements);
-                    jsonString = JsonSerializer.Serialize(listAbstractDiagramElements);
+                    string jsonString = JsonSerializer.Serialize(canvas._listAbstractDiagramElements);
+                    jsonString = JsonSerializer.Serialize(canvas._listAbstractDiagramElements);
                     File.WriteAllText(filename, jsonString);
                     //FileStream fileStream = new FileStream(filename, FileMode.OpenOrCreate);
                     //JsonSerializer.Serialize<List<AbstractDiagramElement>>(fileStream, listAbstractDiagramElements);
@@ -205,7 +205,7 @@ namespace UML_Diagram_Designer
                 {
                     string filename = openDeserializeFileDialog.FileName;
                     string jsonString = File.ReadAllText(filename);
-                    listAbstractDiagramElements = JsonSerializer.Deserialize<List<AbstractDiagramElement>>(jsonString);
+                    canvas._listAbstractDiagramElements = JsonSerializer.Deserialize<List<AbstractDiagramElement>>(jsonString);
                     MessageBox.Show("Data has been opened from file!!!");
                 }
             }

@@ -173,7 +173,7 @@ namespace UML_Diagram_Designer
             this.thicknessTrackBar.Location = new System.Drawing.Point(12, 357);
             this.thicknessTrackBar.Minimum = 2;
             this.thicknessTrackBar.Name = "thicknessTrackBar";
-            this.thicknessTrackBar.Size = new System.Drawing.Size(187, 42);
+            this.thicknessTrackBar.Size = new System.Drawing.Size(187, 45);
             this.thicknessTrackBar.TabIndex = 18;
             this.thicknessTrackBar.Value = 2;
             this.thicknessTrackBar.Scroll += new System.EventHandler(this.ThicknessTrackBar_Scroll);
@@ -222,7 +222,7 @@ namespace UML_Diagram_Designer
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(12, 490);
+            this.btnDelete.Location = new System.Drawing.Point(9, 515);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(93, 31);
             this.btnDelete.TabIndex = 22;
@@ -257,7 +257,7 @@ namespace UML_Diagram_Designer
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(9, 539);
+            this.button1.Location = new System.Drawing.Point(205, 531);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 23;
@@ -267,7 +267,7 @@ namespace UML_Diagram_Designer
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(90, 539);
+            this.button2.Location = new System.Drawing.Point(286, 531);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 23;
@@ -282,7 +282,7 @@ namespace UML_Diagram_Designer
             // 
             // btnSaveImage
             // 
-            this.btnSaveImage.Location = new System.Drawing.Point(171, 539);
+            this.btnSaveImage.Location = new System.Drawing.Point(367, 531);
             this.btnSaveImage.Name = "btnSaveImage";
             this.btnSaveImage.Size = new System.Drawing.Size(75, 23);
             this.btnSaveImage.TabIndex = 24;
@@ -294,9 +294,8 @@ namespace UML_Diagram_Designer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(946, 533);
-            this.Controls.Add(this.btnDelete);
             this.ClientSize = new System.Drawing.Size(946, 574);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnSaveImage);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
