@@ -56,6 +56,7 @@ namespace UML_Diagram_Designer
             this.button2 = new System.Windows.Forms.Button();
             this.openDeserializeFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.btnSaveImage = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thicknessTrackBar)).BeginInit();
             this.SuspendLayout();
@@ -290,11 +291,22 @@ namespace UML_Diagram_Designer
             this.btnSaveImage.UseVisualStyleBackColor = true;
             this.btnSaveImage.Click += new System.EventHandler(this.btnSaveImage_Click);
             // 
+            // btnEdit
+            // 
+            this.btnEdit.Location = new System.Drawing.Point(108, 515);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(91, 31);
+            this.btnEdit.TabIndex = 25;
+            this.btnEdit.Text = "EditElem";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(946, 574);
+            this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnSaveImage);
             this.Controls.Add(this.button2);
@@ -354,6 +366,7 @@ namespace UML_Diagram_Designer
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.OpenFileDialog openDeserializeFileDialog;
         private System.Windows.Forms.Button btnSaveImage;
+        private System.Windows.Forms.Button btnEdit;
     }
 }
 

@@ -146,16 +146,17 @@ namespace UML_Diagram_Designer
                 _selectedElement = _currentHandler.ReturnElement();
             }
 
-            //        if (!(_currentDiagramElement is null))
-            //        {
-            //            _currentDiagramElement.ObjectPenColor = colorDialog.Color;
-            //            _currentDiagramElement.ObjectPenWidth = thicknessTrackBar.Value;
-            //            canvas._listAbstractDiagramElements.Add(_currentDiagramElement);
-            //            _currentDiagramElement.Draw(canvas);
-            //            canvas._pictureBox.Invalidate();
-            //        }
-            //    }
+            //if (!(_selectedElement is null))//Test
+            //{
+            //    _selectedElement.ObjectPenColor = colorDialog.Color;
+            //    _selectedElement.ObjectPenWidth = thicknessTrackBar.Value;
+            //    canvas._listAbstractDiagramElements.Add(_selectedElement);
+            //    _selectedElement.Draw(canvas);
+            //    canvas._pictureBox.Invalidate();
+            //}
         }
+
+    
 
         private void btnEditClassText_Click(object sender, EventArgs e)
         {
@@ -222,6 +223,11 @@ namespace UML_Diagram_Designer
                     pictureBox1.Image.Save(saveSerializeFileDialog.FileName);
                 }
             }
+        }
+
+        private void BtnEdit_Click(object sender, EventArgs e)
+        {
+            _currentHandler = new ChangeColorAndSizeHandler();
         }
     }
 }
