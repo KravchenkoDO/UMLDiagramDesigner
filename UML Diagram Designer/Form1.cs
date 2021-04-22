@@ -226,9 +226,14 @@ namespace UML_Diagram_Designer
         }
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Save the changes?", "Mesage", MessageBoxButtons.YesNo);
-            
-            if (ShowDialog()==DialogResult.Yes)
+            Close();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Save the changes?", "Mesage", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
             {
                 saveSerializeFileDialog.Title = "Save UML File";
                 saveSerializeFileDialog.Filter = "UML files(*.uml)|*.uml";
@@ -240,20 +245,11 @@ namespace UML_Diagram_Designer
                         string jsonString = JsonSerializer.Serialize(canvas._listAbstractDiagramElements);
                         jsonString = JsonSerializer.Serialize(canvas._listAbstractDiagramElements);
                         File.WriteAllText(filename, jsonString);
-                        //FileStream fileStream = new FileStream(filename, FileMode.OpenOrCreate);
-                        //JsonSerializer.Serialize<List<AbstractDiagramElement>>(fileStream, listAbstractDiagramElements);
                         MessageBox.Show("Data has been saved to file!!!");
                     }
                 }
             }
-            else if (ShowDialog() == DialogResult.No)
-            {
-                Close();
-            }
-
-
         }
-
     }
 }
 
