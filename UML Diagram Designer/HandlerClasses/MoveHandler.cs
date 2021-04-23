@@ -11,21 +11,26 @@ namespace UML_Diagram_Designer.HandlerClasses
 {
     class MoveHandler : AbstractHandler
     {
+        private bool leftMouseButtonClicked = false;
         public Canvas canvas = Canvas.GetCanvas();
         public Point _pointForMove;
 
-        public override void MouseDown(Point point)
+        public override void MouseDown(MouseEventArgs e)
         {
-            foreach (var element in canvas._listAbstractDiagramElements)
+            if (e.Button == MouseButtons.Left)
             {
-                if (!(element is null) && element.CheckIfTheObjectIsClicked(point))
+                foreach (var element in canvas._listAbstractDiagramElements)
                 {
-                    _currentDiagramElement = element;
-                    canvas._listAbstractDiagramElements.Remove(element);
-                    break;
+                    if (!(element is null) && element.CheckIfTheObjectIsClicked(e.Location))
+                    {
+                        _currentDiagramElement = element;
+                        canvas._listAbstractDiagramElements.Remove(element);
+                        break;
+                    }
                 }
+                _pointForMove = e.Location;
+                leftMouseButtonClicked = true;
             }
-            _pointForMove = point;
         }
 
         public override void MouseMove(Point point)
@@ -39,19 +44,21 @@ namespace UML_Diagram_Designer.HandlerClasses
 
         public override void Paint()
         {
-            if (!(_currentDiagramElement is null))
+            if(leftMouseButtonClicked)
             {
-                canvas.SetPenParameters(_currentDiagramElement.ObjectPenColor, _currentDiagramElement.ObjectPenWidth);
-                canvas._graphics.Clear(canvas._pictureBox.BackColor);
-                _currentDiagramElement.Draw(canvas);
-
-                foreach (var element in canvas._listAbstractDiagramElements)
+                if (!(_currentDiagramElement is null))
                 {
-                    canvas.SetPenParameters(element.ObjectPenColor, element.ObjectPenWidth);
-                    element.Draw(canvas);
+                    canvas.SetPenParameters(_currentDiagramElement.ObjectPenColor, _currentDiagramElement.ObjectPenWidth);
+                    canvas._graphics.Clear(canvas._pictureBox.BackColor);
+                    _currentDiagramElement.Draw(canvas);
+
+                    foreach (var element in canvas._listAbstractDiagramElements)
+                    {
+                        canvas.SetPenParameters(element.ObjectPenColor, element.ObjectPenWidth);
+                        element.Draw(canvas);
+                    }
                 }
             }
-
         }
 
         public override void MouseUp()
@@ -62,9 +69,10 @@ namespace UML_Diagram_Designer.HandlerClasses
 
             }
             _currentDiagramElement = null;
+            leftMouseButtonClicked = false;
         }
 
-        public override void MouseClick(Point point) { }
+        public override void MouseClick(MouseEventArgs e) { }
 
         public override AbstractDiagramElement ReturnElement()
         {

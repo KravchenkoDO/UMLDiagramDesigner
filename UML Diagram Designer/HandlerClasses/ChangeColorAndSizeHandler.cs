@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UML_Diagram_Designer.Relationships;
 using UML_Diagram_Designer.FactoryClasses;
 
 namespace UML_Diagram_Designer.HandlerClasses
@@ -13,24 +14,47 @@ namespace UML_Diagram_Designer.HandlerClasses
     {
         public Canvas canvas = Canvas.GetCanvas();
 
-        public override void MouseClick(Point point)
+        public ChangeColorAndSizeHandler() { }
+        public ChangeColorAndSizeHandler(AbstractDiagramElementFactory editFactory)
+        {
+            _currentFactory = editFactory;
+        }
+
+        public override void MouseClick(MouseEventArgs e)
         {
             foreach (var element in canvas._listAbstractDiagramElements)
             {
-                if (element.CheckIfTheObjectIsClicked(point))
+                if (element.CheckIfTheObjectIsClicked(e.Location))
                 {
-                    canvas._listAbstractDiagramElements.Remove(element);
-                    canvas._graphics.Clear(Color.White);
-                    element.ObjectPenColor = canvas.PenColor;
-                    element.ObjectPenWidth = canvas.PenSize;
-                    canvas._listAbstractDiagramElements.Add(element);
-                    canvas.RedrawElementsFromElementsList();
-                    break;
+                    if (e.Button == MouseButtons.Left)
+                    {
+                        if (!(_currentFactory is null) && element is AbstractRelationship)
+                        {
+                            _currentDiagramElement = _currentFactory.GetElement(element.ObjectPenColor, element.ObjectPenWidth);
+                            _currentDiagramElement.StartPoint = element.StartPoint;
+                            _currentDiagramElement.EndPoint = element.EndPoint;
+                            canvas._listAbstractDiagramElements.Remove(element);
+                            canvas._graphics.Clear(Color.White);
+                            canvas._listAbstractDiagramElements.Add(_currentDiagramElement);
+                            canvas.RedrawElementsFromElementsList();
+                            break;
+                        }
+                        else if(_currentFactory is null)
+                        {
+                            canvas._listAbstractDiagramElements.Remove(element);
+                            canvas._graphics.Clear(Color.White);
+                            element.ObjectPenColor = canvas.PenColor;
+                            element.ObjectPenWidth = canvas.PenSize;
+                            canvas._listAbstractDiagramElements.Add(element);
+                            canvas.RedrawElementsFromElementsList();
+                            break;
+                        }
+                    }
                 }
             }
         }
 
-        public override void MouseDown(Point point) { }
+        public override void MouseDown(MouseEventArgs e) { }
 
         public override void MouseMove(Point point) { }
 

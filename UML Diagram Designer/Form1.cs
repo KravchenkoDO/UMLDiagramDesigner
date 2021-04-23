@@ -37,6 +37,7 @@ namespace UML_Diagram_Designer
             _currentHandler = new DrawHandler(_currentFactory);
 
         }
+
         private void associationButton_Click(object sender, EventArgs e)
         {
             _currentFactory = new AssociationRelationshipFactory();
@@ -76,8 +77,7 @@ namespace UML_Diagram_Designer
         }
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            _currentHandler.MouseDown(e.Location);
-
+            _currentHandler.MouseDown(e);
             _isMouseMoving = true;
         }
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
@@ -96,6 +96,18 @@ namespace UML_Diagram_Designer
         {
             _currentHandler.MouseUp();
             _isMouseMoving = false;
+        }
+        private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                _currentHandler.MouseClick(e);
+
+                if (!(_currentHandler.ReturnElement() is null))
+                {
+                    _selectedElement = _currentHandler.ReturnElement();
+                }
+            }
         }
         private void buttonMove_Click(object sender, EventArgs e)
         {
@@ -137,26 +149,10 @@ namespace UML_Diagram_Designer
             _currentHandler = new DeleteHandler();
         }
 
-        private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
+        private void BtnEdit_Click(object sender, EventArgs e)
         {
-            _currentHandler.MouseClick(e.Location);
-
-            if (!(_currentHandler.ReturnElement() is null))
-            {
-                _selectedElement = _currentHandler.ReturnElement();
-            }
-
-            //if (!(_selectedElement is null))//Test
-            //{
-            //    _selectedElement.ObjectPenColor = colorDialog.Color;
-            //    _selectedElement.ObjectPenWidth = thicknessTrackBar.Value;
-            //    canvas._listAbstractDiagramElements.Add(_selectedElement);
-            //    _selectedElement.Draw(canvas);
-            //    canvas._pictureBox.Invalidate();
-            //}
+            _currentHandler = new ChangeColorAndSizeHandler();
         }
-
-    
 
         private void btnEditClassText_Click(object sender, EventArgs e)
         {
@@ -225,9 +221,11 @@ namespace UML_Diagram_Designer
             }
         }
 
-        private void BtnEdit_Click(object sender, EventArgs e)
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _currentHandler = new ChangeColorAndSizeHandler();
+            FactoryChanger factoryChanger = new FactoryChanger(comboBox1.Text);
+            ChangeColorAndSizeHandler changeColorAndSizeHandler = new ChangeColorAndSizeHandler(factoryChanger.GetEditFactory());
+            _currentHandler = changeColorAndSizeHandler;
         }
     }
 }

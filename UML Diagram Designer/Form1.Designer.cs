@@ -29,7 +29,6 @@ namespace UML_Diagram_Designer
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.clearButton = new System.Windows.Forms.Button();
             this.compositionButton = new System.Windows.Forms.Button();
@@ -44,7 +43,6 @@ namespace UML_Diagram_Designer
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.btnTextBoxEnter = new System.Windows.Forms.Button();
             this.btnCancelTextEntering = new System.Windows.Forms.Button();
             this.btnSelectElement = new System.Windows.Forms.Button();
@@ -57,6 +55,7 @@ namespace UML_Diagram_Designer
             this.openDeserializeFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.btnSaveImage = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thicknessTrackBar)).BeginInit();
             this.SuspendLayout();
@@ -187,11 +186,6 @@ namespace UML_Diagram_Designer
             this.textBox1.Size = new System.Drawing.Size(187, 20);
             this.textBox1.TabIndex = 19;
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
             // btnTextBoxEnter
             // 
             this.btnTextBoxEnter.Location = new System.Drawing.Point(9, 474);
@@ -258,7 +252,7 @@ namespace UML_Diagram_Designer
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(205, 531);
+            this.button1.Location = new System.Drawing.Point(632, 531);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 23;
@@ -268,7 +262,7 @@ namespace UML_Diagram_Designer
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(286, 531);
+            this.button2.Location = new System.Drawing.Point(713, 531);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 23;
@@ -283,7 +277,7 @@ namespace UML_Diagram_Designer
             // 
             // btnSaveImage
             // 
-            this.btnSaveImage.Location = new System.Drawing.Point(367, 531);
+            this.btnSaveImage.Location = new System.Drawing.Point(794, 531);
             this.btnSaveImage.Name = "btnSaveImage";
             this.btnSaveImage.Size = new System.Drawing.Size(75, 23);
             this.btnSaveImage.TabIndex = 24;
@@ -301,11 +295,29 @@ namespace UML_Diagram_Designer
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "None",
+            "Association",
+            "Inheritance",
+            "Realization",
+            "Composition",
+            "Aggregation"});
+            this.comboBox1.Location = new System.Drawing.Point(205, 521);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(142, 21);
+            this.comboBox1.TabIndex = 26;
+            this.comboBox1.Text = "Choose relationship type";
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(946, 574);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnSaveImage);
@@ -354,7 +366,6 @@ namespace UML_Diagram_Designer
         private System.Windows.Forms.ColorDialog colorDialog;
         private System.Windows.Forms.FontDialog fontDialog1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Button btnTextBoxEnter;
         private System.Windows.Forms.Button btnCancelTextEntering;
         private System.Windows.Forms.Button btnSelectElement;
@@ -367,6 +378,7 @@ namespace UML_Diagram_Designer
         private System.Windows.Forms.OpenFileDialog openDeserializeFileDialog;
         private System.Windows.Forms.Button btnSaveImage;
         private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 
