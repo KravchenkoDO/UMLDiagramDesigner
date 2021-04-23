@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using UML_Diagram_Designer.FactoryClasses;
 
 namespace UML_Diagram_Designer.HandlerClasses
@@ -12,24 +13,27 @@ namespace UML_Diagram_Designer.HandlerClasses
     {
         public Canvas canvas = Canvas.GetCanvas();
 
-        public override void MouseClick(Point point)
+        public override void MouseClick(MouseEventArgs e)
         {
-            foreach (var element in canvas._listAbstractDiagramElements)
+            if (e.Button == MouseButtons.Left)
             {
-                if (element.CheckIfTheObjectIsClicked(point))
+                foreach (var element in canvas._listAbstractDiagramElements)
                 {
-                    _currentDiagramElement = element;
-                    break;
+                    if (element.CheckIfTheObjectIsClicked(e.Location))
+                    {
+                        _currentDiagramElement = element;
+                        break;
+                    }
                 }
             }
         }
 
-        public override AbstractDiagramElement ReturnElement() //не забыть отбить ошибку с null где-то 
+        public override AbstractDiagramElement ReturnElement()
         {
             return _currentDiagramElement;
         }
 
-        public override void MouseDown(Point point) { }
+        public override void MouseDown(MouseEventArgs e) { }
 
         public override void MouseMove(Point point) { }
 
