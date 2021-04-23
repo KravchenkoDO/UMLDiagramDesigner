@@ -1,6 +1,7 @@
 ﻿
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Text;
 
 namespace UML_Diagram_Designer.UMLClasses
@@ -11,6 +12,7 @@ namespace UML_Diagram_Designer.UMLClasses
         const int _heightYBuffer = 2;
         public int _width = 80;
         public int _height = 80;
+        public DashStyle _lineStyle;
 
         public Point _startPointRect1;
         public Point _startPointRect2;

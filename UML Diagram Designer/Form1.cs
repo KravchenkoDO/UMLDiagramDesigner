@@ -65,7 +65,7 @@ namespace UML_Diagram_Designer
         }
         private void classButton_Click(object sender, EventArgs e)
         {
-            _currentFactory = new UMLClassFactory();
+            _currentFactory = new UMLStackFactory();
             _currentHandler = new DrawHandler(_currentFactory);
         }
         private void clearButton_Click(object sender, EventArgs e)

@@ -133,7 +133,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UMLClasses\AbstractUMLElement.cs" />
     <Compile Include="SaveOrLoad.cs" />
-    <Compile Include="UMLClasses\EnumSections.cs" />
     <Compile Include="UMLClasses\UMLClass.cs" />
     <Compile Include="UMLClasses\UMLInterface.cs" />
     <Compile Include="UMLClasses\UMLStack.cs" />
