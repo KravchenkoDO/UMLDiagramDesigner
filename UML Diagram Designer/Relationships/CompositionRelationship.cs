@@ -15,7 +15,7 @@ namespace UML_Diagram_Designer.Relationships
         {
             FilledDiamondCap filledDiamondCap = new FilledDiamondCap();
             SolidLine solidLine = new SolidLine();
-            _cap = filledDiamondCap._cap;
+            _cap = filledDiamondCap;
             _lineStyle = solidLine._lineStyle;
             ObjectPenColor = lineColor;
             ObjectPenWidth = lineWidth;

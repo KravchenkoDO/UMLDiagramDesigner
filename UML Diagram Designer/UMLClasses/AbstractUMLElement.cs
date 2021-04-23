@@ -36,7 +36,7 @@ namespace UML_Diagram_Designer.UMLClasses
         public StringBuilder sbForRect2Text = new StringBuilder(string.Empty);
         public StringBuilder sbForRect3Text = new StringBuilder(string.Empty);
 
-        public Canvas canvas = Canvas.GetCanvas();
+
         public override void Draw(Canvas painter)
         {
             StringBuilder sbForRect1Text = new StringBuilder(string.Empty);
@@ -107,7 +107,7 @@ namespace UML_Diagram_Designer.UMLClasses
                 return true;
             }
             return false;
-        } 
+        }
         public override void Move(int deltaX, int deltaY)
         {
             StartPoint = new Point(StartPoint.X + deltaX, StartPoint.Y + deltaY);
@@ -134,10 +134,10 @@ namespace UML_Diagram_Designer.UMLClasses
         }
         public void CalculateClassCoordinates(List<string> rect1Text, List<string> rect2Text, List<string> rect3Text)
         {
+            Canvas canvas = Canvas.GetCanvas();
             SizeF textSize = new SizeF();
             foreach (string str in rect1Text)
             {
-                textSize = canvas._graphics.MeasureString(str, canvas._font);
                 if (textSize.Width > _rect1Width)
                 {
                     _rect1Width = (int)textSize.Width;

@@ -41,11 +41,14 @@ namespace UML_Diagram_Designer.HandlerClasses
                         }
                         else if(_currentFactory is null)
                         {
+                            _currentDiagramElement = element;
                             canvas._listAbstractDiagramElements.Remove(element);
                             canvas._graphics.Clear(Color.White);
-                            element.ObjectPenColor = canvas.PenColor;
-                            element.ObjectPenWidth = canvas.PenSize;
-                            canvas._listAbstractDiagramElements.Add(element);
+                            //element.ObjectPenColor = canvas.PenColor;
+                            //element.ObjectPenWidth = canvas.PenSize;
+                            _currentDiagramElement.ObjectPenColor = canvas.PenColor;
+                            _currentDiagramElement.ObjectPenWidth = canvas.PenSize;
+                            canvas._listAbstractDiagramElements.Add(_currentDiagramElement);
                             canvas.RedrawElementsFromElementsList();
                             break;
                         }
