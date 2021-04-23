@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Text.Json;
+using Newtonsoft.Json;
 using System.Windows.Forms;
 using UML_Diagram_Designer.HandlerClasses;
 using UML_Diagram_Designer.FactoryClasses;
@@ -20,6 +21,7 @@ namespace UML_Diagram_Designer
         AbstractDiagramElementFactory _currentFactory;
         public List<string> _currentClassTextList;
         AbstractHandler _currentHandler;
+      
 
         public Form1()
         {
@@ -182,13 +184,9 @@ namespace UML_Diagram_Designer
             openDeserializeFileDialog.Filter = "UML files(*.uml)|*.uml";
             if (openDeserializeFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (openDeserializeFileDialog.FileName != null)
-                {
-                    string filename = openDeserializeFileDialog.FileName;
-                    string jsonString = File.ReadAllText(filename);
-                    canvas._listAbstractDiagramElements = JsonSerializer.Deserialize<List<AbstractDiagramElement>>(jsonString);
-                    MessageBox.Show("Data has been opened from file!!!");
-                }
+                string fileData=SaveOrLoad.OpenFile(openDeserializeFileDialog.FileName);
+                JsonDeserialized(fileData);
+                canvas.RedrawElementsFromElementsList();
             }
         }
 
@@ -200,15 +198,29 @@ namespace UML_Diagram_Designer
             {
                 if (saveSerializeFileDialog.FileName != string.Empty)
                 {
-                    string filename = saveSerializeFileDialog.FileName;
-                    string jsonString = JsonSerializer.Serialize(canvas._listAbstractDiagramElements);
-                    jsonString = JsonSerializer.Serialize(canvas._listAbstractDiagramElements);
-                    File.WriteAllText(filename, jsonString);
-                    //FileStream fileStream = new FileStream(filename, FileMode.OpenOrCreate);
-                    //JsonSerializer.Serialize<List<AbstractDiagramElement>>(fileStream, listAbstractDiagramElements);
-                    MessageBox.Show("Data has been saved to file!!!");
+                    string fileData = JsonSerialized();
+                    SaveOrLoad.SaveFile(saveSerializeFileDialog.FileName, fileData);
                 }
             }
+        }
+
+        public string JsonSerialized()
+        {
+            string fileSerialized = JsonConvert.SerializeObject(canvas._listAbstractDiagramElements, Formatting.Indented,
+                    new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.All
+                    });
+            return fileSerialized;
+        }
+
+        public void JsonDeserialized(string fileSerialized)
+        {
+            canvas._listAbstractDiagramElements = JsonConvert.DeserializeObject<List<AbstractDiagramElement>>(fileSerialized,
+                    new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.All
+                    });
         }
 
         private void jPGToolStripMenuItem_Click(object sender, EventArgs e)
@@ -222,8 +234,8 @@ namespace UML_Diagram_Designer
                     pictureBox1.Image.Save(saveSerializeFileDialog.FileName);
                 }
             }
-
         }
+
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
@@ -239,14 +251,8 @@ namespace UML_Diagram_Designer
                 saveSerializeFileDialog.Filter = "UML files(*.uml)|*.uml";
                 if (saveSerializeFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    if (saveSerializeFileDialog.FileName != string.Empty)
-                    {
-                        string filename = saveSerializeFileDialog.FileName;
-                        string jsonString = JsonSerializer.Serialize(canvas._listAbstractDiagramElements);
-                        jsonString = JsonSerializer.Serialize(canvas._listAbstractDiagramElements);
-                        File.WriteAllText(filename, jsonString);
-                        MessageBox.Show("Data has been saved to file!!!");
-                    }
+                    string fileData = JsonSerialized();
+                    SaveOrLoad.SaveFile(saveSerializeFileDialog.FileName, fileData);
                 }
             }
         }
