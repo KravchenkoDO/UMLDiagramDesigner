@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Text;
 
 namespace UML_Diagram_Designer.UMLClasses
@@ -31,9 +32,11 @@ namespace UML_Diagram_Designer.UMLClasses
             _listForRect3Text = new List<string>() { "+Method1", "+Method2", "+Method3" };
             ObjectPenColor = lineColor;
             ObjectPenWidth = lineWidth;
+            _lineStyle = DashStyle.Solid;
         }
         public override void Draw(Canvas painter)
         {
+            painter._pen.DashStyle = _lineStyle;
             StringFormat strFormat1 = new StringFormat();
             StringBuilder sbForRect1Text = new StringBuilder(string.Empty);
             StringBuilder sbForRect2Text = new StringBuilder(string.Empty);

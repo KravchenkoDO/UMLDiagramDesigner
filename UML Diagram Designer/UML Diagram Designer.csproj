@@ -96,6 +96,7 @@
     <Compile Include="EditClassTextForm.Designer.cs">
       <DependentUpon>EditClassTextForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FactoryChanger.cs" />
     <Compile Include="FactoryClasses\AbstractDiagramElementFactory.cs" />
     <Compile Include="FactoryClasses\ClassBlockFactories\UMLNodeNotationFactory.cs" />
     <Compile Include="FactoryClasses\ClassBlockFactories\UMLClassFactory.cs" />
