@@ -29,13 +29,10 @@ namespace UML_Diagram_Designer.HandlerClasses
         }
 
         public override void MouseDown(MouseEventArgs e) { }
-        
 
         public override void MouseMove(Point point) { }
-        
 
         public override void MouseUp() { }
-      
 
         public override void Paint() { }
 

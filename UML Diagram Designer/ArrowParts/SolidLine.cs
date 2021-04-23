@@ -15,8 +15,6 @@ namespace UML_Diagram_Designer.ArrowParts
             _lineStyle = DashStyle.Solid;
 
             GetLine(_lineStyle);
-
-            
         }
     }
 }

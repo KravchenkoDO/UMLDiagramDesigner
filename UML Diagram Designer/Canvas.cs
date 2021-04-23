@@ -102,7 +102,6 @@ namespace UML_Diagram_Designer
             FontStyle = fontStyle;
             return new Font(_font, FontStyle);
         }
-
         public void RedrawElementsFromElementsList()
         {
             foreach (var element in _listAbstractDiagramElements)
