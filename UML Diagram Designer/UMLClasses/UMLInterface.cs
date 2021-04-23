@@ -1,26 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Drawing2D;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace UML_Diagram_Designer.UMLClasses
 {
-    public class UMLClass : AbstractUMLElement
+    public class UMLInterface : AbstractUMLElement
     {
-        public UMLClass(Color lineColor, float lineWidth)
+        public UMLInterface(Color lineColor, float lineWidth)
         {
-            _listForRect1Text = new List<string>() { "«C# Class»", "EnterClassName" };
-            _listForRect2Text = new List<string>() { "Set Properties and fields"};
+            _listForRect1Text = new List<string>() { "«C# Interface»", "EnterInterfaceName" };
+            _listForRect2Text = new List<string>() { "Set Properties" };
             _listForRect3Text = new List<string>() { "Set Methods" };
             ObjectPenColor = lineColor;
             ObjectPenWidth = lineWidth;
-            _lineStyle = DashStyle.Solid;
         }
+
         public override void Draw(Canvas painter)
         {
-            painter._pen.DashStyle = _lineStyle;
-            StringFormat strFormat1 = new StringFormat();
             StringBuilder sbForRect1Text = new StringBuilder(string.Empty);
             StringBuilder sbForRect2Text = new StringBuilder(string.Empty);
             StringBuilder sbForRect3Text = new StringBuilder(string.Empty);

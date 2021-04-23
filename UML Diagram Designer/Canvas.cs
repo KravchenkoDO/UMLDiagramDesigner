@@ -17,6 +17,7 @@ namespace UML_Diagram_Designer
         public Pen _pen;
         public Brush _brush;
         public Font _font;
+        public FontStyle fontRect1;
         public List<AbstractDiagramElement> _listAbstractDiagramElements;
         public float _penWidth;
         public Color _penColor;
@@ -44,7 +45,6 @@ namespace UML_Diagram_Designer
                 _pen.Color = _penColor;
             }
         }
-
         public Font Font
         {
             get
@@ -57,37 +57,50 @@ namespace UML_Diagram_Designer
                 
             }
         }
-        
+        public FontStyle FontStyle
+        {
+            get
+            {
+                return fontRect1;
+            }
+            set
+            {
+                fontRect1 = value;
+
+            }
+        }
         public static Canvas GetCanvas()
         {
             if (instance == null)
                 instance = new Canvas();
             return instance;
         }
-
         public void SetCanvas(int width, int height)
         {
             _bitmap = new Bitmap(width, height);
             _graphics = Graphics.FromImage(_bitmap);
+            fontRect1 = FontStyle.Italic;
             _pen = new Pen(_penColor, _penWidth);
             _brush = new SolidBrush(Color.Black);
             _font = new Font("Times New Roman", 12);
         }
-
         public void SetPenParameters(Color color, float width)
         {
             PenColor = color;
             PenSize = width;
         }
-
         public void SetBrush(Brush brush)
         {
             _brush = brush;
         }
-
         public void SetFont(Font font)
         {
             Font = font;
+        }
+        public Font SetFontStyle(FontStyle fontStyle)
+        {
+            FontStyle = fontStyle;
+            return new Font(_font, FontStyle);
         }
 
         public void RedrawElementsFromElementsList()

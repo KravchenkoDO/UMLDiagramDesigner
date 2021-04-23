@@ -8,11 +8,11 @@ using UML_Diagram_Designer.UMLClasses;
 
 namespace UML_Diagram_Designer.FactoryClasses.ClassBlockFactories
 {
-    public class UMLNodeNotationFactory : AbstractDiagramElementFactory
+    public class UMLStackFactory : AbstractDiagramElementFactory
     {
         public override AbstractDiagramElement GetElement(Color lineColor, float lineWidth)
         {
-            throw new NotImplementedException();
+            return new UMLStack(lineColor, lineWidth);
         }
     }
 }
