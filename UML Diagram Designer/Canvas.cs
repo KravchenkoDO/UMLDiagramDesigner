@@ -18,8 +18,8 @@ namespace UML_Diagram_Designer
         public Brush _brush;
         public Font _font;
         public List<AbstractDiagramElement> _listAbstractDiagramElements;
-        private float _penWidth;
-        private Color _penColor;
+        public float _penWidth;
+        public Color _penColor;
         public float PenSize
         {
             get
