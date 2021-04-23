@@ -10,7 +10,6 @@ namespace UML_Diagram_Designer.ArrowParts
 {
     public class ArrowCap : AbstractCap
     {
-       
         public ArrowCap()
         {
             GetCap();

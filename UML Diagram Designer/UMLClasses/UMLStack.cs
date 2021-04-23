@@ -21,6 +21,7 @@ namespace UML_Diagram_Designer.UMLClasses
         }
         public override void Draw(Canvas painter)
         {
+            painter._pen.DashStyle = _lineStyle;
             StringBuilder sbForRect1Text = new StringBuilder(string.Empty);
             StringBuilder sbForRect2Text = new StringBuilder(string.Empty);
             StringBuilder sbForRect3Text = new StringBuilder(string.Empty);
