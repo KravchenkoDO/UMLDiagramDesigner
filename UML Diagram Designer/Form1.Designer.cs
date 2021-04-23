@@ -44,7 +44,6 @@ namespace UML_Diagram_Designer
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnTextBoxEnter = new System.Windows.Forms.Button();
-            this.btnCancelTextEntering = new System.Windows.Forms.Button();
             this.btnSelectElement = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEditClassText = new System.Windows.Forms.Button();
@@ -178,7 +177,7 @@ namespace UML_Diagram_Designer
             this.thicknessTrackBar.Location = new System.Drawing.Point(10, 372);
             this.thicknessTrackBar.Minimum = 2;
             this.thicknessTrackBar.Name = "thicknessTrackBar";
-            this.thicknessTrackBar.Size = new System.Drawing.Size(187, 45);
+            this.thicknessTrackBar.Size = new System.Drawing.Size(187, 42);
             this.thicknessTrackBar.TabIndex = 18;
             this.thicknessTrackBar.Value = 2;
             this.thicknessTrackBar.Scroll += new System.EventHandler(this.ThicknessTrackBar_Scroll);
@@ -200,15 +199,6 @@ namespace UML_Diagram_Designer
             this.btnTextBoxEnter.Text = "Enter";
             this.btnTextBoxEnter.UseVisualStyleBackColor = true;
             this.btnTextBoxEnter.Click += new System.EventHandler(this.BtnTextBoxEnter_Click);
-            // 
-            // btnCancelTextEntering
-            // 
-            this.btnCancelTextEntering.Location = new System.Drawing.Point(109, 491);
-            this.btnCancelTextEntering.Name = "btnCancelTextEntering";
-            this.btnCancelTextEntering.Size = new System.Drawing.Size(93, 35);
-            this.btnCancelTextEntering.TabIndex = 20;
-            this.btnCancelTextEntering.Text = "Cancel";
-            this.btnCancelTextEntering.UseVisualStyleBackColor = true;
             // 
             // btnSelectElement
             // 
@@ -279,13 +269,13 @@ namespace UML_Diagram_Designer
             this.saveToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -295,34 +285,34 @@ namespace UML_Diagram_Designer
             this.uMLToolStripMenuItem,
             this.jPGToolStripMenuItem});
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // uMLToolStripMenuItem
             // 
             this.uMLToolStripMenuItem.Name = "uMLToolStripMenuItem";
-            this.uMLToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
+            this.uMLToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
             this.uMLToolStripMenuItem.Text = "UML";
             this.uMLToolStripMenuItem.Click += new System.EventHandler(this.uMLToolStripMenuItem_Click);
             // 
             // jPGToolStripMenuItem
             // 
             this.jPGToolStripMenuItem.Name = "jPGToolStripMenuItem";
-            this.jPGToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
+            this.jPGToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
             this.jPGToolStripMenuItem.Text = "JPG";
             this.jPGToolStripMenuItem.Click += new System.EventHandler(this.jPGToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(109, 531);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEdit.Location = new System.Drawing.Point(106, 492);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(2);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(93, 32);
             this.btnEdit.TabIndex = 25;
@@ -340,10 +330,10 @@ namespace UML_Diagram_Designer
             "Realization",
             "Composition",
             "Aggregation"});
-            this.comboBox1.Location = new System.Drawing.Point(216, 538);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox1.Location = new System.Drawing.Point(109, 537);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(108, 21);
+            this.comboBox1.Size = new System.Drawing.Size(94, 21);
             this.comboBox1.TabIndex = 26;
             this.comboBox1.Text = "Choose relationship type";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
@@ -360,7 +350,6 @@ namespace UML_Diagram_Designer
             this.Controls.Add(this.btnEditClassText);
             this.Controls.Add(this.btnFont);
             this.Controls.Add(this.btnSelectElement);
-            this.Controls.Add(this.btnCancelTextEntering);
             this.Controls.Add(this.btnTextBoxEnter);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.thicknessTrackBar);
@@ -405,7 +394,6 @@ namespace UML_Diagram_Designer
         private System.Windows.Forms.FontDialog fontDialog1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnTextBoxEnter;
-        private System.Windows.Forms.Button btnCancelTextEntering;
         private System.Windows.Forms.Button btnSelectElement;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnEditClassText;
