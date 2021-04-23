@@ -19,7 +19,6 @@ namespace UML_Diagram_Designer
         AbstractDiagramElementFactory _currentFactory;
         public List<string> _currentClassTextList;
         AbstractHandler _currentHandler;
-      
 
         public Form1()
         {
@@ -35,7 +34,6 @@ namespace UML_Diagram_Designer
             canvas.SetPenParameters(colorDialog.Color, thicknessTrackBar.Value);
             _currentFactory = new AssociationRelationshipFactory();
             _currentHandler = new DrawHandler(_currentFactory);
-
         }
 
         private void associationButton_Click(object sender, EventArgs e)
@@ -65,7 +63,7 @@ namespace UML_Diagram_Designer
         }
         private void classButton_Click(object sender, EventArgs e)
         {
-            _currentFactory = new UMLStackFactory();
+            _currentFactory = new UMLInterfaceFactory();
             _currentHandler = new DrawHandler(_currentFactory);
         }
         private void clearButton_Click(object sender, EventArgs e)
@@ -260,5 +258,3 @@ namespace UML_Diagram_Designer
         }
     }
 }
-
-        
