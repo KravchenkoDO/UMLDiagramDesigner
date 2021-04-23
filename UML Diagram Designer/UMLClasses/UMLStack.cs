@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace UML_Diagram_Designer.UMLClasses
             _listForRect3Text = new List<string>() { "Set Methods" };
             ObjectPenColor = lineColor;
             ObjectPenWidth = lineWidth;
+            _lineStyle = DashStyle.Solid;
         }
         public override void Draw(Canvas painter)
         {
