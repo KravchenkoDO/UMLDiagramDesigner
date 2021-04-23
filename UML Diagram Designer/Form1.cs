@@ -2,10 +2,8 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using Newtonsoft.Json;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 using UML_Diagram_Designer.HandlerClasses;
 using UML_Diagram_Designer.FactoryClasses;
 using UML_Diagram_Designer.FactoryClasses.ClassBlockFactories;
