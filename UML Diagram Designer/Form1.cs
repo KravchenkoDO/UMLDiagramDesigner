@@ -61,7 +61,7 @@ namespace UML_Diagram_Designer
         {
             _isSelect = false;
 
-            _currentFactory = new UMLClassFactory();
+            _currentFactory = new UMLStackFactory();
         }
         private void clearButton_Click(object sender, EventArgs e)
         {

@@ -10,10 +10,6 @@ namespace UML_Diagram_Designer
 {
     public abstract class AbstractDiagramElement : IDrawable, ISelectable, IMoveable, IResizable, IChangeColors
     {
-        public AbstractDiagramElement()
-        {
-
-        }
         public Point StartPoint { get; set; }
         public Point EndPoint { get; set; }
         public Color ObjectPenColor { get; set; }
