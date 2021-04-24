@@ -153,12 +153,23 @@ namespace UML_Diagram_Designer
         {
             canvas.PenSize = thicknessTrackBar.Value;
         }
-
-        private void BtnTextBoxEnter_Click(object sender, EventArgs e)
+        private void btnEditClassText_Click(object sender, EventArgs e)
         {
-            _currentClassTextList = _selectedElement.SaveElementText(textBox1.Text);
-            canvas._pictureBox.Invalidate();
+                _currentClassTextList = _selectedElement.SaveElementText(textBox1.Text);
+            if (!(_currentClassTextList is null))
+            {
+                EditClassTextForm editClassTextForm = new EditClassTextForm(_currentClassTextList);
+                editClassTextForm.ShowDialog();
+            }
+
+
         }
+
+        //private void BtnTextBoxEnter_Click(object sender, EventArgs e)
+        //{
+        //    _currentClassTextList = _selectedElement.SaveElementText(textBox1.Text);
+        //    canvas._pictureBox.Invalidate();
+        //}
 
         private void BtnSelectElement_Click(object sender, EventArgs e)
         {
@@ -174,16 +185,6 @@ namespace UML_Diagram_Designer
         {
             _currentHandler = new ChangeColorAndSizeHandler();
         }
-
-        private void btnEditClassText_Click(object sender, EventArgs e)
-        {
-            if (!(_currentClassTextList is null))
-            {
-                EditClassTextForm editClassTextForm = new EditClassTextForm(_currentClassTextList);
-                editClassTextForm.ShowDialog();
-            }
-        }
-
         private void BtnFont_Click(object sender, EventArgs e)
         {
             FontDialog fontDialog1 = new FontDialog();
@@ -285,7 +286,5 @@ namespace UML_Diagram_Designer
                 }
             }
         }
-
-        
     }
 }

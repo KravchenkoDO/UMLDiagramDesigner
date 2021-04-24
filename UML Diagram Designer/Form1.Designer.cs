@@ -202,7 +202,7 @@ namespace UML_Diagram_Designer
             this.btnTextBoxEnter.TabIndex = 20;
             this.btnTextBoxEnter.Text = "Enter";
             this.btnTextBoxEnter.UseVisualStyleBackColor = true;
-            this.btnTextBoxEnter.Click += new System.EventHandler(this.BtnTextBoxEnter_Click);
+            //this.btnTextBoxEnter.Click += new System.EventHandler(this.BtnTextBoxEnter_Click);
             // 
             // btnSelectElement
             // 
