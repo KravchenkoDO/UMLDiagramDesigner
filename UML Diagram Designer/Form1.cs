@@ -61,9 +61,20 @@ namespace UML_Diagram_Designer
             _currentFactory = new CompositionRelationshipFactory();
             _currentHandler = new DrawHandler(_currentFactory);
         }
-        private void classButton_Click(object sender, EventArgs e)
+        private void InterFaceButton_Click(object sender, EventArgs e)
         {
             _currentFactory = new UMLInterfaceFactory();
+            _currentHandler = new DrawHandler(_currentFactory);
+        }
+        private void BtnStack_Click(object sender, EventArgs e)
+        {
+            _currentFactory = new UMLStackFactory();
+            _currentHandler = new DrawHandler(_currentFactory);
+        }
+
+        private void BtnClass_Click(object sender, EventArgs e)
+        {
+            _currentFactory = new UMLClassFactory();
             _currentHandler = new DrawHandler(_currentFactory);
         }
         private void clearButton_Click(object sender, EventArgs e)
@@ -274,5 +285,7 @@ namespace UML_Diagram_Designer
                 }
             }
         }
+
+        
     }
 }
