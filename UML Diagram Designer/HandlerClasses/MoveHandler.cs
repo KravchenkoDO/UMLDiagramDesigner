@@ -12,12 +12,11 @@ namespace UML_Diagram_Designer.HandlerClasses
     class MoveHandler : AbstractHandler
     {
         private bool leftMouseButtonClicked = false;
-        public Canvas canvas = Canvas.GetCanvas();
+        Canvas canvas = Canvas.GetCanvas();
         public Point _pointForMove;
 
         public override void MouseDown(MouseEventArgs e)
         {
-            //Canvas canvas = Canvas.GetCanvas();
             if (e.Button == MouseButtons.Left)
             {
                 foreach (var element in canvas._listAbstractDiagramElements)
@@ -45,7 +44,6 @@ namespace UML_Diagram_Designer.HandlerClasses
 
         public override void Paint()
         {
-            //Canvas canvas = Canvas.GetCanvas();
             if (leftMouseButtonClicked)
             {
                 if (!(_currentDiagramElement is null))
@@ -68,7 +66,6 @@ namespace UML_Diagram_Designer.HandlerClasses
 
         public override void MouseUp()
         {
-            //Canvas canvas = Canvas.GetCanvas();
             if (!(_currentDiagramElement is null))
             {
                 canvas._listAbstractDiagramElements.Add(_currentDiagramElement);

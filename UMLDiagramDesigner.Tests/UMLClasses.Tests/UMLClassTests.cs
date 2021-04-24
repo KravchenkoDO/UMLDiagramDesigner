@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.IO;
-using System.Collections;
+﻿using System.Collections;
 using NUnit.Framework;
 using UML_Diagram_Designer.UMLClasses;
 using System.Drawing;
-
 
 namespace UML_Diagram_Designer.Tests.UMLClasses.Tests
 {

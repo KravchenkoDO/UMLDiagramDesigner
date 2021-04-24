@@ -1,14 +1,8 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using System.IO;
 
 namespace UML_Diagram_Designer
 {
-   public class SaveOrLoad
+    public class SaveOrLoad
     {
         public static void SaveFile(string path, string fileData)
         {
