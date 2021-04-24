@@ -19,7 +19,6 @@ namespace UML_Diagram_Designer
         AbstractDiagramElementFactory _currentFactory;
         public List<string> _currentClassTextList;
         AbstractHandler _currentHandler;
-      
 
         public Form1()
         {
@@ -35,7 +34,6 @@ namespace UML_Diagram_Designer
             canvas.SetPenParameters(colorDialog.Color, thicknessTrackBar.Value);
             _currentFactory = new AssociationRelationshipFactory();
             _currentHandler = new DrawHandler(_currentFactory);
-
         }
 
         private void associationButton_Click(object sender, EventArgs e)
@@ -65,7 +63,7 @@ namespace UML_Diagram_Designer
         }
         private void classButton_Click(object sender, EventArgs e)
         {
-            _currentFactory = new UMLStackFactory();
+            _currentFactory = new UMLInterfaceFactory();
             _currentHandler = new DrawHandler(_currentFactory);
         }
         private void clearButton_Click(object sender, EventArgs e)
@@ -77,13 +75,19 @@ namespace UML_Diagram_Designer
         }
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            _currentHandler.MouseDown(e);
-            _isMouseMoving = true;
+            if(!(_currentHandler is null))
+            {
+                _currentHandler.MouseDown(e);
+                _isMouseMoving = true;
+            }
         }
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            _currentHandler.MouseMove(e.Location);
-            canvas._pictureBox.Invalidate();
+            if(!(_currentHandler is null))
+            {
+                _currentHandler.MouseMove(e.Location);
+                canvas._pictureBox.Invalidate();
+            }
         }
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
@@ -94,18 +98,24 @@ namespace UML_Diagram_Designer
         }
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            _currentHandler.MouseUp();
-            _isMouseMoving = false;
+            if(!(_currentHandler is null))
+            {
+                _currentHandler.MouseUp();
+                _isMouseMoving = false;
+            }
         }
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
+            if(!(_currentHandler is null))
             {
-                _currentHandler.MouseClick(e);
-
-                if (!(_currentHandler.ReturnElement() is null))
+                if (e.Button == MouseButtons.Left)
                 {
-                    _selectedElement = _currentHandler.ReturnElement();
+                    _currentHandler.MouseClick(e);
+
+                    if (!(_currentHandler.ReturnElement() is null))
+                    {
+                        _selectedElement = _currentHandler.ReturnElement();
+                    }
                 }
             }
         }
@@ -175,6 +185,7 @@ namespace UML_Diagram_Designer
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            _currentHandler = null;
             openDeserializeFileDialog.Title = "Open UML File";
             openDeserializeFileDialog.Filter = "UML files(*.uml)|*.uml";
             if (openDeserializeFileDialog.ShowDialog() == DialogResult.OK)
@@ -182,6 +193,9 @@ namespace UML_Diagram_Designer
                 string fileData=SaveOrLoad.OpenFile(openDeserializeFileDialog.FileName);
                 JsonDeserialized(fileData);
                 canvas.RedrawElementsFromElementsList();
+                pictureBox1.Invalidate();
+                //_currentFactory = new AssociationRelationshipFactory();
+                //_currentHandler = new DrawHandler(_currentFactory);
             }
         }
 
@@ -197,6 +211,8 @@ namespace UML_Diagram_Designer
                     SaveOrLoad.SaveFile(saveSerializeFileDialog.FileName, fileData);
                 }
             }
+
+            _currentHandler = null;
         }
 
         public string JsonSerialized()
@@ -204,7 +220,7 @@ namespace UML_Diagram_Designer
             string fileSerialized = JsonConvert.SerializeObject(canvas._listAbstractDiagramElements, Formatting.Indented,
                     new JsonSerializerSettings
                     {
-                        TypeNameHandling = TypeNameHandling.All
+                        TypeNameHandling = TypeNameHandling.Auto
                     });
             return fileSerialized;
         }
@@ -214,7 +230,7 @@ namespace UML_Diagram_Designer
             canvas._listAbstractDiagramElements = JsonConvert.DeserializeObject<List<AbstractDiagramElement>>(fileSerialized,
                     new JsonSerializerSettings
                     {
-                        TypeNameHandling = TypeNameHandling.All
+                        TypeNameHandling = TypeNameHandling.Auto
                     });
         }
 
@@ -260,5 +276,3 @@ namespace UML_Diagram_Designer
         }
     }
 }
-
-        

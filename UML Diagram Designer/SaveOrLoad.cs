@@ -20,7 +20,6 @@ namespace UML_Diagram_Designer
 
         public static string OpenFile(string path)
         {
-            
             using (StreamReader openSR = new StreamReader(path))
             {
                 return openSR.ReadToEnd();

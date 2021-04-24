@@ -114,8 +114,6 @@
     <Compile Include="HandlerClasses\SelectHandler.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\IMoveable.cs" />
-    <Compile Include="Interfaces\IChangeColors.cs" />
-    <Compile Include="Interfaces\IResizable.cs" />
     <Compile Include="Interfaces\ISelectable.cs" />
     <Compile Include="Relationships\AbstractRelationship.cs" />
     <Compile Include="Relationships\AggregationRelationship.cs" />

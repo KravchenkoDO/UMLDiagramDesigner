@@ -17,6 +17,7 @@ namespace UML_Diagram_Designer.HandlerClasses
 
         public override void MouseDown(MouseEventArgs e)
         {
+            //Canvas canvas = Canvas.GetCanvas();
             if (e.Button == MouseButtons.Left)
             {
                 foreach (var element in canvas._listAbstractDiagramElements)
@@ -44,7 +45,8 @@ namespace UML_Diagram_Designer.HandlerClasses
 
         public override void Paint()
         {
-            if(leftMouseButtonClicked)
+            //Canvas canvas = Canvas.GetCanvas();
+            if (leftMouseButtonClicked)
             {
                 if (!(_currentDiagramElement is null))
                 {
@@ -54,8 +56,11 @@ namespace UML_Diagram_Designer.HandlerClasses
 
                     foreach (var element in canvas._listAbstractDiagramElements)
                     {
-                        canvas.SetPenParameters(element.ObjectPenColor, element.ObjectPenWidth);
-                        element.Draw(canvas);
+                        if (!(element is null))
+                        {
+                            canvas.SetPenParameters(element.ObjectPenColor, element.ObjectPenWidth);
+                            element.Draw(canvas);
+                        }
                     }
                 }
             }
@@ -63,12 +68,13 @@ namespace UML_Diagram_Designer.HandlerClasses
 
         public override void MouseUp()
         {
+            //Canvas canvas = Canvas.GetCanvas();
             if (!(_currentDiagramElement is null))
             {
                 canvas._listAbstractDiagramElements.Add(_currentDiagramElement);
-
             }
-            _currentDiagramElement = null;
+            
+                _currentDiagramElement = null;
             leftMouseButtonClicked = false;
         }
 
