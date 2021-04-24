@@ -29,7 +29,6 @@ namespace UML_Diagram_Designer
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.clearButton = new System.Windows.Forms.Button();
             this.compositionButton = new System.Windows.Forms.Button();
@@ -37,15 +36,12 @@ namespace UML_Diagram_Designer
             this.realizationButton = new System.Windows.Forms.Button();
             this.inheritanceButton = new System.Windows.Forms.Button();
             this.associationButton = new System.Windows.Forms.Button();
-            this.classButton = new System.Windows.Forms.Button();
+            this.btnInterface = new System.Windows.Forms.Button();
             this.buttonMove = new System.Windows.Forms.Button();
             this.colorButton = new System.Windows.Forms.Button();
             this.thicknessTrackBar = new System.Windows.Forms.TrackBar();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btnTextBoxEnter = new System.Windows.Forms.Button();
-            this.btnSelectElement = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEditClassText = new System.Windows.Forms.Button();
             this.btnFont = new System.Windows.Forms.Button();
@@ -60,7 +56,8 @@ namespace UML_Diagram_Designer
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnEdit = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnStack = new System.Windows.Forms.Button();
+            this.btnClass = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thicknessTrackBar)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -69,9 +66,9 @@ namespace UML_Diagram_Designer
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.pictureBox1.Location = new System.Drawing.Point(205, 26);
+            this.pictureBox1.Location = new System.Drawing.Point(208, 26);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(726, 506);
+            this.pictureBox1.Size = new System.Drawing.Size(723, 506);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
@@ -84,19 +81,19 @@ namespace UML_Diagram_Designer
             // 
             this.clearButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.clearButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.clearButton.Location = new System.Drawing.Point(12, 242);
+            this.clearButton.Location = new System.Drawing.Point(12, 433);
             this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(187, 43);
+            this.clearButton.Size = new System.Drawing.Size(183, 34);
             this.clearButton.TabIndex = 14;
-            this.clearButton.Text = "Очистить";
+            this.clearButton.Text = "Clear all";
             this.clearButton.UseVisualStyleBackColor = false;
             this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
             // 
             // compositionButton
             // 
-            this.compositionButton.Location = new System.Drawing.Point(109, 80);
+            this.compositionButton.Location = new System.Drawing.Point(106, 106);
             this.compositionButton.Name = "compositionButton";
-            this.compositionButton.Size = new System.Drawing.Size(94, 50);
+            this.compositionButton.Size = new System.Drawing.Size(89, 33);
             this.compositionButton.TabIndex = 13;
             this.compositionButton.Text = "Композиция";
             this.compositionButton.UseVisualStyleBackColor = true;
@@ -104,9 +101,9 @@ namespace UML_Diagram_Designer
             // 
             // aggregationButton
             // 
-            this.aggregationButton.Location = new System.Drawing.Point(9, 136);
+            this.aggregationButton.Location = new System.Drawing.Point(57, 68);
             this.aggregationButton.Name = "aggregationButton";
-            this.aggregationButton.Size = new System.Drawing.Size(90, 50);
+            this.aggregationButton.Size = new System.Drawing.Size(87, 33);
             this.aggregationButton.TabIndex = 12;
             this.aggregationButton.Text = "Агрегация";
             this.aggregationButton.UseVisualStyleBackColor = true;
@@ -114,9 +111,9 @@ namespace UML_Diagram_Designer
             // 
             // realizationButton
             // 
-            this.realizationButton.Location = new System.Drawing.Point(9, 80);
+            this.realizationButton.Location = new System.Drawing.Point(10, 106);
             this.realizationButton.Name = "realizationButton";
-            this.realizationButton.Size = new System.Drawing.Size(90, 50);
+            this.realizationButton.Size = new System.Drawing.Size(86, 33);
             this.realizationButton.TabIndex = 10;
             this.realizationButton.Text = "Реализация";
             this.realizationButton.UseVisualStyleBackColor = true;
@@ -125,9 +122,9 @@ namespace UML_Diagram_Designer
             // inheritanceButton
             // 
             this.inheritanceButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.inheritanceButton.Location = new System.Drawing.Point(108, 26);
+            this.inheritanceButton.Location = new System.Drawing.Point(106, 27);
             this.inheritanceButton.Name = "inheritanceButton";
-            this.inheritanceButton.Size = new System.Drawing.Size(94, 50);
+            this.inheritanceButton.Size = new System.Drawing.Size(89, 35);
             this.inheritanceButton.TabIndex = 9;
             this.inheritanceButton.Text = "Наследование";
             this.inheritanceButton.UseVisualStyleBackColor = true;
@@ -136,29 +133,29 @@ namespace UML_Diagram_Designer
             // associationButton
             // 
             this.associationButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.associationButton.Location = new System.Drawing.Point(9, 26);
+            this.associationButton.Location = new System.Drawing.Point(9, 27);
             this.associationButton.Name = "associationButton";
-            this.associationButton.Size = new System.Drawing.Size(90, 47);
+            this.associationButton.Size = new System.Drawing.Size(87, 35);
             this.associationButton.TabIndex = 8;
             this.associationButton.Text = "Ассоциация";
             this.associationButton.UseVisualStyleBackColor = true;
             this.associationButton.Click += new System.EventHandler(this.associationButton_Click);
             // 
-            // classButton
+            // btnInterface
             // 
-            this.classButton.Location = new System.Drawing.Point(13, 193);
-            this.classButton.Name = "classButton";
-            this.classButton.Size = new System.Drawing.Size(187, 42);
-            this.classButton.TabIndex = 15;
-            this.classButton.Text = "Класс";
-            this.classButton.UseVisualStyleBackColor = true;
-            this.classButton.Click += new System.EventHandler(this.classButton_Click);
+            this.btnInterface.Location = new System.Drawing.Point(9, 154);
+            this.btnInterface.Name = "btnInterface";
+            this.btnInterface.Size = new System.Drawing.Size(65, 45);
+            this.btnInterface.TabIndex = 15;
+            this.btnInterface.Text = "Interface";
+            this.btnInterface.UseVisualStyleBackColor = true;
+            this.btnInterface.Click += new System.EventHandler(this.InterFaceButton_Click);
             // 
             // buttonMove
             // 
-            this.buttonMove.Location = new System.Drawing.Point(12, 332);
+            this.buttonMove.Location = new System.Drawing.Point(106, 219);
             this.buttonMove.Name = "buttonMove";
-            this.buttonMove.Size = new System.Drawing.Size(187, 33);
+            this.buttonMove.Size = new System.Drawing.Size(89, 34);
             this.buttonMove.TabIndex = 16;
             this.buttonMove.Text = "Move";
             this.buttonMove.UseVisualStyleBackColor = true;
@@ -166,17 +163,17 @@ namespace UML_Diagram_Designer
             // 
             // colorButton
             // 
-            this.colorButton.Location = new System.Drawing.Point(109, 137);
+            this.colorButton.Location = new System.Drawing.Point(10, 269);
             this.colorButton.Name = "colorButton";
-            this.colorButton.Size = new System.Drawing.Size(94, 49);
+            this.colorButton.Size = new System.Drawing.Size(86, 33);
             this.colorButton.TabIndex = 17;
-            this.colorButton.Text = "Цвет";
+            this.colorButton.Text = "Color";
             this.colorButton.UseVisualStyleBackColor = true;
             this.colorButton.Click += new System.EventHandler(this.ColorButton_Click);
             // 
             // thicknessTrackBar
             // 
-            this.thicknessTrackBar.Location = new System.Drawing.Point(10, 372);
+            this.thicknessTrackBar.Location = new System.Drawing.Point(10, 319);
             this.thicknessTrackBar.Minimum = 2;
             this.thicknessTrackBar.Name = "thicknessTrackBar";
             this.thicknessTrackBar.Size = new System.Drawing.Size(187, 45);
@@ -184,39 +181,11 @@ namespace UML_Diagram_Designer
             this.thicknessTrackBar.Value = 2;
             this.thicknessTrackBar.Scroll += new System.EventHandler(this.ThicknessTrackBar_Scroll);
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(9, 424);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(187, 20);
-            this.textBox1.TabIndex = 19;
-            // 
-            // btnTextBoxEnter
-            // 
-            this.btnTextBoxEnter.Location = new System.Drawing.Point(9, 491);
-            this.btnTextBoxEnter.Name = "btnTextBoxEnter";
-            this.btnTextBoxEnter.Size = new System.Drawing.Size(93, 35);
-            this.btnTextBoxEnter.TabIndex = 20;
-            this.btnTextBoxEnter.Text = "Enter";
-            this.btnTextBoxEnter.UseVisualStyleBackColor = true;
-            this.btnTextBoxEnter.Click += new System.EventHandler(this.BtnTextBoxEnter_Click);
-            // 
-            // btnSelectElement
-            // 
-            this.btnSelectElement.Location = new System.Drawing.Point(10, 292);
-            this.btnSelectElement.Name = "btnSelectElement";
-            this.btnSelectElement.Size = new System.Drawing.Size(190, 34);
-            this.btnSelectElement.TabIndex = 21;
-            this.btnSelectElement.Text = "SelectElement";
-            this.btnSelectElement.UseVisualStyleBackColor = true;
-            this.btnSelectElement.Click += new System.EventHandler(this.BtnSelectElement_Click);
-            // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(9, 532);
+            this.btnDelete.Location = new System.Drawing.Point(12, 396);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(93, 31);
+            this.btnDelete.Size = new System.Drawing.Size(84, 31);
             this.btnDelete.TabIndex = 22;
             this.btnDelete.Text = "Delete Elem";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -224,19 +193,19 @@ namespace UML_Diagram_Designer
             // 
             // btnEditClassText
             // 
-            this.btnEditClassText.Location = new System.Drawing.Point(105, 450);
+            this.btnEditClassText.Location = new System.Drawing.Point(109, 395);
             this.btnEditClassText.Name = "btnEditClassText";
-            this.btnEditClassText.Size = new System.Drawing.Size(94, 34);
+            this.btnEditClassText.Size = new System.Drawing.Size(88, 32);
             this.btnEditClassText.TabIndex = 22;
             this.btnEditClassText.Text = "EditClassText";
             this.btnEditClassText.UseVisualStyleBackColor = true;
-            this.btnEditClassText.Click += new System.EventHandler(this.btnEditClassText_Click);
+            //this.btnEditClassText.Click += new System.EventHandler(this.btnEditClassText_Click);
             // 
             // btnFont
             // 
-            this.btnFont.Location = new System.Drawing.Point(9, 450);
+            this.btnFont.Location = new System.Drawing.Point(106, 269);
             this.btnFont.Name = "btnFont";
-            this.btnFont.Size = new System.Drawing.Size(93, 34);
+            this.btnFont.Size = new System.Drawing.Size(89, 34);
             this.btnFont.TabIndex = 22;
             this.btnFont.Text = "Font";
             this.btnFont.UseVisualStyleBackColor = true;
@@ -260,7 +229,7 @@ namespace UML_Diagram_Designer
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(946, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(955, 24);
             this.menuStrip1.TabIndex = 25;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -313,10 +282,10 @@ namespace UML_Diagram_Designer
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(106, 492);
+            this.btnEdit.Location = new System.Drawing.Point(9, 219);
             this.btnEdit.Margin = new System.Windows.Forms.Padding(2);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(93, 32);
+            this.btnEdit.Size = new System.Drawing.Size(87, 34);
             this.btnEdit.TabIndex = 25;
             this.btnEdit.Text = "EditElem";
             this.btnEdit.UseVisualStyleBackColor = true;
@@ -332,36 +301,51 @@ namespace UML_Diagram_Designer
             "Realization",
             "Composition",
             "Aggregation"});
-            this.comboBox1.Location = new System.Drawing.Point(109, 537);
+            this.comboBox1.Location = new System.Drawing.Point(11, 369);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(94, 21);
+            this.comboBox1.Size = new System.Drawing.Size(184, 21);
             this.comboBox1.TabIndex = 26;
             this.comboBox1.Text = "Choose relationship type";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // timer1
+            // btnStack
             // 
-            this.timer1.Interval = 1000;
+            this.btnStack.Location = new System.Drawing.Point(80, 154);
+            this.btnStack.Name = "btnStack";
+            this.btnStack.Size = new System.Drawing.Size(51, 45);
+            this.btnStack.TabIndex = 27;
+            this.btnStack.Text = "Stack";
+            this.btnStack.UseVisualStyleBackColor = true;
+            this.btnStack.Click += new System.EventHandler(this.BtnStack_Click);
+            // 
+            // btnClass
+            // 
+            this.btnClass.Location = new System.Drawing.Point(137, 154);
+            this.btnClass.Name = "btnClass";
+            this.btnClass.Size = new System.Drawing.Size(65, 45);
+            this.btnClass.TabIndex = 28;
+            this.btnClass.Text = "Class";
+            this.btnClass.UseVisualStyleBackColor = true;
+            this.btnClass.Click += new System.EventHandler(this.BtnClass_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(946, 578);
+            this.ClientSize = new System.Drawing.Size(955, 546);
+            this.Controls.Add(this.btnClass);
+            this.Controls.Add(this.btnStack);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnEditClassText);
             this.Controls.Add(this.btnFont);
-            this.Controls.Add(this.btnSelectElement);
-            this.Controls.Add(this.btnTextBoxEnter);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.thicknessTrackBar);
             this.Controls.Add(this.colorButton);
             this.Controls.Add(this.buttonMove);
-            this.Controls.Add(this.classButton);
+            this.Controls.Add(this.btnInterface);
             this.Controls.Add(this.clearButton);
             this.Controls.Add(this.compositionButton);
             this.Controls.Add(this.aggregationButton);
@@ -392,15 +376,12 @@ namespace UML_Diagram_Designer
         private System.Windows.Forms.Button realizationButton;
         private System.Windows.Forms.Button inheritanceButton;
         private System.Windows.Forms.Button associationButton;
-        private System.Windows.Forms.Button classButton;
+        private System.Windows.Forms.Button btnInterface;
         private System.Windows.Forms.Button buttonMove;
         private System.Windows.Forms.Button colorButton;
         private System.Windows.Forms.TrackBar thicknessTrackBar;
         private System.Windows.Forms.ColorDialog colorDialog;
         private System.Windows.Forms.FontDialog fontDialog1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button btnTextBoxEnter;
-        private System.Windows.Forms.Button btnSelectElement;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnEditClassText;
         private System.Windows.Forms.Button btnFont;
@@ -415,7 +396,8 @@ namespace UML_Diagram_Designer
         private System.Windows.Forms.ToolStripMenuItem jPGToolStripMenuItem;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button btnStack;
+        private System.Windows.Forms.Button btnClass;
     }
 }
 

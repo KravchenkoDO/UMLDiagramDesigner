@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using UML_Diagram_Designer.UMLClasses;
 using UML_Diagram_Designer.HandlerClasses;
 using UML_Diagram_Designer.FactoryClasses;
 using UML_Diagram_Designer.FactoryClasses.ClassBlockFactories;
@@ -15,7 +15,6 @@ namespace UML_Diagram_Designer
     {
         bool _isMouseMoving = false;
         private Canvas canvas;
-        AbstractDiagramElement _selectedElement;
         AbstractDiagramElementFactory _currentFactory;
         public List<string> _currentClassTextList;
         AbstractHandler _currentHandler;
@@ -24,6 +23,7 @@ namespace UML_Diagram_Designer
         {
             InitializeComponent();
         }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             canvas = Canvas.GetCanvas();
@@ -41,31 +41,49 @@ namespace UML_Diagram_Designer
             _currentFactory = new AssociationRelationshipFactory();
             _currentHandler = new DrawHandler(_currentFactory);
         }
+
         private void inheritanceButton_Click(object sender, EventArgs e)
         {
             _currentFactory = new InheritanceRelationshipFactory();
             _currentHandler = new DrawHandler(_currentFactory);
         }
+
         private void realizationButton_Click(object sender, EventArgs e)
         {
             _currentFactory = new RealizationRelationshipFactory();
             _currentHandler = new DrawHandler(_currentFactory);
         }
+
         private void aggregationButton_Click(object sender, EventArgs e)
         {
             _currentFactory = new AggregationRelationshipFactory();
             _currentHandler = new DrawHandler(_currentFactory);
         }
+
         private void compositionButton_Click(object sender, EventArgs e)
         {
             _currentFactory = new CompositionRelationshipFactory();
             _currentHandler = new DrawHandler(_currentFactory);
         }
-        private void classButton_Click(object sender, EventArgs e)
+
+        private void InterFaceButton_Click(object sender, EventArgs e)
         {
             _currentFactory = new UMLInterfaceFactory();
             _currentHandler = new DrawHandler(_currentFactory);
         }
+
+        private void BtnStack_Click(object sender, EventArgs e)
+        {
+            _currentFactory = new UMLStackFactory();
+            _currentHandler = new DrawHandler(_currentFactory);
+        }
+
+        private void BtnClass_Click(object sender, EventArgs e)
+        {
+            _currentFactory = new UMLClassFactory();
+            _currentHandler = new DrawHandler(_currentFactory);
+        }
+
         private void clearButton_Click(object sender, EventArgs e)
         {
             _isMouseMoving = false;
@@ -73,22 +91,28 @@ namespace UML_Diagram_Designer
             canvas._listAbstractDiagramElements.Clear();
             canvas._pictureBox.Invalidate();
         }
+
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            if(!(_currentHandler is null))
+            if (!(_currentHandler is null))
             {
-                _currentHandler.MouseDown(e);
-                _isMouseMoving = true;
+                if (e.Button == MouseButtons.Left)
+                {
+                    _currentHandler.MouseDown(e);
+                    _isMouseMoving = true;
+                }
             }
         }
+
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if(!(_currentHandler is null))
+            if (!(_currentHandler is null))
             {
                 _currentHandler.MouseMove(e.Location);
                 canvas._pictureBox.Invalidate();
             }
         }
+
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
             if (_isMouseMoving)
@@ -96,33 +120,58 @@ namespace UML_Diagram_Designer
                 _currentHandler.Paint();
             }
         }
+
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            if(!(_currentHandler is null))
+            if (!(_currentHandler is null))
             {
-                _currentHandler.MouseUp();
-                _isMouseMoving = false;
+                if (e.Button == MouseButtons.Left)
+                {
+                    _currentHandler.MouseUp();
+                    _isMouseMoving = false;
+                }
             }
         }
+
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
-            if(!(_currentHandler is null))
+            if (!(_currentHandler is null))
             {
                 if (e.Button == MouseButtons.Left)
                 {
                     _currentHandler.MouseClick(e);
+                }
 
-                    if (!(_currentHandler.ReturnElement() is null))
+                if (e.Button == MouseButtons.Right)
+                {
+                    foreach (var element in canvas._listAbstractDiagramElements)
                     {
-                        _selectedElement = _currentHandler.ReturnElement();
+                        if (element is AbstractUMLElement)
+                        {
+                            AbstractUMLElement currentClass = (AbstractUMLElement)element;
+
+                            if (currentClass.CheckIfTheObjectIsClicked(e.Location))
+                            {
+                                _currentClassTextList = currentClass.SaveElementText("");
+
+                                if (!(_currentClassTextList is null))
+                                {
+                                    EditClassTextForm editClassTextForm = new EditClassTextForm(_currentClassTextList);
+                                    editClassTextForm.ShowDialog();
+                                }
+                            }
+                        }
                     }
                 }
             }
+
         }
+
         private void buttonMove_Click(object sender, EventArgs e)
         {
             _currentHandler = new MoveHandler();
         }
+
         private void ColorButton_Click(object sender, EventArgs e)
         {
             colorDialog.ShowDialog();
@@ -138,20 +187,10 @@ namespace UML_Diagram_Designer
 
             canvas.PenColor = colorDialog.Color;
         }
+
         private void ThicknessTrackBar_Scroll(object sender, EventArgs e)
         {
             canvas.PenSize = thicknessTrackBar.Value;
-        }
-
-        private void BtnTextBoxEnter_Click(object sender, EventArgs e)
-        {
-            _currentClassTextList = _selectedElement.SaveElementText(textBox1.Text);
-            canvas._pictureBox.Invalidate();
-        }
-
-        private void BtnSelectElement_Click(object sender, EventArgs e)
-        {
-            _currentHandler = new SelectHandler();
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
@@ -164,22 +203,14 @@ namespace UML_Diagram_Designer
             _currentHandler = new ChangeColorAndSizeHandler();
         }
 
-        private void btnEditClassText_Click(object sender, EventArgs e)
-        {
-            if (!(_currentClassTextList is null))
-            {
-                EditClassTextForm editClassTextForm = new EditClassTextForm(_currentClassTextList);
-                editClassTextForm.ShowDialog();
-            }
-        }
-
         private void BtnFont_Click(object sender, EventArgs e)
         {
             FontDialog fontDialog1 = new FontDialog();
-            if (!String.IsNullOrEmpty(textBox1.Text) && fontDialog1.ShowDialog() == DialogResult.OK)
+            if (!String.IsNullOrEmpty("lol") && fontDialog1.ShowDialog() == DialogResult.OK)
             {
                 canvas.Font = fontDialog1.Font;
-                textBox1.Font = fontDialog1.Font;
+                canvas._graphics.Clear(Color.White);
+                canvas.RedrawElementsFromElementsList();
             }
         }
 
@@ -190,12 +221,11 @@ namespace UML_Diagram_Designer
             openDeserializeFileDialog.Filter = "UML files(*.uml)|*.uml";
             if (openDeserializeFileDialog.ShowDialog() == DialogResult.OK)
             {
-                string fileData=SaveOrLoad.OpenFile(openDeserializeFileDialog.FileName);
+                string fileData = SaveOrLoad.OpenFile(openDeserializeFileDialog.FileName);
                 JsonDeserialized(fileData);
                 canvas.RedrawElementsFromElementsList();
                 pictureBox1.Invalidate();
-                //_currentFactory = new AssociationRelationshipFactory();
-                //_currentHandler = new DrawHandler(_currentFactory);
+                colorButton.BackColor = Color.White;
             }
         }
 

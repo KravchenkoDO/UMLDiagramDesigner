@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Text;
@@ -35,7 +34,6 @@ namespace UML_Diagram_Designer.UMLClasses
         public StringBuilder sbForRect1Text = new StringBuilder(string.Empty);
         public StringBuilder sbForRect2Text = new StringBuilder(string.Empty);
         public StringBuilder sbForRect3Text = new StringBuilder(string.Empty);
-
 
         public override void Draw(Canvas painter)
         {
@@ -80,12 +78,14 @@ namespace UML_Diagram_Designer.UMLClasses
             strFormatRect23.LineAlignment = StringAlignment.Center;
             strFormatRect23.Trimming = StringTrimming.None;
         }
+
         public enum EnumSections
         {
             FirstSection = 0,
             SecondSection,
             ThirdSection
         }
+
         public override bool CheckIfTheObjectIsClicked(Point point)
         {
             if ((_startPointRect1.X < point.X) && (point.X < _startPointRect1.X + _width) &&
@@ -108,10 +108,12 @@ namespace UML_Diagram_Designer.UMLClasses
             }
             return false;
         }
+
         public override void Move(int deltaX, int deltaY)
         {
             StartPoint = new Point(StartPoint.X + deltaX, StartPoint.Y + deltaY);
         }
+
         public override List<string> SaveElementText(string strText)
         {
             List<string> currentList = new List<string>();
@@ -132,6 +134,7 @@ namespace UML_Diagram_Designer.UMLClasses
             }
             return currentList;
         }
+
         public void CalculateClassCoordinates(List<string> rect1Text, List<string> rect2Text, List<string> rect3Text)
         {
             Canvas canvas = Canvas.GetCanvas();

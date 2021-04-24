@@ -111,7 +111,6 @@
     <Compile Include="HandlerClasses\DeleteHandler.cs" />
     <Compile Include="HandlerClasses\DrawHandler.cs" />
     <Compile Include="HandlerClasses\MoveHandler.cs" />
-    <Compile Include="HandlerClasses\SelectHandler.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\IMoveable.cs" />
     <Compile Include="Interfaces\ISelectable.cs" />

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UML_Diagram_Designer.FactoryClasses;
+﻿using UML_Diagram_Designer.FactoryClasses;
 using UML_Diagram_Designer.FactoryClasses.RelationshipFactories;
 
 namespace UML_Diagram_Designer

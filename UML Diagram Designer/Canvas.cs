@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace UML_Diagram_Designer
@@ -11,6 +7,8 @@ namespace UML_Diagram_Designer
     public class Canvas
     {
         private static Canvas instance;
+        private float _penWidth;
+        private Color _penColor;
         public PictureBox _pictureBox;
         public Bitmap _bitmap;
         public Graphics _graphics;
@@ -19,8 +17,7 @@ namespace UML_Diagram_Designer
         public Font _font;
         public FontStyle fontRect1;
         public List<AbstractDiagramElement> _listAbstractDiagramElements;
-        public float _penWidth;
-        public Color _penColor;
+
         public float PenSize
         {
             get
@@ -33,6 +30,7 @@ namespace UML_Diagram_Designer
                 _pen.Width = _penWidth;
             }
         }
+
         public Color PenColor
         {
             get
@@ -45,6 +43,7 @@ namespace UML_Diagram_Designer
                 _pen.Color = _penColor;
             }
         }
+
         public Font Font
         {
             get
@@ -54,9 +53,10 @@ namespace UML_Diagram_Designer
             set
             {
                 _font = value;
-                
+
             }
         }
+
         public FontStyle FontStyle
         {
             get
@@ -69,12 +69,14 @@ namespace UML_Diagram_Designer
 
             }
         }
+
         public static Canvas GetCanvas()
         {
             if (instance == null)
                 instance = new Canvas();
             return instance;
         }
+
         public void SetCanvas(int width, int height)
         {
             _bitmap = new Bitmap(width, height);
@@ -84,24 +86,29 @@ namespace UML_Diagram_Designer
             _brush = new SolidBrush(Color.Black);
             _font = new Font("Times New Roman", 12);
         }
+
         public void SetPenParameters(Color color, float width)
         {
             PenColor = color;
             PenSize = width;
         }
+
         public void SetBrush(Brush brush)
         {
             _brush = brush;
         }
+
         public void SetFont(Font font)
         {
             Font = font;
         }
+
         public Font SetFontStyle(FontStyle fontStyle)
         {
             FontStyle = fontStyle;
             return new Font(_font, FontStyle);
         }
+
         public void RedrawElementsFromElementsList()
         {
             foreach (var element in _listAbstractDiagramElements)

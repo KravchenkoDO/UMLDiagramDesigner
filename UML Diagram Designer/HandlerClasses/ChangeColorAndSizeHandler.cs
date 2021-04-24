@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
 using UML_Diagram_Designer.Relationships;
 using UML_Diagram_Designer.FactoryClasses;
@@ -12,9 +7,10 @@ namespace UML_Diagram_Designer.HandlerClasses
 {
     class ChangeColorAndSizeHandler : AbstractHandler
     {
-        public Canvas canvas = Canvas.GetCanvas();
+        Canvas canvas = Canvas.GetCanvas();
 
         public ChangeColorAndSizeHandler() { }
+
         public ChangeColorAndSizeHandler(AbstractDiagramElementFactory editFactory)
         {
             _currentFactory = editFactory;
@@ -39,13 +35,11 @@ namespace UML_Diagram_Designer.HandlerClasses
                             canvas.RedrawElementsFromElementsList();
                             break;
                         }
-                        else if(_currentFactory is null)
+                        else if (_currentFactory is null)
                         {
                             _currentDiagramElement = element;
                             canvas._listAbstractDiagramElements.Remove(element);
                             canvas._graphics.Clear(Color.White);
-                            //element.ObjectPenColor = canvas.PenColor;
-                            //element.ObjectPenWidth = canvas.PenSize;
                             _currentDiagramElement.ObjectPenColor = canvas.PenColor;
                             _currentDiagramElement.ObjectPenWidth = canvas.PenSize;
                             canvas._listAbstractDiagramElements.Add(_currentDiagramElement);
