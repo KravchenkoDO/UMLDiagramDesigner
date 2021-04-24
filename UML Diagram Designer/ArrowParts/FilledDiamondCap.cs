@@ -15,7 +15,7 @@ namespace UML_Diagram_Designer.ArrowParts
             GetCap();
         }
 
-        protected override void GetCap()
+        public override CustomLineCap GetCap()
         {
             GraphicsPath graphicsPath = new GraphicsPath();
             Point[] points = new Point[]
@@ -29,7 +29,7 @@ namespace UML_Diagram_Designer.ArrowParts
 
             graphicsPath.AddLines(points);
 
-            _cap = new CustomLineCap(graphicsPath, null);
+            return new CustomLineCap(graphicsPath, null);
         }
     }
 }

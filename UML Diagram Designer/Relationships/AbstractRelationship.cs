@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using UML_Diagram_Designer.ArrowParts;
 
 namespace UML_Diagram_Designer.Relationships
 {
     public abstract class AbstractRelationship : AbstractDiagramElement
     {
-        public CustomLineCap _cap;
+        public AbstractCap _cap;
         public DashStyle _lineStyle;
         private SelectedPoint _selectPoint;
         public enum SelectedPoint
@@ -17,7 +18,7 @@ namespace UML_Diagram_Designer.Relationships
         }
         public override void Draw(Canvas painter)
         {
-            painter._pen.CustomEndCap = _cap;
+            painter._pen.CustomEndCap = _cap.GetCap();
             painter._pen.DashStyle = _lineStyle;
             painter._graphics.DrawLine(painter._pen, StartPoint, EndPoint);
         }
