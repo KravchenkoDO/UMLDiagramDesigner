@@ -157,6 +157,7 @@ namespace UML_Diagram_Designer
                                 if (!(_currentClassTextList is null))
                                 {
                                     EditClassTextForm editClassTextForm = new EditClassTextForm(_currentClassTextList);
+                                    editClassTextForm.StartPosition = FormStartPosition.CenterParent;
                                     editClassTextForm.ShowDialog();
                                 }
                             }

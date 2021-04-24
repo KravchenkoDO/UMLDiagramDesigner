@@ -36,6 +36,9 @@ namespace UML_Diagram_Designer
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            canvas._graphics.Clear(Color.White);
+            canvas.RedrawElementsFromElementsList();
+
             this.Close();
         }
 
