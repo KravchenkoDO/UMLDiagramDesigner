@@ -46,7 +46,7 @@ namespace UML_Diagram_Designer.UMLClasses
             painter._graphics.DrawRectangle(painter._pen, rect1);
             painter._graphics.DrawRectangle(painter._pen, rect2);
             painter._graphics.DrawRectangle(painter._pen, rect3);
-            painter._graphics.DrawString(sbForRect1Text.ToString(), painter.SetFontStyle(FontStyle.Italic), painter._brush, rect1, strFormatRect1);
+            painter._graphics.DrawString(sbForRect1Text.ToString(), painter.SetFontStyle(FontStyle.Italic), painter._brush, rect1, strFormatRect1); //TODO: think about change font style to normal
             painter._graphics.DrawString(sbForRect2Text.ToString(), painter._font, painter._brush, rect2, strFormatRect23);
             painter._graphics.DrawString(sbForRect3Text.ToString(), painter._font, painter._brush, rect3, strFormatRect23);
         }

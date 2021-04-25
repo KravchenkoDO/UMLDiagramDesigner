@@ -7,8 +7,8 @@ namespace UML_Diagram_Designer.UMLClasses
 {
     public abstract class AbstractUMLElement : AbstractDiagramElement
     {
-        const int _widthBuffer = 2;
-        const int _heightYBuffer = 2;
+        const int _widthBuffer = 5;
+        const int _heightYBuffer = 5;
         public int _width = 80;
         public int _height = 80;
         public DashStyle _lineStyle;
@@ -63,7 +63,7 @@ namespace UML_Diagram_Designer.UMLClasses
             painter._graphics.DrawRectangle(painter._pen, rect1);
             painter._graphics.DrawRectangle(painter._pen, rect2);
             painter._graphics.DrawRectangle(painter._pen, rect3);
-            painter._graphics.DrawString(sbForRect1Text.ToString(), painter.SetFontStyle(FontStyle.Italic), painter._brush, rect1, strFormatRect1);
+            painter._graphics.DrawString(sbForRect1Text.ToString(), painter._font, painter._brush, rect1, strFormatRect1);
             painter._graphics.DrawString(sbForRect2Text.ToString(), painter._font, painter._brush, rect2, strFormatRect23);
             painter._graphics.DrawString(sbForRect3Text.ToString(), painter._font, painter._brush, rect3, strFormatRect23);
         }
@@ -114,22 +114,19 @@ namespace UML_Diagram_Designer.UMLClasses
             StartPoint = new Point(StartPoint.X + deltaX, StartPoint.Y + deltaY);
         }
 
-        public override List<string> SaveElementText(string strText)
+        public List<string> CheckSelectedList()
         {
             List<string> currentList = new List<string>();
             if (select == EnumSections.FirstSection)
             {
-                _listForRect1Text.Add(strText);
                 currentList = _listForRect1Text;
             }
             else if (select == EnumSections.SecondSection)
             {
-                _listForRect2Text.Add(strText);
                 currentList = _listForRect2Text;
             }
             else if (select == EnumSections.ThirdSection)
             {
-                _listForRect3Text.Add(strText);
                 currentList = _listForRect3Text;
             }
             return currentList;
@@ -162,6 +159,7 @@ namespace UML_Diagram_Designer.UMLClasses
                     _rect3Width = (int)textSize.Width;
                 }
             }
+
             _width = _rect1Width > _rect2Width ? _rect1Width : _rect2Width;
             _width = _width > _rect3Width ? _width : _rect3Width;
             _width += _widthBuffer;

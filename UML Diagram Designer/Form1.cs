@@ -18,6 +18,7 @@ namespace UML_Diagram_Designer
         AbstractDiagramElementFactory _currentFactory;
         public List<string> _currentClassTextList;
         AbstractHandler _currentHandler;
+        Point pictureBoxLocation;
 
         public Form1()
         {
@@ -26,6 +27,10 @@ namespace UML_Diagram_Designer
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            pictureBoxLocation = new Point(panel1.Width + 1, menuStrip1.Height + 1);
+            pictureBox1.Location = pictureBoxLocation;
+            pictureBox1.Height = this.Height- menuStrip1.Height;
+            pictureBox1.Width = this.Width - panel1.Width;
             canvas = Canvas.GetCanvas();
             canvas.SetCanvas(pictureBox1.Width, pictureBox1.Height);
             pictureBox1.Image = canvas._bitmap;
@@ -152,8 +157,7 @@ namespace UML_Diagram_Designer
 
                             if (currentClass.CheckIfTheObjectIsClicked(e.Location))
                             {
-                                _currentClassTextList = currentClass.SaveElementText("");
-
+                                _currentClassTextList = currentClass.CheckSelectedList();
                                 if (!(_currentClassTextList is null))
                                 {
                                     EditClassTextForm editClassTextForm = new EditClassTextForm(_currentClassTextList);

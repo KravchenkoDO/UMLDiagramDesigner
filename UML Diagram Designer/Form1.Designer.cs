@@ -1,4 +1,6 @@
 ﻿
+using System.Windows.Forms;
+
 namespace UML_Diagram_Designer
 {
     partial class Form1
@@ -57,17 +59,19 @@ namespace UML_Diagram_Designer
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btnStack = new System.Windows.Forms.Button();
             this.btnClass = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thicknessTrackBar)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.pictureBox1.Location = new System.Drawing.Point(208, 26);
+            this.pictureBox1.Location = new System.Drawing.Point(206, 25);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(968, 611);
+            this.pictureBox1.Size = new System.Drawing.Size(968, 485);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
@@ -80,9 +84,9 @@ namespace UML_Diagram_Designer
             // 
             this.clearButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.clearButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.clearButton.Location = new System.Drawing.Point(10, 481);
+            this.clearButton.Location = new System.Drawing.Point(6, 389);
             this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(186, 51);
+            this.clearButton.Size = new System.Drawing.Size(191, 51);
             this.clearButton.TabIndex = 14;
             this.clearButton.Text = "Clear all";
             this.clearButton.UseVisualStyleBackColor = false;
@@ -90,7 +94,7 @@ namespace UML_Diagram_Designer
             // 
             // compositionButton
             // 
-            this.compositionButton.Location = new System.Drawing.Point(106, 106);
+            this.compositionButton.Location = new System.Drawing.Point(105, 86);
             this.compositionButton.Name = "compositionButton";
             this.compositionButton.Size = new System.Drawing.Size(89, 33);
             this.compositionButton.TabIndex = 13;
@@ -100,7 +104,7 @@ namespace UML_Diagram_Designer
             // 
             // aggregationButton
             // 
-            this.aggregationButton.Location = new System.Drawing.Point(57, 68);
+            this.aggregationButton.Location = new System.Drawing.Point(53, 47);
             this.aggregationButton.Name = "aggregationButton";
             this.aggregationButton.Size = new System.Drawing.Size(87, 33);
             this.aggregationButton.TabIndex = 12;
@@ -110,7 +114,7 @@ namespace UML_Diagram_Designer
             // 
             // realizationButton
             // 
-            this.realizationButton.Location = new System.Drawing.Point(10, 106);
+            this.realizationButton.Location = new System.Drawing.Point(3, 86);
             this.realizationButton.Name = "realizationButton";
             this.realizationButton.Size = new System.Drawing.Size(86, 33);
             this.realizationButton.TabIndex = 10;
@@ -121,7 +125,7 @@ namespace UML_Diagram_Designer
             // inheritanceButton
             // 
             this.inheritanceButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.inheritanceButton.Location = new System.Drawing.Point(106, 27);
+            this.inheritanceButton.Location = new System.Drawing.Point(105, 6);
             this.inheritanceButton.Name = "inheritanceButton";
             this.inheritanceButton.Size = new System.Drawing.Size(89, 35);
             this.inheritanceButton.TabIndex = 9;
@@ -132,7 +136,7 @@ namespace UML_Diagram_Designer
             // associationButton
             // 
             this.associationButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.associationButton.Location = new System.Drawing.Point(9, 27);
+            this.associationButton.Location = new System.Drawing.Point(3, 6);
             this.associationButton.Name = "associationButton";
             this.associationButton.Size = new System.Drawing.Size(87, 35);
             this.associationButton.TabIndex = 8;
@@ -142,7 +146,7 @@ namespace UML_Diagram_Designer
             // 
             // btnInterface
             // 
-            this.btnInterface.Location = new System.Drawing.Point(9, 154);
+            this.btnInterface.Location = new System.Drawing.Point(3, 125);
             this.btnInterface.Name = "btnInterface";
             this.btnInterface.Size = new System.Drawing.Size(65, 45);
             this.btnInterface.TabIndex = 15;
@@ -152,9 +156,9 @@ namespace UML_Diagram_Designer
             // 
             // buttonMove
             // 
-            this.buttonMove.Location = new System.Drawing.Point(106, 219);
+            this.buttonMove.Location = new System.Drawing.Point(107, 207);
             this.buttonMove.Name = "buttonMove";
-            this.buttonMove.Size = new System.Drawing.Size(89, 34);
+            this.buttonMove.Size = new System.Drawing.Size(90, 35);
             this.buttonMove.TabIndex = 16;
             this.buttonMove.Text = "Move";
             this.buttonMove.UseVisualStyleBackColor = true;
@@ -162,9 +166,9 @@ namespace UML_Diagram_Designer
             // 
             // colorButton
             // 
-            this.colorButton.Location = new System.Drawing.Point(10, 269);
+            this.colorButton.Location = new System.Drawing.Point(3, 310);
             this.colorButton.Name = "colorButton";
-            this.colorButton.Size = new System.Drawing.Size(86, 33);
+            this.colorButton.Size = new System.Drawing.Size(90, 35);
             this.colorButton.TabIndex = 17;
             this.colorButton.Text = "Color";
             this.colorButton.UseVisualStyleBackColor = true;
@@ -172,19 +176,19 @@ namespace UML_Diagram_Designer
             // 
             // thicknessTrackBar
             // 
-            this.thicknessTrackBar.Location = new System.Drawing.Point(10, 319);
+            this.thicknessTrackBar.Location = new System.Drawing.Point(3, 351);
             this.thicknessTrackBar.Minimum = 2;
             this.thicknessTrackBar.Name = "thicknessTrackBar";
-            this.thicknessTrackBar.Size = new System.Drawing.Size(187, 45);
+            this.thicknessTrackBar.Size = new System.Drawing.Size(191, 42);
             this.thicknessTrackBar.TabIndex = 18;
             this.thicknessTrackBar.Value = 2;
             this.thicknessTrackBar.Scroll += new System.EventHandler(this.ThicknessTrackBar_Scroll);
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(10, 396);
+            this.btnDelete.Location = new System.Drawing.Point(3, 248);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(186, 31);
+            this.btnDelete.Size = new System.Drawing.Size(191, 31);
             this.btnDelete.TabIndex = 22;
             this.btnDelete.Text = "Delete Elem";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -192,9 +196,9 @@ namespace UML_Diagram_Designer
             // 
             // btnFont
             // 
-            this.btnFont.Location = new System.Drawing.Point(106, 269);
+            this.btnFont.Location = new System.Drawing.Point(104, 310);
             this.btnFont.Name = "btnFont";
-            this.btnFont.Size = new System.Drawing.Size(89, 34);
+            this.btnFont.Size = new System.Drawing.Size(90, 35);
             this.btnFont.TabIndex = 22;
             this.btnFont.Text = "Font";
             this.btnFont.UseVisualStyleBackColor = true;
@@ -218,7 +222,7 @@ namespace UML_Diagram_Designer
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1188, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1366, 24);
             this.menuStrip1.TabIndex = 25;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -229,13 +233,13 @@ namespace UML_Diagram_Designer
             this.saveToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -245,36 +249,36 @@ namespace UML_Diagram_Designer
             this.uMLToolStripMenuItem,
             this.jPGToolStripMenuItem});
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // uMLToolStripMenuItem
             // 
             this.uMLToolStripMenuItem.Name = "uMLToolStripMenuItem";
-            this.uMLToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
+            this.uMLToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
             this.uMLToolStripMenuItem.Text = "UML";
             this.uMLToolStripMenuItem.Click += new System.EventHandler(this.uMLToolStripMenuItem_Click);
             // 
             // jPGToolStripMenuItem
             // 
             this.jPGToolStripMenuItem.Name = "jPGToolStripMenuItem";
-            this.jPGToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
+            this.jPGToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
             this.jPGToolStripMenuItem.Text = "JPG";
             this.jPGToolStripMenuItem.Click += new System.EventHandler(this.jPGToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(9, 219);
+            this.btnEdit.Location = new System.Drawing.Point(3, 207);
             this.btnEdit.Margin = new System.Windows.Forms.Padding(2);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(87, 34);
+            this.btnEdit.Size = new System.Drawing.Size(90, 35);
             this.btnEdit.TabIndex = 25;
             this.btnEdit.Text = "EditElem";
             this.btnEdit.UseVisualStyleBackColor = true;
@@ -290,17 +294,17 @@ namespace UML_Diagram_Designer
             "Realization",
             "Composition",
             "Aggregation"});
-            this.comboBox1.Location = new System.Drawing.Point(11, 364);
+            this.comboBox1.Location = new System.Drawing.Point(3, 284);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(184, 21);
+            this.comboBox1.Size = new System.Drawing.Size(191, 21);
             this.comboBox1.TabIndex = 26;
             this.comboBox1.Text = "Choose relationship type";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // btnStack
             // 
-            this.btnStack.Location = new System.Drawing.Point(80, 154);
+            this.btnStack.Location = new System.Drawing.Point(73, 125);
             this.btnStack.Name = "btnStack";
             this.btnStack.Size = new System.Drawing.Size(51, 45);
             this.btnStack.TabIndex = 27;
@@ -310,7 +314,7 @@ namespace UML_Diagram_Designer
             // 
             // btnClass
             // 
-            this.btnClass.Location = new System.Drawing.Point(137, 154);
+            this.btnClass.Location = new System.Drawing.Point(129, 125);
             this.btnClass.Name = "btnClass";
             this.btnClass.Size = new System.Drawing.Size(65, 45);
             this.btnClass.TabIndex = 28;
@@ -318,38 +322,51 @@ namespace UML_Diagram_Designer
             this.btnClass.UseVisualStyleBackColor = true;
             this.btnClass.Click += new System.EventHandler(this.BtnClass_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.inheritanceButton);
+            this.panel1.Controls.Add(this.btnClass);
+            this.panel1.Controls.Add(this.clearButton);
+            this.panel1.Controls.Add(this.btnDelete);
+            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.btnStack);
+            this.panel1.Controls.Add(this.btnEdit);
+            this.panel1.Controls.Add(this.thicknessTrackBar);
+            this.panel1.Controls.Add(this.btnFont);
+            this.panel1.Controls.Add(this.associationButton);
+            this.panel1.Controls.Add(this.colorButton);
+            this.panel1.Controls.Add(this.aggregationButton);
+            this.panel1.Controls.Add(this.compositionButton);
+            this.panel1.Controls.Add(this.realizationButton);
+            this.panel1.Controls.Add(this.btnInterface);
+            this.panel1.Controls.Add(this.buttonMove);
+            this.panel1.Location = new System.Drawing.Point(0, 25);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(200, 485);
+            this.panel1.TabIndex = 29;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1188, 649);
-            this.Controls.Add(this.btnClass);
-            this.Controls.Add(this.btnStack);
+            this.ClientSize = new System.Drawing.Size(1366, 753);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.btnEdit);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnFont);
-            this.Controls.Add(this.thicknessTrackBar);
-            this.Controls.Add(this.colorButton);
-            this.Controls.Add(this.buttonMove);
-            this.Controls.Add(this.btnInterface);
-            this.Controls.Add(this.clearButton);
-            this.Controls.Add(this.compositionButton);
-            this.Controls.Add(this.aggregationButton);
-            this.Controls.Add(this.realizationButton);
-            this.Controls.Add(this.inheritanceButton);
-            this.Controls.Add(this.associationButton);
             this.Controls.Add(this.pictureBox1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UML Diagram Designer";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.thicknessTrackBar)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -385,6 +402,7 @@ namespace UML_Diagram_Designer
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button btnStack;
         private System.Windows.Forms.Button btnClass;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
