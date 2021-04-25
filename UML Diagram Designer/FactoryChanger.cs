@@ -5,8 +5,8 @@ namespace UML_Diagram_Designer
 {
     public class FactoryChanger
     {
-        string factoryName;
-        AbstractDiagramElementFactory editFactory;
+        private string factoryName;
+        private AbstractDiagramElementFactory editFactory;
 
         public FactoryChanger(string factory)
         {

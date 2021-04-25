@@ -8,8 +8,8 @@ namespace UML_Diagram_Designer
 {
     public partial class EditClassTextForm : Form
     {
-        List<string> listClassText;
-        DataTable dataTable;
+        private List<string> listClassText;
+        private DataTable dataTable;
 
         public EditClassTextForm()
         {

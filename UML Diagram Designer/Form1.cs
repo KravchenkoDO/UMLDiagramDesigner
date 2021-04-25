@@ -15,10 +15,10 @@ namespace UML_Diagram_Designer
     {
         bool isMouseMoving = false;
         private Canvas canvas;
-        AbstractDiagramElementFactory currentFactory;
+        private AbstractDiagramElementFactory currentFactory;
         public List<string> currentClassTextList;
-        AbstractHandler currentHandler;
-        Point panelLocation;
+        private AbstractHandler currentHandler;
+        private Point panelLocation;
 
         public Form1()
         {
