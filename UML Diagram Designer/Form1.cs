@@ -13,11 +13,12 @@ namespace UML_Diagram_Designer
 {
     public partial class Form1 : Form
     {
-        bool _isMouseMoving = false;
+        bool isMouseMoving = false;
         private Canvas canvas;
-        AbstractDiagramElementFactory _currentFactory;
-        public List<string> _currentClassTextList;
-        AbstractHandler _currentHandler;
+        private AbstractDiagramElementFactory currentFactory;
+        public List<string> currentClassTextList;
+        private AbstractHandler currentHandler;
+        private Point panelLocation;
 
         public Form1()
         {
@@ -26,125 +27,132 @@ namespace UML_Diagram_Designer
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            panelLocation = new Point(splitContainer1.Width + 1, menuStrip1.Height + 1);
+            flowLayoutPanel1.Location = panelLocation;
+            flowLayoutPanel1.Height = this.Height - menuStrip1.Height - 50;
+            flowLayoutPanel1.Width = this.Width - splitContainer1.Width - 30;
+            pictureBox1.Height = 1200;
+            pictureBox1.Width = 1600;
+
             canvas = Canvas.GetCanvas();
             canvas.SetCanvas(pictureBox1.Width, pictureBox1.Height);
-            pictureBox1.Image = canvas._bitmap;
-            canvas._pictureBox = pictureBox1;
-            canvas._listAbstractDiagramElements = new List<AbstractDiagramElement>();
+            pictureBox1.Image = canvas.bitmap;
+            canvas.pictureBox = pictureBox1;
+            canvas.listAbstractDiagramElements = new List<AbstractDiagramElement>();
             canvas.SetPenParameters(colorDialog.Color, thicknessTrackBar.Value);
-            _currentFactory = new AssociationRelationshipFactory();
-            _currentHandler = new DrawHandler(_currentFactory);
+            currentFactory = new AssociationRelationshipFactory();
+            currentHandler = new DrawHandler(currentFactory);
         }
 
         private void associationButton_Click(object sender, EventArgs e)
         {
-            _currentFactory = new AssociationRelationshipFactory();
-            _currentHandler = new DrawHandler(_currentFactory);
+            currentFactory = new AssociationRelationshipFactory();
+            currentHandler = new DrawHandler(currentFactory);
         }
 
         private void inheritanceButton_Click(object sender, EventArgs e)
         {
-            _currentFactory = new InheritanceRelationshipFactory();
-            _currentHandler = new DrawHandler(_currentFactory);
+            currentFactory = new InheritanceRelationshipFactory();
+            currentHandler = new DrawHandler(currentFactory);
         }
 
         private void realizationButton_Click(object sender, EventArgs e)
         {
-            _currentFactory = new RealizationRelationshipFactory();
-            _currentHandler = new DrawHandler(_currentFactory);
+            currentFactory = new RealizationRelationshipFactory();
+            currentHandler = new DrawHandler(currentFactory);
         }
 
         private void aggregationButton_Click(object sender, EventArgs e)
         {
-            _currentFactory = new AggregationRelationshipFactory();
-            _currentHandler = new DrawHandler(_currentFactory);
+            currentFactory = new AggregationRelationshipFactory();
+            currentHandler = new DrawHandler(currentFactory);
         }
 
         private void compositionButton_Click(object sender, EventArgs e)
         {
-            _currentFactory = new CompositionRelationshipFactory();
-            _currentHandler = new DrawHandler(_currentFactory);
+            currentFactory = new CompositionRelationshipFactory();
+            currentHandler = new DrawHandler(currentFactory);
         }
 
         private void InterFaceButton_Click(object sender, EventArgs e)
         {
-            _currentFactory = new UMLInterfaceFactory();
-            _currentHandler = new DrawHandler(_currentFactory);
+            currentFactory = new UMLInterfaceFactory();
+            currentHandler = new DrawHandler(currentFactory);
         }
 
         private void BtnStack_Click(object sender, EventArgs e)
         {
-            _currentFactory = new UMLStackFactory();
-            _currentHandler = new DrawHandler(_currentFactory);
+            currentFactory = new UMLStackFactory();
+            currentHandler = new DrawHandler(currentFactory);
         }
 
         private void BtnClass_Click(object sender, EventArgs e)
         {
-            _currentFactory = new UMLClassFactory();
-            _currentHandler = new DrawHandler(_currentFactory);
+            currentFactory = new UMLClassFactory();
+            currentHandler = new DrawHandler(currentFactory);
         }
 
         private void clearButton_Click(object sender, EventArgs e)
         {
-            _isMouseMoving = false;
-            canvas._graphics.Clear(Color.White);
-            canvas._listAbstractDiagramElements.Clear();
-            canvas._pictureBox.Invalidate();
+            isMouseMoving = false;
+            canvas.graphics.Clear(Color.White);
+            canvas.listAbstractDiagramElements.Clear();
+            canvas.pictureBox.Invalidate();
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            if (!(_currentHandler is null))
+            if (!(currentHandler is null))
             {
                 if (e.Button == MouseButtons.Left)
                 {
-                    _currentHandler.MouseDown(e);
-                    _isMouseMoving = true;
+                    currentHandler.MouseDown(e);
+                    isMouseMoving = true;
                 }
             }
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (!(_currentHandler is null))
+            if (!(currentHandler is null))
             {
-                _currentHandler.MouseMove(e.Location);
-                canvas._pictureBox.Invalidate();
+                currentHandler.MouseMove(e.Location);
+                canvas.pictureBox.Invalidate();
             }
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
-            if (_isMouseMoving)
+            if (isMouseMoving)
             {
-                _currentHandler.Paint();
+                currentHandler.Paint();
             }
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            if (!(_currentHandler is null))
+            if (!(currentHandler is null))
             {
                 if (e.Button == MouseButtons.Left)
                 {
-                    _currentHandler.MouseUp();
-                    _isMouseMoving = false;
+                    currentHandler.MouseUp();
+                    isMouseMoving = false;
                 }
             }
         }
 
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
-            if (!(_currentHandler is null))
+            if (!(currentHandler is null))
             {
                 if (e.Button == MouseButtons.Left)
                 {
-                    _currentHandler.MouseClick(e);
+                    currentHandler.MouseClick(e);
                 }
 
                 if (e.Button == MouseButtons.Right)
                 {
-                    foreach (var element in canvas._listAbstractDiagramElements)
+                    foreach (var element in canvas.listAbstractDiagramElements)
                     {
                         if (element is AbstractUMLElement)
                         {
@@ -152,14 +160,10 @@ namespace UML_Diagram_Designer
 
                             if (currentClass.CheckIfTheObjectIsClicked(e.Location))
                             {
-                                _currentClassTextList = currentClass.SaveElementText("");
-
-                                if (!(_currentClassTextList is null))
-                                {
-                                    EditClassTextForm editClassTextForm = new EditClassTextForm(_currentClassTextList);
+                                currentClassTextList = currentClass.CheckSelectedList();
+                                    EditClassTextForm editClassTextForm = new EditClassTextForm(currentClassTextList);
                                     editClassTextForm.StartPosition = FormStartPosition.CenterParent;
                                     editClassTextForm.ShowDialog();
-                                }
                             }
                         }
                     }
@@ -170,7 +174,7 @@ namespace UML_Diagram_Designer
 
         private void buttonMove_Click(object sender, EventArgs e)
         {
-            _currentHandler = new MoveHandler();
+            currentHandler = new MoveHandler();
         }
 
         private void ColorButton_Click(object sender, EventArgs e)
@@ -196,12 +200,12 @@ namespace UML_Diagram_Designer
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            _currentHandler = new DeleteHandler();
+            currentHandler = new DeleteHandler();
         }
 
         private void BtnEdit_Click(object sender, EventArgs e)
         {
-            _currentHandler = new ChangeColorAndSizeHandler();
+            currentHandler = new ChangeColorAndSizeHandler();
         }
 
         private void BtnFont_Click(object sender, EventArgs e)
@@ -210,14 +214,14 @@ namespace UML_Diagram_Designer
             if (!String.IsNullOrEmpty("lol") && fontDialog1.ShowDialog() == DialogResult.OK)
             {
                 canvas.Font = fontDialog1.Font;
-                canvas._graphics.Clear(Color.White);
+                canvas.graphics.Clear(Color.White);
                 canvas.RedrawElementsFromElementsList();
             }
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _currentHandler = null;
+            currentHandler = null;
             openDeserializeFileDialog.Title = "Open UML File";
             openDeserializeFileDialog.Filter = "UML files(*.uml)|*.uml";
             if (openDeserializeFileDialog.ShowDialog() == DialogResult.OK)
@@ -243,12 +247,12 @@ namespace UML_Diagram_Designer
                 }
             }
 
-            _currentHandler = null;
+            currentHandler = null;
         }
 
         public string JsonSerialized()
         {
-            string fileSerialized = JsonConvert.SerializeObject(canvas._listAbstractDiagramElements, Formatting.Indented,
+            string fileSerialized = JsonConvert.SerializeObject(canvas.listAbstractDiagramElements, Formatting.Indented,
                     new JsonSerializerSettings
                     {
                         TypeNameHandling = TypeNameHandling.Auto
@@ -258,7 +262,7 @@ namespace UML_Diagram_Designer
 
         public void JsonDeserialized(string fileSerialized)
         {
-            canvas._listAbstractDiagramElements = JsonConvert.DeserializeObject<List<AbstractDiagramElement>>(fileSerialized,
+            canvas.listAbstractDiagramElements = JsonConvert.DeserializeObject<List<AbstractDiagramElement>>(fileSerialized,
                     new JsonSerializerSettings
                     {
                         TypeNameHandling = TypeNameHandling.Auto
@@ -282,7 +286,7 @@ namespace UML_Diagram_Designer
         {
             FactoryChanger factoryChanger = new FactoryChanger(comboBox1.Text);
             ChangeColorAndSizeHandler changeColorAndSizeHandler = new ChangeColorAndSizeHandler(factoryChanger.GetEditFactory());
-            _currentHandler = changeColorAndSizeHandler;
+            currentHandler = changeColorAndSizeHandler;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

@@ -8,8 +8,8 @@ namespace UML_Diagram_Designer
 {
     public partial class EditClassTextForm : Form
     {
-        List<string> listClassText;
-        DataTable dataTable;
+        private List<string> listClassText;
+        private DataTable dataTable;
 
         public EditClassTextForm()
         {
@@ -38,7 +38,7 @@ namespace UML_Diagram_Designer
         {
             Canvas canvas = Canvas.GetCanvas();
 
-            canvas._graphics.Clear(Color.White);
+            canvas.graphics.Clear(Color.White);
             canvas.RedrawElementsFromElementsList();
 
             this.Close();
@@ -55,10 +55,26 @@ namespace UML_Diagram_Designer
                 listClassText.Add(dataGridView1.Rows[rows].Cells[col].Value.ToString());
             }
 
-            canvas._graphics.Clear(Color.White);
+            canvas.graphics.Clear(Color.White);
             canvas.RedrawElementsFromElementsList();
 
             this.Close();
+        }
+
+        private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (string.IsNullOrEmpty(e.FormattedValue.ToString()))
+            {
+                dataGridView1.Rows[e.RowIndex].ErrorText =
+                    "Fields must not be empty";
+                e.Cancel = true;
+            }
+            else e.Cancel = false;
+        }
+
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridView1.Rows[e.RowIndex].ErrorText = String.Empty;
         }
     }
 }

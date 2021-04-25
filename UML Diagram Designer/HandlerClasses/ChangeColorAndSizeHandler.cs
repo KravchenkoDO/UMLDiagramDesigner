@@ -13,36 +13,36 @@ namespace UML_Diagram_Designer.HandlerClasses
 
         public ChangeColorAndSizeHandler(AbstractDiagramElementFactory editFactory)
         {
-            _currentFactory = editFactory;
+            currentFactory = editFactory;
         }
 
         public override void MouseClick(MouseEventArgs e)
         {
-            foreach (var element in canvas._listAbstractDiagramElements)
+            foreach (var element in canvas.listAbstractDiagramElements)
             {
                 if (element.CheckIfTheObjectIsClicked(e.Location))
                 {
                     if (e.Button == MouseButtons.Left)
                     {
-                        if (!(_currentFactory is null) && element is AbstractRelationship)
+                        if (!(currentFactory is null) && element is AbstractRelationship)
                         {
-                            _currentDiagramElement = _currentFactory.GetElement(element.ObjectPenColor, element.ObjectPenWidth);
-                            _currentDiagramElement.StartPoint = element.StartPoint;
-                            _currentDiagramElement.EndPoint = element.EndPoint;
-                            canvas._listAbstractDiagramElements.Remove(element);
-                            canvas._graphics.Clear(Color.White);
-                            canvas._listAbstractDiagramElements.Add(_currentDiagramElement);
+                            currentDiagramElement = currentFactory.GetElement(element.ObjectPenColor, element.ObjectPenWidth);
+                            currentDiagramElement.StartPoint = element.StartPoint;
+                            currentDiagramElement.EndPoint = element.EndPoint;
+                            canvas.listAbstractDiagramElements.Remove(element);
+                            canvas.graphics.Clear(Color.White);
+                            canvas.listAbstractDiagramElements.Add(currentDiagramElement);
                             canvas.RedrawElementsFromElementsList();
                             break;
                         }
-                        else if (_currentFactory is null)
+                        else if (currentFactory is null)
                         {
-                            _currentDiagramElement = element;
-                            canvas._listAbstractDiagramElements.Remove(element);
-                            canvas._graphics.Clear(Color.White);
-                            _currentDiagramElement.ObjectPenColor = canvas.PenColor;
-                            _currentDiagramElement.ObjectPenWidth = canvas.PenSize;
-                            canvas._listAbstractDiagramElements.Add(_currentDiagramElement);
+                            currentDiagramElement = element;
+                            canvas.listAbstractDiagramElements.Remove(element);
+                            canvas.graphics.Clear(Color.White);
+                            currentDiagramElement.ObjectPenColor = canvas.PenColor;
+                            currentDiagramElement.ObjectPenWidth = canvas.PenSize;
+                            canvas.listAbstractDiagramElements.Add(currentDiagramElement);
                             canvas.RedrawElementsFromElementsList();
                             break;
                         }

@@ -6,9 +6,9 @@ namespace UML_Diagram_Designer.ArrowParts
     {
         public DashLine()
         {
-            _lineStyle = DashStyle.Dash;
+            lineStyle = DashStyle.Dash;
 
-            GetLine(_lineStyle);
+            GetLine(lineStyle);
         }
     }
 }

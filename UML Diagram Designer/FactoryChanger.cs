@@ -5,36 +5,36 @@ namespace UML_Diagram_Designer
 {
     public class FactoryChanger
     {
-        string _factoryName;
-        AbstractDiagramElementFactory _editFactory;
+        private string factoryName;
+        private AbstractDiagramElementFactory editFactory;
 
         public FactoryChanger(string factory)
         {
-            _factoryName = factory;
+            factoryName = factory;
         }
 
         public AbstractDiagramElementFactory GetEditFactory()
         {
-            switch (_factoryName)
+            switch (factoryName)
             {
                 case "Association":
-                    _editFactory = new AssociationRelationshipFactory();
+                    editFactory = new AssociationRelationshipFactory();
                     break;
                 case "Inheritance":
-                    _editFactory = new InheritanceRelationshipFactory();
+                    editFactory = new InheritanceRelationshipFactory();
                     break;
                 case "Realization":
-                    _editFactory = new RealizationRelationshipFactory();
+                    editFactory = new RealizationRelationshipFactory();
                     break;
                 case "Composition":
-                    _editFactory = new CompositionRelationshipFactory();
+                    editFactory = new CompositionRelationshipFactory();
                     break;
                 case "Aggregation":
-                    _editFactory = new AggregationRelationshipFactory();
+                    editFactory = new AggregationRelationshipFactory();
                     break;
             }
 
-            return _editFactory;
+            return editFactory;
         }
     }
 }

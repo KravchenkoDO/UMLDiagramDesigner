@@ -6,8 +6,8 @@ namespace UML_Diagram_Designer.HandlerClasses
 {
     public abstract class AbstractHandler
     {
-        public AbstractDiagramElement _currentDiagramElement;
-        public AbstractDiagramElementFactory _currentFactory;
+        public AbstractDiagramElement currentDiagramElement;
+        public AbstractDiagramElementFactory currentFactory;
         public abstract void MouseDown(MouseEventArgs e);
         public abstract void MouseMove(Point point);
         public abstract void MouseUp();

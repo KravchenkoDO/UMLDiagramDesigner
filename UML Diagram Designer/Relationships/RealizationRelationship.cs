@@ -9,8 +9,8 @@ namespace UML_Diagram_Designer.Relationships
         {
             FilledArrowCap filledArrowCap = new FilledArrowCap();
             DashLine dashLine = new DashLine();
-            _cap = filledArrowCap;
-            _lineStyle = dashLine._lineStyle;
+            cap = filledArrowCap;
+            lineStyle = dashLine.lineStyle;
             ObjectPenColor = lineColor;
             ObjectPenWidth = lineWidth;
         }

@@ -7,29 +7,28 @@ namespace UML_Diagram_Designer.UMLClasses
 {
     public abstract class AbstractUMLElement : AbstractDiagramElement
     {
-        const int _widthBuffer = 2;
-        const int _heightYBuffer = 2;
-        public int _width = 80;
-        public int _height = 80;
-        public DashStyle _lineStyle;
+        const int widthBuffer = 5;
+        const int heightYBuffer = 5;
+        public int width = 80;
+        public int height = 80;
+        public DashStyle lineStyle;
 
-        public Point _startPointRect1;
-        public Point _startPointRect2;
-        public Point _startPointRect3;
+        public Point startPointRect1;
+        public Point startPointRect2;
+        public Point startPointRect3;
 
-        public int _rect1Height;
-        public int _rect2Height;
-        public int _rect3Height;
-        public int _rect1Width;
-        public int _rect2Width;
-        public int _rect3Width;
+        public int rect1Height;
+        public int rect2Height;
+        public int rect3Height;
+        public int rect1Width;
+        public int rect2Width;
+        public int rect3Width;
 
-        public List<string> _listForRect1Text;
-        public List<string> _listForRect2Text;
-        public List<string> _listForRect3Text;
+        public List<string> listForRect1Text;
+        public List<string> listForRect2Text;
+        public List<string> listForRect3Text;
 
-        public StringFormat strFormatRect1 = new StringFormat();
-        public StringFormat strFormatRect23 = new StringFormat();
+        public StringFormat strFormatForRect = new StringFormat();
 
         public StringBuilder sbForRect1Text = new StringBuilder(string.Empty);
         public StringBuilder sbForRect2Text = new StringBuilder(string.Empty);
@@ -37,46 +36,44 @@ namespace UML_Diagram_Designer.UMLClasses
 
         public override void Draw(Canvas painter)
         {
+            painter.pen.DashStyle = lineStyle;
             StringBuilder sbForRect1Text = new StringBuilder(string.Empty);
             StringBuilder sbForRect2Text = new StringBuilder(string.Empty);
             StringBuilder sbForRect3Text = new StringBuilder(string.Empty);
 
-            foreach (var rowText in _listForRect1Text)
+            foreach (var rowText in listForRect1Text)
             {
                 sbForRect1Text.AppendFormat("{0}\n", rowText);
             }
-            foreach (var rowText in _listForRect2Text)
+            foreach (var rowText in listForRect2Text)
             {
                 sbForRect2Text.AppendFormat("{0}\n", rowText);
             }
-            foreach (var rowText in _listForRect3Text)
+            foreach (var rowText in listForRect3Text)
             {
                 sbForRect3Text.AppendFormat("{0}\n", rowText);
             }
 
-            CalculateClassCoordinates(_listForRect1Text, _listForRect2Text, _listForRect3Text);
+            CalculateClassCoordinates(listForRect1Text, listForRect2Text, listForRect3Text);
 
-            Rectangle rect1 = new Rectangle(_startPointRect1.X, _startPointRect1.Y, _width, _rect1Height);
-            Rectangle rect2 = new Rectangle(_startPointRect2.X, _startPointRect2.Y, _width, _rect2Height);
-            Rectangle rect3 = new Rectangle(_startPointRect3.X, _startPointRect3.Y, _width, _rect3Height);
+            Rectangle rect1 = new Rectangle(startPointRect1.X, startPointRect1.Y, width, rect1Height);
+            Rectangle rect2 = new Rectangle(startPointRect2.X, startPointRect2.Y, width, rect2Height);
+            Rectangle rect3 = new Rectangle(startPointRect3.X, startPointRect3.Y, width, rect3Height);
 
-            painter._graphics.DrawRectangle(painter._pen, rect1);
-            painter._graphics.DrawRectangle(painter._pen, rect2);
-            painter._graphics.DrawRectangle(painter._pen, rect3);
-            painter._graphics.DrawString(sbForRect1Text.ToString(), painter.SetFontStyle(FontStyle.Italic), painter._brush, rect1, strFormatRect1);
-            painter._graphics.DrawString(sbForRect2Text.ToString(), painter._font, painter._brush, rect2, strFormatRect23);
-            painter._graphics.DrawString(sbForRect3Text.ToString(), painter._font, painter._brush, rect3, strFormatRect23);
+            painter.graphics.DrawRectangle(painter.pen, rect1);
+            painter.graphics.DrawRectangle(painter.pen, rect2);
+            painter.graphics.DrawRectangle(painter.pen, rect3);
+            painter.graphics.DrawString(sbForRect1Text.ToString(), painter.font, painter.brush, rect1, strFormatForRect);
+            painter.graphics.DrawString(sbForRect2Text.ToString(), painter.font, painter.brush, rect2, strFormatForRect);
+            painter.graphics.DrawString(sbForRect3Text.ToString(), painter.font, painter.brush, rect3, strFormatForRect);
         }
 
         public EnumSections select;
         public AbstractUMLElement()
         {
-            strFormatRect1.Alignment = StringAlignment.Center;
-            strFormatRect1.LineAlignment = StringAlignment.Center;
-            strFormatRect1.Trimming = StringTrimming.None;
-            strFormatRect23.Alignment = StringAlignment.Near;
-            strFormatRect23.LineAlignment = StringAlignment.Center;
-            strFormatRect23.Trimming = StringTrimming.None;
+            strFormatForRect.Alignment = StringAlignment.Near;
+            strFormatForRect.LineAlignment = StringAlignment.Center;
+            strFormatForRect.Trimming = StringTrimming.None;
         }
 
         public enum EnumSections
@@ -88,20 +85,20 @@ namespace UML_Diagram_Designer.UMLClasses
 
         public override bool CheckIfTheObjectIsClicked(Point point)
         {
-            if ((_startPointRect1.X < point.X) && (point.X < _startPointRect1.X + _width) &&
-                (_startPointRect1.Y < point.Y) && (point.Y < _startPointRect1.Y + _rect1Height))
+            if ((startPointRect1.X < point.X) && (point.X < startPointRect1.X + width) &&
+                (startPointRect1.Y < point.Y) && (point.Y < startPointRect1.Y + rect1Height))
             {
                 select = EnumSections.FirstSection;
                 return true;
             }
-            if ((_startPointRect2.X < point.X) && (point.X < _startPointRect2.X + _width) &&
-                (_startPointRect2.Y < point.Y) && (point.Y < _startPointRect2.Y + _rect2Height))
+            if ((startPointRect2.X < point.X) && (point.X < startPointRect2.X + width) &&
+                (startPointRect2.Y < point.Y) && (point.Y < startPointRect2.Y + rect2Height))
             {
                 select = EnumSections.SecondSection;
                 return true;
             }
-            if ((_startPointRect3.X < point.X) && (point.X < _startPointRect3.X + _width) &&
-               (_startPointRect3.Y < point.Y) && (point.Y < _startPointRect3.Y + _rect3Height))
+            if ((startPointRect3.X < point.X) && (point.X < startPointRect3.X + width) &&
+               (startPointRect3.Y < point.Y) && (point.Y < startPointRect3.Y + rect3Height))
             {
                 select = EnumSections.ThirdSection;
                 return true;
@@ -114,72 +111,74 @@ namespace UML_Diagram_Designer.UMLClasses
             StartPoint = new Point(StartPoint.X + deltaX, StartPoint.Y + deltaY);
         }
 
-        public override List<string> SaveElementText(string strText)
+        public List<string> CheckSelectedList()
         {
             List<string> currentList = new List<string>();
             if (select == EnumSections.FirstSection)
             {
-                _listForRect1Text.Add(strText);
-                currentList = _listForRect1Text;
+                currentList = listForRect1Text;
             }
             else if (select == EnumSections.SecondSection)
             {
-                _listForRect2Text.Add(strText);
-                currentList = _listForRect2Text;
+                currentList = listForRect2Text;
             }
             else if (select == EnumSections.ThirdSection)
             {
-                _listForRect3Text.Add(strText);
-                currentList = _listForRect3Text;
+                currentList = listForRect3Text;
             }
             return currentList;
         }
 
         public void CalculateClassCoordinates(List<string> rect1Text, List<string> rect2Text, List<string> rect3Text)
         {
+            rect1Width = 0;
+            rect2Width = 0;
+            rect3Width = 0;
             Canvas canvas = Canvas.GetCanvas();
             SizeF textSize = new SizeF();
             foreach (string str in rect1Text)
             {
-                if (textSize.Width > _rect1Width)
+                textSize = canvas.graphics.MeasureString(str, canvas.font);
+                if (textSize.Width > rect1Width)
                 {
-                    _rect1Width = (int)textSize.Width;
+                    rect1Width = (int)textSize.Width;
                 }
             }
             foreach (string str in rect2Text)
             {
-                textSize = canvas._graphics.MeasureString(str, canvas._font);
-                if (textSize.Width > _rect2Width)
+                textSize = canvas.graphics.MeasureString(str, canvas.font);
+                if (textSize.Width > rect2Width)
                 {
-                    _rect2Width = (int)textSize.Width;
+                    rect2Width = (int)textSize.Width;
                 }
             }
             foreach (string str in rect3Text)
             {
-                textSize = canvas._graphics.MeasureString(str, canvas._font);
-                if (textSize.Width > _rect3Width)
+                textSize = canvas.graphics.MeasureString(str, canvas.font);
+                if (textSize.Width > rect3Width)
                 {
-                    _rect3Width = (int)textSize.Width;
+                    rect3Width = (int)textSize.Width;
                 }
             }
-            _width = _rect1Width > _rect2Width ? _rect1Width : _rect2Width;
-            _width = _width > _rect3Width ? _width : _rect3Width;
-            _width += _widthBuffer;
+
+            width = rect1Width > rect2Width ? rect1Width : rect2Width;
+            width = width > rect3Width ? width : rect3Width;
+            width += widthBuffer;
 
             //Rect1
-            _startPointRect1.X = StartPoint.X;
-            _startPointRect1.Y = StartPoint.Y;
-            _rect1Height = _listForRect1Text.Count * (int)textSize.Height + _heightYBuffer;
+            startPointRect1.X = StartPoint.X;
+            startPointRect1.Y = StartPoint.Y;
+            rect1Height = listForRect1Text.Count * (int)textSize.Height + heightYBuffer;
             //Rect2
-            _startPointRect2.X = StartPoint.X;
-            _startPointRect2.Y = _startPointRect1.Y + _rect1Height;
-            _rect2Height = _listForRect2Text.Count * (int)textSize.Height + _heightYBuffer;
+            startPointRect2.X = StartPoint.X;
+            startPointRect2.Y = startPointRect1.Y + rect1Height;
+            rect2Height = listForRect2Text.Count * (int)textSize.Height + heightYBuffer;
             //Rect3
-            _startPointRect3.X = StartPoint.X;
-            _startPointRect3.Y = _startPointRect2.Y + _rect2Height;
-            _rect3Height = _listForRect3Text.Count * (int)textSize.Height + _heightYBuffer;
+            startPointRect3.X = StartPoint.X;
+            startPointRect3.Y = startPointRect2.Y + rect2Height;
+            rect3Height = listForRect3Text.Count * (int)textSize.Height + heightYBuffer;
 
-            _height = _rect1Height + _rect2Height + _rect3Height;
+            height = rect1Height + rect2Height + rect3Height;
         }
     }
 }
