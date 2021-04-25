@@ -4,11 +4,11 @@ namespace UML_Diagram_Designer.ArrowParts
 {
     public abstract class AbstractLine
     {
-        public DashStyle _lineStyle;
+        public DashStyle lineStyle;
 
         protected void GetLine(DashStyle lineStyle)
         {
-            _lineStyle = lineStyle;
+            this.lineStyle = lineStyle;
         }
     }
 }

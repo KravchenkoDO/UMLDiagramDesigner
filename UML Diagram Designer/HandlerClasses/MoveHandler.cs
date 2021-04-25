@@ -13,7 +13,7 @@ namespace UML_Diagram_Designer.HandlerClasses
     {
         private bool leftMouseButtonClicked = false;
         Canvas canvas = Canvas.GetCanvas();
-        public Point _pointForMove;
+        public Point pointForMove;
 
         public override void MouseDown(MouseEventArgs e)
         {
@@ -23,22 +23,22 @@ namespace UML_Diagram_Designer.HandlerClasses
                 {
                     if (!(element is null) && element.CheckIfTheObjectIsClicked(e.Location))
                     {
-                        _currentDiagramElement = element;
+                        currentDiagramElement = element;
                         canvas.listAbstractDiagramElements.Remove(element);
                         break;
                     }
                 }
-                _pointForMove = e.Location;
+                pointForMove = e.Location;
                 leftMouseButtonClicked = true;
             }
         }
 
         public override void MouseMove(Point point)
         {
-            if (!(_currentDiagramElement is null))
+            if (!(currentDiagramElement is null))
             {
-                _currentDiagramElement.Move(point.X - _pointForMove.X, point.Y - _pointForMove.Y);
-                _pointForMove = point;
+                currentDiagramElement.Move(point.X - pointForMove.X, point.Y - pointForMove.Y);
+                pointForMove = point;
             }
         }
 
@@ -46,11 +46,11 @@ namespace UML_Diagram_Designer.HandlerClasses
         {
             if (leftMouseButtonClicked)
             {
-                if (!(_currentDiagramElement is null))
+                if (!(currentDiagramElement is null))
                 {
-                    canvas.SetPenParameters(_currentDiagramElement.ObjectPenColor, _currentDiagramElement.ObjectPenWidth);
+                    canvas.SetPenParameters(currentDiagramElement.ObjectPenColor, currentDiagramElement.ObjectPenWidth);
                     canvas.graphics.Clear(canvas.pictureBox.BackColor);
-                    _currentDiagramElement.Draw(canvas);
+                    currentDiagramElement.Draw(canvas);
 
                     foreach (var element in canvas.listAbstractDiagramElements)
                     {
@@ -66,12 +66,12 @@ namespace UML_Diagram_Designer.HandlerClasses
 
         public override void MouseUp()
         {
-            if (!(_currentDiagramElement is null))
+            if (!(currentDiagramElement is null))
             {
-                canvas.listAbstractDiagramElements.Add(_currentDiagramElement);
+                canvas.listAbstractDiagramElements.Add(currentDiagramElement);
             }
             
-                _currentDiagramElement = null;
+                currentDiagramElement = null;
             leftMouseButtonClicked = false;
         }
 

@@ -6,9 +6,9 @@ namespace UML_Diagram_Designer.ArrowParts
     {
         public SolidLine()
         {
-            _lineStyle = DashStyle.Solid;
+            lineStyle = DashStyle.Solid;
 
-            GetLine(_lineStyle);
+            GetLine(lineStyle);
         }
     }
 }

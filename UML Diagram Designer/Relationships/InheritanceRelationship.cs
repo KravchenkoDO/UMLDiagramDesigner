@@ -9,8 +9,8 @@ namespace UML_Diagram_Designer.Relationships
         {
             FilledArrowCap filledArrowCap = new FilledArrowCap();
             SolidLine solidLine = new SolidLine();
-            _cap = filledArrowCap;
-            _lineStyle = solidLine._lineStyle;
+            cap = filledArrowCap;
+            lineStyle = solidLine.lineStyle;
             ObjectPenColor = lineColor;
             ObjectPenWidth = lineWidth;
         }

@@ -11,7 +11,7 @@ namespace UML_Diagram_Designer.HandlerClasses
 
         public DrawHandler(AbstractDiagramElementFactory diagramFactory)
         {
-            _currentFactory = diagramFactory;
+            currentFactory = diagramFactory;
         }
 
         public override void MouseDown(MouseEventArgs e)
@@ -19,17 +19,17 @@ namespace UML_Diagram_Designer.HandlerClasses
             if (e.Button == MouseButtons.Left)
             {
                 canvas.SetPenParameters(canvas.PenColor, canvas.PenSize);
-                _currentDiagramElement = _currentFactory.GetElement(canvas.PenColor, canvas.PenSize);
-                _currentDiagramElement.StartPoint = e.Location;
+                currentDiagramElement = currentFactory.GetElement(canvas.PenColor, canvas.PenSize);
+                currentDiagramElement.StartPoint = e.Location;
                 leftMouseButtonClicked = true;
             }
         }
 
         public override void MouseMove(Point point)
         {
-            if (!(_currentDiagramElement is null))
+            if (!(currentDiagramElement is null))
             {
-                _currentDiagramElement.EndPoint = point;
+                currentDiagramElement.EndPoint = point;
             }
         }
 
@@ -37,18 +37,18 @@ namespace UML_Diagram_Designer.HandlerClasses
         {
             if (leftMouseButtonClicked)
             {
-                canvas.SetPenParameters(_currentDiagramElement.ObjectPenColor, _currentDiagramElement.ObjectPenWidth);
+                canvas.SetPenParameters(currentDiagramElement.ObjectPenColor, currentDiagramElement.ObjectPenWidth);
                 canvas.graphics.Clear(canvas.pictureBox.BackColor);
-                _currentDiagramElement.Draw(canvas);
+                currentDiagramElement.Draw(canvas);
                 canvas.RedrawElementsFromElementsList();
-                canvas.SetPenParameters(_currentDiagramElement.ObjectPenColor, _currentDiagramElement.ObjectPenWidth);
+                canvas.SetPenParameters(currentDiagramElement.ObjectPenColor, currentDiagramElement.ObjectPenWidth);
             }
         }
 
         public override void MouseUp()
         {
-            canvas.listAbstractDiagramElements.Add(_currentDiagramElement);
-            _currentDiagramElement = null;
+            canvas.listAbstractDiagramElements.Add(currentDiagramElement);
+            currentDiagramElement = null;
             leftMouseButtonClicked = false;
         }
 

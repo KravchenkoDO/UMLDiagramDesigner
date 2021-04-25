@@ -8,9 +8,9 @@ namespace UML_Diagram_Designer.Relationships
 {
     public abstract class AbstractRelationship : AbstractDiagramElement
     {
-        private SelectedPoint _selectPoint;
-        public AbstractCap _cap;
-        public DashStyle _lineStyle;
+        private SelectedPoint selectPoint;
+        public AbstractCap cap;
+        public DashStyle lineStyle;
 
         public enum SelectedPoint
         {
@@ -20,8 +20,8 @@ namespace UML_Diagram_Designer.Relationships
 
         public override void Draw(Canvas painter)
         {
-            painter.pen.CustomEndCap = _cap.GetCap();
-            painter.pen.DashStyle = _lineStyle;
+            painter.pen.CustomEndCap = cap.GetCap();
+            painter.pen.DashStyle = lineStyle;
             painter.graphics.DrawLine(painter.pen, StartPoint, EndPoint);
         }
 
@@ -31,13 +31,13 @@ namespace UML_Diagram_Designer.Relationships
             if (point.X < StartPoint.X + delta && point.X > StartPoint.X - delta &&
                 point.Y < StartPoint.Y + delta && point.Y > StartPoint.Y - delta)
             {
-                _selectPoint = SelectedPoint.StartPoint;
+                selectPoint = SelectedPoint.StartPoint;
                 return true;
             }
             if (point.X < EndPoint.X + delta && point.X > EndPoint.X - delta &&
                 point.Y < EndPoint.Y + delta && point.Y > EndPoint.Y - delta)
             {
-                _selectPoint = SelectedPoint.EndPoint;
+                selectPoint = SelectedPoint.EndPoint;
                 return true;
             }
             return false;
@@ -45,7 +45,7 @@ namespace UML_Diagram_Designer.Relationships
 
         public override void Move(int deltaX, int deltaY)
         {
-            if (_selectPoint == SelectedPoint.StartPoint)
+            if (selectPoint == SelectedPoint.StartPoint)
             {
                 StartPoint = new Point(StartPoint.X + deltaX, StartPoint.Y + deltaY);
             }
