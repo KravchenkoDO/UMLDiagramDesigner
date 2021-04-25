@@ -8,7 +8,7 @@ namespace UML_Diagram_Designer.UMLClasses
     {
         public UMLClass(Color lineColor, float lineWidth)
         {
-            _listForRect1Text = new List<string>() { "«C# Class»", "EnterClassName" };
+            _listForRect1Text = new List<string>() { "ClassName" };
             _listForRect2Text = new List<string>() { "Set Properties and fields" };
             _listForRect3Text = new List<string>() { "Set Methods" };
             ObjectPenColor = lineColor;

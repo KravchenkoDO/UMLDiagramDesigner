@@ -28,8 +28,7 @@ namespace UML_Diagram_Designer.UMLClasses
         public List<string> _listForRect2Text;
         public List<string> _listForRect3Text;
 
-        public StringFormat strFormatRect1 = new StringFormat();
-        public StringFormat strFormatRect23 = new StringFormat();
+        public StringFormat strFormatForRect = new StringFormat();
 
         public StringBuilder sbForRect1Text = new StringBuilder(string.Empty);
         public StringBuilder sbForRect2Text = new StringBuilder(string.Empty);
@@ -63,20 +62,17 @@ namespace UML_Diagram_Designer.UMLClasses
             painter._graphics.DrawRectangle(painter._pen, rect1);
             painter._graphics.DrawRectangle(painter._pen, rect2);
             painter._graphics.DrawRectangle(painter._pen, rect3);
-            painter._graphics.DrawString(sbForRect1Text.ToString(), painter._font, painter._brush, rect1, strFormatRect1);
-            painter._graphics.DrawString(sbForRect2Text.ToString(), painter._font, painter._brush, rect2, strFormatRect23);
-            painter._graphics.DrawString(sbForRect3Text.ToString(), painter._font, painter._brush, rect3, strFormatRect23);
+            painter._graphics.DrawString(sbForRect1Text.ToString(), painter._font, painter._brush, rect1, strFormatForRect);
+            painter._graphics.DrawString(sbForRect2Text.ToString(), painter._font, painter._brush, rect2, strFormatForRect);
+            painter._graphics.DrawString(sbForRect3Text.ToString(), painter._font, painter._brush, rect3, strFormatForRect);
         }
 
         public EnumSections select;
         public AbstractUMLElement()
         {
-            strFormatRect1.Alignment = StringAlignment.Center;
-            strFormatRect1.LineAlignment = StringAlignment.Center;
-            strFormatRect1.Trimming = StringTrimming.None;
-            strFormatRect23.Alignment = StringAlignment.Near;
-            strFormatRect23.LineAlignment = StringAlignment.Center;
-            strFormatRect23.Trimming = StringTrimming.None;
+            strFormatForRect.Alignment = StringAlignment.Near;
+            strFormatForRect.LineAlignment = StringAlignment.Center;
+            strFormatForRect.Trimming = StringTrimming.None;
         }
 
         public enum EnumSections
@@ -134,10 +130,14 @@ namespace UML_Diagram_Designer.UMLClasses
 
         public void CalculateClassCoordinates(List<string> rect1Text, List<string> rect2Text, List<string> rect3Text)
         {
+            _rect1Width = 0;
+            _rect2Width = 0;
+            _rect3Width = 0;
             Canvas canvas = Canvas.GetCanvas();
             SizeF textSize = new SizeF();
             foreach (string str in rect1Text)
             {
+                textSize = canvas._graphics.MeasureString(str, canvas._font);
                 if (textSize.Width > _rect1Width)
                 {
                     _rect1Width = (int)textSize.Width;
