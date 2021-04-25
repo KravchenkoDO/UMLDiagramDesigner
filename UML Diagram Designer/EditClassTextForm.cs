@@ -60,5 +60,21 @@ namespace UML_Diagram_Designer
 
             this.Close();
         }
+
+        private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (string.IsNullOrEmpty(e.FormattedValue.ToString()))
+            {
+                dataGridView1.Rows[e.RowIndex].ErrorText =
+                    "Fields must not be empty";
+                e.Cancel = true;
+            }
+            else e.Cancel = false;
+        }
+
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridView1.Rows[e.RowIndex].ErrorText = String.Empty;
+        }
     }
 }

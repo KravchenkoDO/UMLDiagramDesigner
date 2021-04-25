@@ -18,7 +18,7 @@ namespace UML_Diagram_Designer
         AbstractDiagramElementFactory _currentFactory;
         public List<string> _currentClassTextList;
         AbstractHandler _currentHandler;
-        Point pictureBoxLocation;
+        Point panelLocation;
 
         public Form1()
         {
@@ -27,10 +27,13 @@ namespace UML_Diagram_Designer
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            pictureBoxLocation = new Point(panel1.Width + 1, menuStrip1.Height + 1);
-            pictureBox1.Location = pictureBoxLocation;
-            pictureBox1.Height = this.Height- menuStrip1.Height;
-            pictureBox1.Width = this.Width - panel1.Width;
+            panelLocation = new Point(splitContainer1.Width + 1, menuStrip1.Height + 1);
+            flowLayoutPanel1.Location = panelLocation;
+            flowLayoutPanel1.Height = this.Height - menuStrip1.Height - 30;
+            flowLayoutPanel1.Width = this.Width - splitContainer1.Width - 10;
+            pictureBox1.Height = 2500;
+            pictureBox1.Width = 2500;
+
             canvas = Canvas.GetCanvas();
             canvas.SetCanvas(pictureBox1.Width, pictureBox1.Height);
             pictureBox1.Image = canvas._bitmap;

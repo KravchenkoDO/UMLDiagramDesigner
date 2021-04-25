@@ -31,7 +31,7 @@ namespace UML_Diagram_Designer
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.clearButton = new System.Windows.Forms.Button();
             this.compositionButton = new System.Windows.Forms.Button();
             this.aggregationButton = new System.Windows.Forms.Button();
@@ -59,124 +59,126 @@ namespace UML_Diagram_Designer
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btnStack = new System.Windows.Forms.Button();
             this.btnClass = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.thicknessTrackBar)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.pictureBox1.Location = new System.Drawing.Point(206, 25);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(968, 485);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
-            this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
-            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
-            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
-            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
             // clearButton
             // 
             this.clearButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.clearButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.clearButton.Location = new System.Drawing.Point(6, 389);
+            this.clearButton.Location = new System.Drawing.Point(3, 195);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(191, 51);
             this.clearButton.TabIndex = 14;
-            this.clearButton.Text = "Clear all";
+            this.clearButton.Text = "Clear Picture";
             this.clearButton.UseVisualStyleBackColor = false;
             this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
             // 
             // compositionButton
             // 
-            this.compositionButton.Location = new System.Drawing.Point(105, 86);
+            this.compositionButton.BackColor = System.Drawing.SystemColors.Control;
+            this.compositionButton.Location = new System.Drawing.Point(107, 91);
             this.compositionButton.Name = "compositionButton";
             this.compositionButton.Size = new System.Drawing.Size(89, 33);
             this.compositionButton.TabIndex = 13;
             this.compositionButton.Text = "Composition";
-            this.compositionButton.UseVisualStyleBackColor = true;
+            this.compositionButton.UseVisualStyleBackColor = false;
             this.compositionButton.Click += new System.EventHandler(this.compositionButton_Click);
             // 
             // aggregationButton
             // 
-            this.aggregationButton.Location = new System.Drawing.Point(53, 47);
+            this.aggregationButton.BackColor = System.Drawing.SystemColors.Control;
+            this.aggregationButton.Location = new System.Drawing.Point(55, 47);
             this.aggregationButton.Name = "aggregationButton";
             this.aggregationButton.Size = new System.Drawing.Size(87, 33);
             this.aggregationButton.TabIndex = 12;
             this.aggregationButton.Text = "Aggregation";
-            this.aggregationButton.UseVisualStyleBackColor = true;
+            this.aggregationButton.UseVisualStyleBackColor = false;
             this.aggregationButton.Click += new System.EventHandler(this.aggregationButton_Click);
             // 
             // realizationButton
             // 
-            this.realizationButton.Location = new System.Drawing.Point(3, 86);
+            this.realizationButton.BackColor = System.Drawing.SystemColors.Control;
+            this.realizationButton.Location = new System.Drawing.Point(5, 91);
             this.realizationButton.Name = "realizationButton";
             this.realizationButton.Size = new System.Drawing.Size(86, 33);
             this.realizationButton.TabIndex = 10;
             this.realizationButton.Text = "Realization";
-            this.realizationButton.UseVisualStyleBackColor = true;
+            this.realizationButton.UseVisualStyleBackColor = false;
             this.realizationButton.Click += new System.EventHandler(this.realizationButton_Click);
             // 
             // inheritanceButton
             // 
+            this.inheritanceButton.BackColor = System.Drawing.SystemColors.Control;
             this.inheritanceButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.inheritanceButton.Location = new System.Drawing.Point(105, 6);
+            this.inheritanceButton.Location = new System.Drawing.Point(107, 3);
             this.inheritanceButton.Name = "inheritanceButton";
             this.inheritanceButton.Size = new System.Drawing.Size(89, 35);
             this.inheritanceButton.TabIndex = 9;
             this.inheritanceButton.Text = "Inheritance";
-            this.inheritanceButton.UseVisualStyleBackColor = true;
+            this.inheritanceButton.UseVisualStyleBackColor = false;
             this.inheritanceButton.Click += new System.EventHandler(this.inheritanceButton_Click);
             // 
             // associationButton
             // 
+            this.associationButton.BackColor = System.Drawing.SystemColors.Control;
             this.associationButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.associationButton.Location = new System.Drawing.Point(3, 6);
+            this.associationButton.Location = new System.Drawing.Point(5, 3);
             this.associationButton.Name = "associationButton";
             this.associationButton.Size = new System.Drawing.Size(87, 35);
             this.associationButton.TabIndex = 8;
             this.associationButton.Text = "Association";
-            this.associationButton.UseVisualStyleBackColor = true;
+            this.associationButton.UseVisualStyleBackColor = false;
             this.associationButton.Click += new System.EventHandler(this.associationButton_Click);
             // 
             // btnInterface
             // 
-            this.btnInterface.Location = new System.Drawing.Point(3, 125);
+            this.btnInterface.BackColor = System.Drawing.SystemColors.Control;
+            this.btnInterface.Location = new System.Drawing.Point(5, 137);
             this.btnInterface.Name = "btnInterface";
             this.btnInterface.Size = new System.Drawing.Size(65, 45);
             this.btnInterface.TabIndex = 15;
             this.btnInterface.Text = "Interface";
-            this.btnInterface.UseVisualStyleBackColor = true;
+            this.btnInterface.UseVisualStyleBackColor = false;
             this.btnInterface.Click += new System.EventHandler(this.InterFaceButton_Click);
             // 
             // buttonMove
             // 
-            this.buttonMove.Location = new System.Drawing.Point(107, 207);
+            this.buttonMove.BackColor = System.Drawing.SystemColors.Control;
+            this.buttonMove.Location = new System.Drawing.Point(106, 3);
             this.buttonMove.Name = "buttonMove";
             this.buttonMove.Size = new System.Drawing.Size(90, 35);
             this.buttonMove.TabIndex = 16;
             this.buttonMove.Text = "Move";
-            this.buttonMove.UseVisualStyleBackColor = true;
+            this.buttonMove.UseVisualStyleBackColor = false;
             this.buttonMove.Click += new System.EventHandler(this.buttonMove_Click);
             // 
             // colorButton
             // 
-            this.colorButton.Location = new System.Drawing.Point(3, 310);
+            this.colorButton.BackColor = System.Drawing.SystemColors.Control;
+            this.colorButton.Location = new System.Drawing.Point(7, 106);
             this.colorButton.Name = "colorButton";
             this.colorButton.Size = new System.Drawing.Size(90, 35);
             this.colorButton.TabIndex = 17;
             this.colorButton.Text = "Color";
-            this.colorButton.UseVisualStyleBackColor = true;
+            this.colorButton.UseVisualStyleBackColor = false;
             this.colorButton.Click += new System.EventHandler(this.ColorButton_Click);
             // 
             // thicknessTrackBar
             // 
-            this.thicknessTrackBar.Location = new System.Drawing.Point(3, 351);
+            this.thicknessTrackBar.Location = new System.Drawing.Point(3, 147);
             this.thicknessTrackBar.Minimum = 2;
             this.thicknessTrackBar.Name = "thicknessTrackBar";
             this.thicknessTrackBar.Size = new System.Drawing.Size(191, 42);
@@ -186,22 +188,24 @@ namespace UML_Diagram_Designer
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(3, 248);
+            this.btnDelete.BackColor = System.Drawing.SystemColors.Control;
+            this.btnDelete.Location = new System.Drawing.Point(5, 44);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(191, 31);
             this.btnDelete.TabIndex = 22;
             this.btnDelete.Text = "Delete Elem";
-            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // btnFont
             // 
-            this.btnFont.Location = new System.Drawing.Point(104, 310);
+            this.btnFont.BackColor = System.Drawing.SystemColors.Control;
+            this.btnFont.Location = new System.Drawing.Point(106, 106);
             this.btnFont.Name = "btnFont";
             this.btnFont.Size = new System.Drawing.Size(90, 35);
             this.btnFont.TabIndex = 22;
             this.btnFont.Text = "Font";
-            this.btnFont.UseVisualStyleBackColor = true;
+            this.btnFont.UseVisualStyleBackColor = false;
             this.btnFont.Click += new System.EventHandler(this.BtnFont_Click);
             // 
             // saveSerializeFileDialog
@@ -275,13 +279,14 @@ namespace UML_Diagram_Designer
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(3, 207);
+            this.btnEdit.BackColor = System.Drawing.SystemColors.Control;
+            this.btnEdit.Location = new System.Drawing.Point(7, 4);
             this.btnEdit.Margin = new System.Windows.Forms.Padding(2);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(90, 35);
             this.btnEdit.TabIndex = 25;
             this.btnEdit.Text = "EditElem";
-            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.UseVisualStyleBackColor = false;
             this.btnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
             // 
             // comboBox1
@@ -294,7 +299,7 @@ namespace UML_Diagram_Designer
             "Realization",
             "Composition",
             "Aggregation"});
-            this.comboBox1.Location = new System.Drawing.Point(3, 284);
+            this.comboBox1.Location = new System.Drawing.Point(5, 80);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(191, 21);
@@ -304,55 +309,105 @@ namespace UML_Diagram_Designer
             // 
             // btnStack
             // 
-            this.btnStack.Location = new System.Drawing.Point(73, 125);
+            this.btnStack.BackColor = System.Drawing.SystemColors.Control;
+            this.btnStack.Location = new System.Drawing.Point(74, 137);
             this.btnStack.Name = "btnStack";
             this.btnStack.Size = new System.Drawing.Size(51, 45);
             this.btnStack.TabIndex = 27;
             this.btnStack.Text = "Stack";
-            this.btnStack.UseVisualStyleBackColor = true;
+            this.btnStack.UseVisualStyleBackColor = false;
             this.btnStack.Click += new System.EventHandler(this.BtnStack_Click);
             // 
             // btnClass
             // 
-            this.btnClass.Location = new System.Drawing.Point(129, 125);
+            this.btnClass.BackColor = System.Drawing.SystemColors.Control;
+            this.btnClass.Location = new System.Drawing.Point(131, 137);
             this.btnClass.Name = "btnClass";
             this.btnClass.Size = new System.Drawing.Size(65, 45);
             this.btnClass.TabIndex = 28;
             this.btnClass.Text = "Class";
-            this.btnClass.UseVisualStyleBackColor = true;
+            this.btnClass.UseVisualStyleBackColor = false;
             this.btnClass.Click += new System.EventHandler(this.BtnClass_Click);
             // 
-            // panel1
+            // splitContainer1
             // 
-            this.panel1.Controls.Add(this.inheritanceButton);
-            this.panel1.Controls.Add(this.btnClass);
-            this.panel1.Controls.Add(this.clearButton);
-            this.panel1.Controls.Add(this.btnDelete);
-            this.panel1.Controls.Add(this.comboBox1);
-            this.panel1.Controls.Add(this.btnStack);
-            this.panel1.Controls.Add(this.btnEdit);
-            this.panel1.Controls.Add(this.thicknessTrackBar);
-            this.panel1.Controls.Add(this.btnFont);
-            this.panel1.Controls.Add(this.associationButton);
-            this.panel1.Controls.Add(this.colorButton);
-            this.panel1.Controls.Add(this.aggregationButton);
-            this.panel1.Controls.Add(this.compositionButton);
-            this.panel1.Controls.Add(this.realizationButton);
-            this.panel1.Controls.Add(this.btnInterface);
-            this.panel1.Controls.Add(this.buttonMove);
-            this.panel1.Location = new System.Drawing.Point(0, 25);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 485);
-            this.panel1.TabIndex = 29;
+            this.splitContainer1.BackColor = System.Drawing.SystemColors.Control;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 25);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.BackColor = System.Drawing.Color.Gainsboro;
+            this.splitContainer1.Panel1.Controls.Add(this.inheritanceButton);
+            this.splitContainer1.Panel1.Controls.Add(this.associationButton);
+            this.splitContainer1.Panel1.Controls.Add(this.btnClass);
+            this.splitContainer1.Panel1.Controls.Add(this.btnInterface);
+            this.splitContainer1.Panel1.Controls.Add(this.realizationButton);
+            this.splitContainer1.Panel1.Controls.Add(this.compositionButton);
+            this.splitContainer1.Panel1.Controls.Add(this.btnStack);
+            this.splitContainer1.Panel1.Controls.Add(this.aggregationButton);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Gainsboro;
+            this.splitContainer1.Panel2.Controls.Add(this.pictureBox2);
+            this.splitContainer1.Panel2.Controls.Add(this.btnDelete);
+            this.splitContainer1.Panel2.Controls.Add(this.clearButton);
+            this.splitContainer1.Panel2.Controls.Add(this.comboBox1);
+            this.splitContainer1.Panel2.Controls.Add(this.thicknessTrackBar);
+            this.splitContainer1.Panel2.Controls.Add(this.btnEdit);
+            this.splitContainer1.Panel2.Controls.Add(this.buttonMove);
+            this.splitContainer1.Panel2.Controls.Add(this.btnFont);
+            this.splitContainer1.Panel2.Controls.Add(this.colorButton);
+            this.splitContainer1.Panel2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.splitContainer1.Size = new System.Drawing.Size(200, 597);
+            this.splitContainer1.SplitterDistance = 185;
+            this.splitContainer1.TabIndex = 30;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(3, 252);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(191, 152);
+            this.pictureBox2.TabIndex = 27;
+            this.pictureBox2.TabStop = false;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Controls.Add(this.pictureBox1);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(202, 25);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1138, 716);
+            this.flowLayoutPanel1.TabIndex = 1;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.Window;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1135, 716);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
+            this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightGray;
             this.ClientSize = new System.Drawing.Size(1366, 753);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.pictureBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "Form1";
@@ -361,20 +416,24 @@ namespace UML_Diagram_Designer
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.thicknessTrackBar)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.Button compositionButton;
         private System.Windows.Forms.Button aggregationButton;
@@ -402,7 +461,10 @@ namespace UML_Diagram_Designer
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button btnStack;
         private System.Windows.Forms.Button btnClass;
-        private System.Windows.Forms.Panel panel1;
+        private SplitContainer splitContainer1;
+        private PictureBox pictureBox2;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private PictureBox pictureBox1;
     }
 }
 
