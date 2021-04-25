@@ -31,8 +31,8 @@ namespace UML_Diagram_Designer
             flowLayoutPanel1.Location = panelLocation;
             flowLayoutPanel1.Height = this.Height - menuStrip1.Height - 30;
             flowLayoutPanel1.Width = this.Width - splitContainer1.Width - 10;
-            pictureBox1.Height = 2500;
-            pictureBox1.Width = 2500;
+            pictureBox1.Height = 1200;
+            pictureBox1.Width = 1600;
 
             canvas = Canvas.GetCanvas();
             canvas.SetCanvas(pictureBox1.Width, pictureBox1.Height);
