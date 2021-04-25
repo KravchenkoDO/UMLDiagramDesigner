@@ -8,12 +8,12 @@ namespace UML_Diagram_Designer.UMLClasses
     {
         public UMLClass(Color lineColor, float lineWidth)
         {
-            _listForRect1Text = new List<string>() { "ClassName" };
-            _listForRect2Text = new List<string>() { "Set Properties and fields" };
-            _listForRect3Text = new List<string>() { "Set Methods" };
+            listForRect1Text = new List<string>() { "ClassName" };
+            listForRect2Text = new List<string>() { "Set Properties and fields" };
+            listForRect3Text = new List<string>() { "Set Methods" };
             ObjectPenColor = lineColor;
             ObjectPenWidth = lineWidth;
-            _lineStyle = DashStyle.Solid;
+            lineStyle = DashStyle.Solid;
         }
     }
 }

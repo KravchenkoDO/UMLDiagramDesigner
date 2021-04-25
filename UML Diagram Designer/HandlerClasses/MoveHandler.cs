@@ -19,12 +19,12 @@ namespace UML_Diagram_Designer.HandlerClasses
         {
             if (e.Button == MouseButtons.Left)
             {
-                foreach (var element in canvas._listAbstractDiagramElements)
+                foreach (var element in canvas.listAbstractDiagramElements)
                 {
                     if (!(element is null) && element.CheckIfTheObjectIsClicked(e.Location))
                     {
                         _currentDiagramElement = element;
-                        canvas._listAbstractDiagramElements.Remove(element);
+                        canvas.listAbstractDiagramElements.Remove(element);
                         break;
                     }
                 }
@@ -49,10 +49,10 @@ namespace UML_Diagram_Designer.HandlerClasses
                 if (!(_currentDiagramElement is null))
                 {
                     canvas.SetPenParameters(_currentDiagramElement.ObjectPenColor, _currentDiagramElement.ObjectPenWidth);
-                    canvas._graphics.Clear(canvas._pictureBox.BackColor);
+                    canvas.graphics.Clear(canvas.pictureBox.BackColor);
                     _currentDiagramElement.Draw(canvas);
 
-                    foreach (var element in canvas._listAbstractDiagramElements)
+                    foreach (var element in canvas.listAbstractDiagramElements)
                     {
                         if (!(element is null))
                         {
@@ -68,7 +68,7 @@ namespace UML_Diagram_Designer.HandlerClasses
         {
             if (!(_currentDiagramElement is null))
             {
-                canvas._listAbstractDiagramElements.Add(_currentDiagramElement);
+                canvas.listAbstractDiagramElements.Add(_currentDiagramElement);
             }
             
                 _currentDiagramElement = null;

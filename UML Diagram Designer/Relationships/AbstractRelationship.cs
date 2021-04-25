@@ -20,9 +20,9 @@ namespace UML_Diagram_Designer.Relationships
 
         public override void Draw(Canvas painter)
         {
-            painter._pen.CustomEndCap = _cap.GetCap();
-            painter._pen.DashStyle = _lineStyle;
-            painter._graphics.DrawLine(painter._pen, StartPoint, EndPoint);
+            painter.pen.CustomEndCap = _cap.GetCap();
+            painter.pen.DashStyle = _lineStyle;
+            painter.graphics.DrawLine(painter.pen, StartPoint, EndPoint);
         }
 
         public override bool CheckIfTheObjectIsClicked(Point point)

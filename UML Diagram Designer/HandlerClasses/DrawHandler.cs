@@ -38,7 +38,7 @@ namespace UML_Diagram_Designer.HandlerClasses
             if (leftMouseButtonClicked)
             {
                 canvas.SetPenParameters(_currentDiagramElement.ObjectPenColor, _currentDiagramElement.ObjectPenWidth);
-                canvas._graphics.Clear(canvas._pictureBox.BackColor);
+                canvas.graphics.Clear(canvas.pictureBox.BackColor);
                 _currentDiagramElement.Draw(canvas);
                 canvas.RedrawElementsFromElementsList();
                 canvas.SetPenParameters(_currentDiagramElement.ObjectPenColor, _currentDiagramElement.ObjectPenWidth);
@@ -47,7 +47,7 @@ namespace UML_Diagram_Designer.HandlerClasses
 
         public override void MouseUp()
         {
-            canvas._listAbstractDiagramElements.Add(_currentDiagramElement);
+            canvas.listAbstractDiagramElements.Add(_currentDiagramElement);
             _currentDiagramElement = null;
             leftMouseButtonClicked = false;
         }

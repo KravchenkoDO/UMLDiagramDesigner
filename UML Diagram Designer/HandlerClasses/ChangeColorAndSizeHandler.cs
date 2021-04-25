@@ -18,7 +18,7 @@ namespace UML_Diagram_Designer.HandlerClasses
 
         public override void MouseClick(MouseEventArgs e)
         {
-            foreach (var element in canvas._listAbstractDiagramElements)
+            foreach (var element in canvas.listAbstractDiagramElements)
             {
                 if (element.CheckIfTheObjectIsClicked(e.Location))
                 {
@@ -29,20 +29,20 @@ namespace UML_Diagram_Designer.HandlerClasses
                             _currentDiagramElement = _currentFactory.GetElement(element.ObjectPenColor, element.ObjectPenWidth);
                             _currentDiagramElement.StartPoint = element.StartPoint;
                             _currentDiagramElement.EndPoint = element.EndPoint;
-                            canvas._listAbstractDiagramElements.Remove(element);
-                            canvas._graphics.Clear(Color.White);
-                            canvas._listAbstractDiagramElements.Add(_currentDiagramElement);
+                            canvas.listAbstractDiagramElements.Remove(element);
+                            canvas.graphics.Clear(Color.White);
+                            canvas.listAbstractDiagramElements.Add(_currentDiagramElement);
                             canvas.RedrawElementsFromElementsList();
                             break;
                         }
                         else if (_currentFactory is null)
                         {
                             _currentDiagramElement = element;
-                            canvas._listAbstractDiagramElements.Remove(element);
-                            canvas._graphics.Clear(Color.White);
+                            canvas.listAbstractDiagramElements.Remove(element);
+                            canvas.graphics.Clear(Color.White);
                             _currentDiagramElement.ObjectPenColor = canvas.PenColor;
                             _currentDiagramElement.ObjectPenWidth = canvas.PenSize;
-                            canvas._listAbstractDiagramElements.Add(_currentDiagramElement);
+                            canvas.listAbstractDiagramElements.Add(_currentDiagramElement);
                             canvas.RedrawElementsFromElementsList();
                             break;
                         }

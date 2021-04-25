@@ -9,14 +9,14 @@ namespace UML_Diagram_Designer.HandlerClasses
 
         public override void MouseClick(MouseEventArgs e)
         {
-            foreach (var element in canvas._listAbstractDiagramElements)
+            foreach (var element in canvas.listAbstractDiagramElements)
             {
                 if (element.CheckIfTheObjectIsClicked(e.Location))
                 {
                     if (e.Button == MouseButtons.Left)
                     {
-                        canvas._listAbstractDiagramElements.Remove(element);
-                        canvas._graphics.Clear(Color.White);
+                        canvas.listAbstractDiagramElements.Remove(element);
+                        canvas.graphics.Clear(Color.White);
                         canvas.RedrawElementsFromElementsList();
                         break;
                     }

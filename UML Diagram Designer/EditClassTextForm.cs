@@ -38,7 +38,7 @@ namespace UML_Diagram_Designer
         {
             Canvas canvas = Canvas.GetCanvas();
 
-            canvas._graphics.Clear(Color.White);
+            canvas.graphics.Clear(Color.White);
             canvas.RedrawElementsFromElementsList();
 
             this.Close();
@@ -55,7 +55,7 @@ namespace UML_Diagram_Designer
                 listClassText.Add(dataGridView1.Rows[rows].Cells[col].Value.ToString());
             }
 
-            canvas._graphics.Clear(Color.White);
+            canvas.graphics.Clear(Color.White);
             canvas.RedrawElementsFromElementsList();
 
             this.Close();
