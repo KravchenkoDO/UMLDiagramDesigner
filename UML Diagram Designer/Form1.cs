@@ -29,8 +29,8 @@ namespace UML_Diagram_Designer
         {
             panelLocation = new Point(splitContainer1.Width + 1, menuStrip1.Height + 1);
             flowLayoutPanel1.Location = panelLocation;
-            flowLayoutPanel1.Height = this.Height - menuStrip1.Height - 30;
-            flowLayoutPanel1.Width = this.Width - splitContainer1.Width - 10;
+            flowLayoutPanel1.Height = this.Height - menuStrip1.Height - 40;
+            flowLayoutPanel1.Width = this.Width - splitContainer1.Width - 20;
             pictureBox1.Height = 1200;
             pictureBox1.Width = 1600;
 
@@ -161,12 +161,9 @@ namespace UML_Diagram_Designer
                             if (currentClass.CheckIfTheObjectIsClicked(e.Location))
                             {
                                 _currentClassTextList = currentClass.CheckSelectedList();
-                                if (!(_currentClassTextList is null))
-                                {
                                     EditClassTextForm editClassTextForm = new EditClassTextForm(_currentClassTextList);
                                     editClassTextForm.StartPosition = FormStartPosition.CenterParent;
                                     editClassTextForm.ShowDialog();
-                                }
                             }
                         }
                     }
